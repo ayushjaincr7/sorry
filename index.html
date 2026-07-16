@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Dhari — a small confession</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600;700&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink-night:#0c0d1c;
+    --ink-deep:#14152b;
+    --moon-lavender:#b9a8dd;
+    --sakura:#ff8fb3;
+    --sakura-soft:#ffc2d6;
+    --gold:#e9c877;
+    --paper:#f3eef7;
+    --paper-dim:#c9c2da;
+    --line:rgba(233,200,119,0.25);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html,body{
+    height:100%;
+    background:var(--ink-night);
+    overflow:hidden;
+    font-family:'Poppins',sans-serif;
+    color:var(--paper);
+  }
+  #stage{
+    position:relative;
+    width:100%;
+    height:100vh;
+    background:
+      radial-gradient(ellipse at 20% 15%, rgba(185,168,221,0.15), transparent 55%),
+      radial-gradient(ellipse at 80% 75%, rgba(255,143,179,0.10), transparent 50%),
+      linear-gradient(180deg, #0a0b18 0%, #14152b 55%, #1c1436 100%);
+  }
+
+  /* stars */
+  .star{
+    position:absolute;
+    width:2px; height:2px;
+    background:var(--paper);
+    border-radius:50%;
+    opacity:0.6;
+    animation:twinkle 3.5s ease-in-out infinite;
+  }
+  @keyframes twinkle{
+    0%,100%{opacity:0.15; transform:scale(1);}
+    50%{opacity:0.9; transform:scale(1.6);}
+  }
+
+  /* moon — layered craters + terminator shading for a realistic look */
+  .moon{
+    position:absolute;
+    top:8%; right:10%;
+    width:120px; height:120px;
+    border-radius:50%;
+    background:
+      radial-gradient(circle at 68% 30%, rgba(120,116,110,0.55), transparent 9%),
+      radial-gradient(circle at 40% 62%, rgba(120,116,110,0.4), transparent 7%),
+      radial-gradient(circle at 58% 55%, rgba(120,116,110,0.35), transparent 10%),
+      radial-gradient(circle at 30% 30%, rgba(120,116,110,0.3), transparent 6%),
+      radial-gradient(circle at 75% 65%, rgba(120,116,110,0.3), transparent 8%),
+      radial-gradient(circle at 22% 50%, rgba(120,116,110,0.25), transparent 6%),
+      radial-gradient(circle at 34% 38%, #fbf7ee 0%, #ece4d2 38%, #cdc3ac 68%, #a89e88 100%);
+    box-shadow:
+      inset -14px -10px 24px rgba(60,55,45,0.35),
+      0 0 50px 12px rgba(245,238,215,0.35),
+      0 0 110px 45px rgba(245,238,215,0.14);
+    animation:float 9s ease-in-out infinite;
+  }
+  @keyframes float{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(-14px);}
+  }
+
+  /* birds drifting past the moon */
+  .bird{
+    position:absolute;
+    width:30px;
+    opacity:0.5;
+    animation-name:fly-across, wing-bob;
+    animation-timing-function:linear, ease-in-out;
+    animation-iteration-count:infinite, infinite;
+  }
+  @keyframes fly-across{
+    0%{ left:-8%; }
+    100%{ left:108%; }
+  }
+  @keyframes wing-bob{
+    0%,100%{ transform:translateY(0); }
+    50%{ transform:translateY(-10px); }
+  }
+
+  /* fireflies */
+  .firefly{
+    position:absolute;
+    width:5px; height:5px;
+    border-radius:50%;
+    background:radial-gradient(circle, #fff8dc, var(--gold));
+    box-shadow:0 0 8px 3px rgba(233,200,119,0.75);
+    pointer-events:none;
+  }
+  @keyframes firefly-a{ 0%{transform:translate(0,0);} 25%{transform:translate(26px,-22px);} 50%{transform:translate(-8px,-42px);} 75%{transform:translate(18px,-14px);} 100%{transform:translate(0,0);} }
+  @keyframes firefly-b{ 0%{transform:translate(0,0);} 30%{transform:translate(-22px,-30px);} 60%{transform:translate(14px,-10px);} 100%{transform:translate(0,0);} }
+  @keyframes firefly-c{ 0%{transform:translate(0,0);} 40%{transform:translate(20px,-16px);} 70%{transform:translate(-16px,-32px);} 100%{transform:translate(0,0);} }
+  @keyframes firefly-glow{ 0%,100%{opacity:0.12;} 50%{opacity:1;} }
+
+  /* floating hearts */
+  .heart-float{
+    position:absolute;
+    bottom:-6%;
+    font-size:14px;
+    opacity:0;
+    animation-name:heart-rise, heart-fade;
+    animation-timing-function:ease-out, ease-in-out;
+    animation-iteration-count:1,1;
+    pointer-events:none;
+  }
+  @keyframes heart-rise{
+    0%{ transform:translateY(0) translateX(0) scale(0.8); }
+    100%{ transform:translateY(-70vh) translateX(var(--drift,20px)) scale(1.1); }
+  }
+  @keyframes heart-fade{
+    0%{ opacity:0; }
+    15%{ opacity:0.9; }
+    80%{ opacity:0.7; }
+    100%{ opacity:0; }
+  }
+
+  /* cat companion */
+  #cat{
+    position:absolute;
+    left:calc(50% - 148px);
+    bottom:21.5%;
+    width:76px;
+    filter:drop-shadow(0 12px 10px rgba(0,0,0,0.45));
+    animation:cat-idle 4.5s ease-in-out infinite;
+    transform-origin:bottom center;
+  }
+  @keyframes cat-idle{
+    0%,100%{ transform:translateY(0); }
+    50%{ transform:translateY(-4px); }
+  }
+  #cat .tail{
+    transform-origin:64px 62px;
+    animation:tail-sway 2.2s ease-in-out infinite;
+  }
+  @keyframes tail-sway{
+    0%,100%{ transform:rotate(-8deg); }
+    50%{ transform:rotate(14deg); }
+  }
+
+  /* petals */
+  .petal{
+    position:absolute;
+    top:-5%;
+    width:14px; height:14px;
+    background:linear-gradient(135deg, var(--sakura), var(--sakura-soft));
+    border-radius:0 60% 0 60%;
+    opacity:0.8;
+    animation-name:fall, sway;
+    animation-timing-function:linear, ease-in-out;
+    animation-iteration-count:infinite, infinite;
+  }
+  @keyframes fall{
+    to{ transform:translateY(115vh) rotate(340deg); }
+  }
+  @keyframes sway{
+    0%,100%{ margin-left:0; }
+    50%{ margin-left:40px; }
+  }
+
+  /* ---------- character ---------- */
+  #boy{
+    position:absolute;
+    left:50%;
+    bottom:26%;
+    transform:translateX(-50%);
+    width:170px;
+    animation:idle 3.2s ease-in-out infinite;
+    filter:drop-shadow(0 25px 25px rgba(0,0,0,0.5));
+  }
+  @keyframes idle{
+    0%,100%{ transform:translateX(-50%) translateY(0); }
+    50%{ transform:translateX(-50%) translateY(-8px); }
+  }
+  #boy.bow{ animation: bow 1.4s ease-in-out; }
+  @keyframes bow{
+    0%{ transform:translateX(-50%) rotate(0deg); }
+    30%{ transform:translateX(-50%) rotate(18deg) translateY(10px); }
+    60%{ transform:translateX(-50%) rotate(18deg) translateY(10px); }
+    100%{ transform:translateX(-50%) rotate(0deg); }
+  }
+  #boy.happy{ animation: jump 0.6s ease-in-out 2; }
+  @keyframes jump{
+    0%,100%{ transform:translateX(-50%) translateY(0); }
+    50%{ transform:translateX(-50%) translateY(-24px); }
+  }
+
+  /* sweat drop for apology beat */
+  .sweat{
+    position:absolute;
+    top:6px; right:18px;
+    width:8px; height:12px;
+    background:#8fd0ff;
+    border-radius:0 50% 50% 50%;
+    transform:rotate(45deg);
+    opacity:0;
+    animation:drip 2.6s ease-in infinite;
+  }
+  @keyframes drip{
+    0%{ opacity:0; transform:translateY(0) rotate(45deg); }
+    10%{ opacity:0.9; }
+    80%{ opacity:0.9; transform:translateY(14px) rotate(45deg); }
+    100%{ opacity:0; transform:translateY(18px) rotate(45deg); }
+  }
+
+  /* ---------- dialogue box ---------- */
+  #vn-box{
+    position:absolute;
+    left:50%;
+    bottom:4%;
+    transform:translateX(-50%);
+    width:min(680px, 90vw);
+    background:rgba(12,13,28,0.82);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:22px 26px 18px;
+    backdrop-filter:blur(6px);
+    box-shadow:0 10px 40px rgba(0,0,0,0.5);
+  }
+  #speaker{
+    font-family:'Noto Serif JP', serif;
+    font-weight:700;
+    letter-spacing:0.08em;
+    color:var(--gold);
+    font-size:0.85rem;
+    margin-bottom:8px;
+    text-transform:uppercase;
+  }
+  #vn-text{
+    font-family:'Noto Serif JP', serif;
+    font-size:1.15rem;
+    line-height:1.7;
+    color:var(--paper);
+    min-height:84px;
+  }
+  #vn-text .jp{
+    display:block;
+    color:var(--paper-dim);
+    font-size:0.85rem;
+    margin-top:6px;
+    font-style:italic;
+    font-family:'Poppins',sans-serif;
+  }
+  .cursor-blink{
+    display:inline-block;
+    width:8px; height:8px;
+    border-radius:50%;
+    background:var(--sakura);
+    margin-left:6px;
+    animation:blink 1s step-start infinite;
+    vertical-align:middle;
+  }
+  @keyframes blink{ 50%{ opacity:0; } }
+
+  #next-hint{
+    text-align:right;
+    font-size:0.75rem;
+    color:var(--paper-dim);
+    margin-top:10px;
+    opacity:0;
+    transition:opacity 0.4s;
+  }
+  #next-hint.show{ opacity:0.7; animation:bob 1.4s ease-in-out infinite; }
+  @keyframes bob{ 0%,100%{transform:translateY(0);} 50%{transform:translateY(4px);} }
+
+  /* ---------- choice screen ---------- */
+  #choice-wrap{
+    position:absolute;
+    left:50%; bottom:4%;
+    transform:translateX(-50%);
+    width:min(680px, 90vw);
+    display:none;
+    flex-direction:column;
+    align-items:center;
+    gap:18px;
+  }
+  #choice-title{
+    font-family:'Noto Serif JP', serif;
+    font-size:1.3rem;
+    text-align:center;
+    color:var(--paper);
+    text-shadow:0 2px 12px rgba(255,143,179,0.4);
+  }
+  #choice-buttons{
+    position:relative;
+    display:flex;
+    gap:28px;
+    width:100%;
+    justify-content:center;
+    min-height:70px;
+  }
+  .choice-btn{
+    font-family:'Poppins',sans-serif;
+    font-weight:600;
+    font-size:1rem;
+    padding:14px 34px;
+    border-radius:999px;
+    border:none;
+    cursor:pointer;
+    transition:transform 0.15s ease, box-shadow 0.2s ease, font-size 0.2s ease, padding 0.2s ease;
+  }
+  #yes-btn{
+    background:linear-gradient(135deg, var(--sakura), var(--gold));
+    color:#1c1030;
+    box-shadow:0 8px 24px rgba(255,143,179,0.35);
+  }
+  #yes-btn:hover{ transform:translateY(-3px) scale(1.04); }
+  #no-btn{
+    background:transparent;
+    color:var(--paper-dim);
+    border:1px solid var(--line);
+    position:relative;
+  }
+  #no-count{
+    display:block;
+    text-align:center;
+    font-size:0.75rem;
+    color:var(--paper-dim);
+    opacity:0.7;
+    min-height:16px;
+  }
+
+  /* ---------- ticket / ending ---------- */
+  #ending{
+    position:absolute;
+    inset:0;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    gap:22px;
+    background:radial-gradient(circle at 50% 40%, rgba(255,143,179,0.18), transparent 60%);
+  }
+  #ticket{
+    width:min(420px, 86vw);
+    background:linear-gradient(135deg, #fff7ea, #ffe7f0);
+    border-radius:16px;
+    color:#251435;
+    position:relative;
+    overflow:hidden;
+    box-shadow:0 30px 60px rgba(0,0,0,0.5);
+    transform:scale(0) rotate(-8deg);
+    animation:ticket-in 0.7s cubic-bezier(.2,1.5,.4,1) forwards;
+    animation-delay:0.15s;
+  }
+  @keyframes ticket-in{
+    to{ transform:scale(1) rotate(-2deg); }
+  }
+  #ticket .top{
+    padding:22px 24px 14px;
+    border-bottom:2px dashed rgba(37,20,53,0.25);
+  }
+  #ticket .top .eyebrow{
+    font-size:0.7rem;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:#a9418e;
+    font-weight:600;
+  }
+  #ticket .top h2{
+    font-family:'Noto Serif JP', serif;
+    font-size:1.5rem;
+    margin-top:6px;
+  }
+  #ticket .bottom{
+    padding:16px 24px 22px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-size:0.8rem;
+  }
+  #ticket .bottom .label{
+    color:#a9418e;
+    font-weight:600;
+    font-size:0.65rem;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    display:block;
+  }
+  #ticket .stub{
+    position:absolute;
+    right:-14px; top:50%;
+    width:28px; height:28px;
+    background:var(--ink-night);
+    border-radius:50%;
+    transform:translateY(-50%);
+  }
+  #ticket .stub.left{ left:-14px; right:auto; }
+
+  #ending-note{
+    font-family:'Poppins',sans-serif;
+    color:var(--paper-dim);
+    text-align:center;
+    max-width:420px;
+    font-size:0.9rem;
+    opacity:0;
+    animation:fade-up 0.8s ease forwards;
+    animation-delay:0.9s;
+  }
+  @keyframes fade-up{
+    from{ opacity:0; transform:translateY(10px); }
+    to{ opacity:1; transform:translateY(0); }
+  }
+
+  .confetti{
+    position:absolute;
+    top:-10%;
+    width:8px; height:14px;
+    opacity:0.9;
+    animation:conf-fall linear forwards;
+  }
+  @keyframes conf-fall{
+    to{ transform:translateY(110vh) rotate(600deg); opacity:0; }
+  }
+
+  #skip{
+    position:absolute;
+    top:18px; right:22px;
+    font-size:0.7rem;
+    color:var(--paper-dim);
+    background:transparent;
+    border:1px solid var(--line);
+    padding:6px 14px;
+    border-radius:999px;
+    cursor:pointer;
+    opacity:0.5;
+    transition:opacity 0.2s;
+    z-index:5;
+  }
+  #skip:hover{ opacity:1; }
+
+  @media (max-width:520px){
+    #boy{ width:130px; bottom:30%; }
+    #vn-text{ font-size:1rem; }
+    .choice-btn{ padding:12px 22px; font-size:0.9rem; }
+  }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div class="moon"></div>
+  <svg class="bird" style="top:13%; animation-duration:19s; animation-delay:0s;" viewBox="0 0 40 16" xmlns="http://www.w3.org/2000/svg">
+    <path d="M2 12 Q10 2 20 9 Q30 2 38 12" stroke="#2a2440" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+  </svg>
+  <svg class="bird" style="top:19%; width:22px; animation-duration:24s; animation-delay:5s;" viewBox="0 0 40 16" xmlns="http://www.w3.org/2000/svg">
+    <path d="M2 12 Q10 2 20 9 Q30 2 38 12" stroke="#2a2440" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+  </svg>
+  <button id="skip">skip ▸▸</button>
+
+  <!-- cat companion -->
+  <svg id="cat" viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg">
+    <ellipse cx="55" cy="76" rx="34" ry="4" fill="rgba(0,0,0,0.3)"/>
+    <path class="tail" d="M78 60 Q108 58 104 30 Q102 20 92 22" stroke="#3a2f52" stroke-width="8" fill="none" stroke-linecap="round"/>
+    <ellipse cx="50" cy="55" rx="30" ry="20" fill="#4a3d6b"/>
+    <circle cx="26" cy="38" r="16" fill="#4a3d6b"/>
+    <path d="M14 28 L20 12 L28 26 Z" fill="#4a3d6b"/>
+    <path d="M28 26 L36 10 L40 26 Z" fill="#4a3d6b"/>
+    <path d="M17 27 L21 17 L26 26 Z" fill="#33284d"/>
+    <path d="M29 26 L34 15 L37 26 Z" fill="#33284d"/>
+    <path d="M17 40 Q22 44 27 40" stroke="#1c1533" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+    <path d="M14 34 Q10 34 8 36" stroke="#1c1533" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+    <path d="M14 38 Q9 39 7 42" stroke="#1c1533" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="34" cy="60" rx="5" ry="8" fill="#4a3d6b"/>
+    <ellipse cx="48" cy="63" rx="5" ry="8" fill="#4a3d6b"/>
+  </svg>
+
+  <!-- boy character (css-drawn) -->
+  <svg id="boy" viewBox="0 0 200 260" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <radialGradient id="skinGrad" cx="38%" cy="32%" r="75%">
+        <stop offset="0%" stop-color="#ffe3c7"/>
+        <stop offset="100%" stop-color="#e8ac82"/>
+      </radialGradient>
+      <linearGradient id="hairGrad" x1="0" y1="0" x2="0.3" y2="1">
+        <stop offset="0%" stop-color="#57448c"/>
+        <stop offset="100%" stop-color="#22193a"/>
+      </linearGradient>
+      <linearGradient id="hairHighlight" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#a996db"/>
+        <stop offset="100%" stop-color="#57448c" stop-opacity="0"/>
+      </linearGradient>
+      <linearGradient id="coatGrad" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#40316b"/>
+        <stop offset="100%" stop-color="#221a3a"/>
+      </linearGradient>
+    </defs>
+    <ellipse cx="100" cy="250" rx="55" ry="8" fill="rgba(0,0,0,0.35)"/>
+    <!-- legs -->
+    <rect x="78" y="175" width="18" height="65" rx="8" fill="#241a3d"/>
+    <rect x="104" y="175" width="18" height="65" rx="8" fill="#241a3d"/>
+    <rect x="74" y="232" width="26" height="12" rx="5" fill="#0c0d1c"/>
+    <rect x="100" y="232" width="26" height="12" rx="5" fill="#0c0d1c"/>
+    <!-- coat/body -->
+    <path d="M60 110 Q60 80 100 76 Q140 80 140 110 L146 190 Q100 205 54 190 Z" fill="url(#coatGrad)"/>
+    <path d="M100 76 L100 190" stroke="#1a1330" stroke-width="2" opacity="0.5"/>
+    <!-- scarf -->
+    <path d="M76 96 Q100 114 124 96 L124 109 Q100 125 76 109 Z" fill="var(--sakura)"/>
+    <path d="M76 96 Q100 114 124 96" stroke="#ffd9e5" stroke-width="1.5" fill="none" opacity="0.7"/>
+    <!-- arms -->
+    <path d="M62 112 Q42 130 46 168" stroke="url(#coatGrad)" stroke-width="20" stroke-linecap="round" fill="none"/>
+    <path d="M138 112 Q158 130 154 168" stroke="url(#coatGrad)" stroke-width="20" stroke-linecap="round" fill="none"/>
+    <circle cx="46" cy="172" r="10" fill="url(#skinGrad)"/>
+    <circle cx="154" cy="172" r="10" fill="url(#skinGrad)"/>
+    <!-- neck -->
+    <rect x="90" y="62" width="20" height="20" fill="url(#skinGrad)"/>
+    <!-- head -->
+    <circle cx="100" cy="47" r="33" fill="url(#skinGrad)"/>
+    <!-- jaw shading for a softer, more sculpted look -->
+    <path d="M76 58 Q100 76 124 58 Q118 70 100 72 Q82 70 76 58 Z" fill="#d99a6f" opacity="0.25"/>
+    <!-- hair back -->
+    <path d="M64 42 Q60 6 100 4 Q140 6 136 42 Q136 18 100 16 Q64 18 64 42 Z" fill="url(#hairGrad)"/>
+    <!-- hair front swoop -->
+    <path d="M64 42 Q66 14 100 12 Q134 14 136 42 Q128 24 100 22 Q72 24 64 42 Z" fill="url(#hairGrad)"/>
+    <path d="M74 20 Q60 30 58 46" stroke="url(#hairGrad)" stroke-width="9" fill="none" stroke-linecap="round"/>
+    <path d="M96 14 Q80 20 76 34" stroke="url(#hairHighlight)" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.8"/>
+    <!-- eyebrows -->
+    <path d="M80 40 Q86 36 93 39" stroke="#3a2c5c" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <path d="M107 39 Q114 36 120 40" stroke="#3a2c5c" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <!-- open eyes: warm, expressive -->
+    <g id="eyes-open">
+      <path d="M79 47 Q88 40 97 47 Q88 51.5 79 47 Z" fill="#fff"/>
+      <circle cx="88" cy="47" r="4.4" fill="#8a6bd1"/>
+      <circle cx="88" cy="47" r="2" fill="#241a3d"/>
+      <circle cx="89.6" cy="45.2" r="1.3" fill="#fff"/>
+      <path d="M79 47 Q88 40 97 47" stroke="#2a2044" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+      <path d="M103 47 Q112 40 121 47 Q112 51.5 103 47 Z" fill="#fff"/>
+      <circle cx="112" cy="47" r="4.4" fill="#8a6bd1"/>
+      <circle cx="112" cy="47" r="2" fill="#241a3d"/>
+      <circle cx="113.6" cy="45.2" r="1.3" fill="#fff"/>
+      <path d="M103 47 Q112 40 121 47" stroke="#2a2044" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+    </g>
+    <!-- closed eyes (apologetic ^ ^) -->
+    <g id="eyes-closed" style="display:none;">
+      <path d="M80 49 Q88 43 96 49" stroke="#241a3d" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <path d="M104 49 Q112 43 120 49" stroke="#241a3d" stroke-width="3" fill="none" stroke-linecap="round"/>
+    </g>
+    <!-- blush -->
+    <ellipse cx="81" cy="58" rx="7.5" ry="4.2" fill="var(--sakura)" opacity="0.45"/>
+    <ellipse cx="119" cy="58" rx="7.5" ry="4.2" fill="var(--sakura)" opacity="0.45"/>
+    <!-- mouth -->
+    <path id="mouth" d="M92 64 Q100 60 108 64" stroke="#241a3d" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    <rect class="sweat" x="0" y="0"/>
+  </svg>
+
+  <!-- dialogue -->
+  <div id="vn-box">
+    <div id="speaker">Ayush</div>
+    <div id="vn-text"><span id="vn-text-inner"></span><span class="cursor-blink" id="cursor"></span></div>
+    <div id="next-hint">click to continue ▸</div>
+  </div>
+
+  <!-- choice -->
+  <div id="choice-wrap">
+    <div id="choice-title">So… would you let me make it up to you? I’d love to take you to the movies, buy you your favorite sweets and snacks, and if you’re okay with it… hold your hand for a while. 🌙💗</div>
+    <div id="choice-buttons">
+      <button class="choice-btn" id="yes-btn">Yes, let's go 🎬</button>
+      <button class="choice-btn" id="no-btn">No</button>
+    </div>
+    <div id="no-count"></div>
+  </div>
+
+  <!-- ending -->
+  <div id="ending">
+    <div id="ticket">
+      <div class="stub left"></div>
+      <div class="stub"></div>
+      <div class="top">
+        <span class="eyebrow">Admit Two · Tonight</span>
+        <h2>One Sweet shop, Two People</h2>
+      </div>
+      <div class="bottom">
+        <div>
+          <span class="label">Feature</span>
+          Whatever You Pick sweet
+        </div>
+        <div style="text-align:right">
+          <span class="label">Seat</span>
+          Right Next To Me
+        </div>
+      </div>
+    </div>
+    <div id="ending-note">forgiven, and it's a date. save some sweet and snack for me 🍿🌸</div>
+  </div>
+</div>
+
+<script>
+/* ---------------- ambient background ---------------- */
+const stage = document.getElementById('stage');
+
+for(let i=0;i<70;i++){
+  const s = document.createElement('div');
+  s.className='star';
+  s.style.left = Math.random()*100+'%';
+  s.style.top = Math.random()*60+'%';
+  s.style.animationDelay = (Math.random()*3.5)+'s';
+  stage.appendChild(s);
+}
+
+function spawnPetal(){
+  const p = document.createElement('div');
+  p.className='petal';
+  p.style.left = Math.random()*100+'%';
+  const fallDur = 7+Math.random()*6;
+  const swayDur = 2.5+Math.random()*2;
+  p.style.animationDuration = fallDur+'s, '+swayDur+'s';
+  p.style.animationDelay = '0s, '+(Math.random()*2)+'s';
+  p.style.opacity = 0.5+Math.random()*0.4;
+  const scale = 0.6+Math.random()*0.8;
+  p.style.transform = 'scale('+scale+')';
+  stage.appendChild(p);
+  setTimeout(()=>p.remove(), fallDur*1000+200);
+}
+setInterval(spawnPetal, 380);
+for(let i=0;i<12;i++) setTimeout(spawnPetal, i*300);
+
+/* fireflies drifting low near the ground, romantic warm glow */
+const fireflyPaths = ['firefly-a','firefly-b','firefly-c'];
+function spawnFirefly(){
+  const f = document.createElement('div');
+  f.className = 'firefly';
+  f.style.left = (10+Math.random()*80)+'%';
+  f.style.top = (48+Math.random()*38)+'%';
+  const path = fireflyPaths[Math.floor(Math.random()*fireflyPaths.length)];
+  const moveDur = 5+Math.random()*4;
+  const glowDur = 1.6+Math.random()*1.8;
+  f.style.animation = path+' '+moveDur+'s ease-in-out infinite, firefly-glow '+glowDur+'s ease-in-out infinite';
+  stage.appendChild(f);
+  setTimeout(()=>f.remove(), 16000);
+}
+for(let i=0;i<16;i++) spawnFirefly();
+setInterval(spawnFirefly, 1400);
+
+/* soft floating hearts, ambient romance */
+function spawnHeart(){
+  const h = document.createElement('div');
+  h.className = 'heart-float';
+  h.textContent = Math.random()>0.5 ? '💗' : '🌸';
+  h.style.left = (15+Math.random()*70)+'%';
+  h.style.setProperty('--drift', (Math.random()*60-30)+'px');
+  const dur = 6+Math.random()*4;
+  h.style.animationDuration = dur+'s, '+dur+'s';
+  stage.appendChild(h);
+  setTimeout(()=>h.remove(), dur*1000+300);
+}
+setInterval(spawnHeart, 2600);
+
+/* ---------------- dialogue sequence ---------------- */
+const lines = [
+  {
+    en: "Hey Dhari... I've rewritten this in my head a hundred times, and none of it feels enough.",
+    jp: "",
+    speaker: "Ayush",
+    mood: "nervous"
+  },
+  {
+    en: "The words I said earlier hurt you. I know that now, and I take full responsibility.",
+    jp: "",
+    speaker: "Ayush",
+    mood: "bow"
+  },
+  {
+    en: "You didn't deserve to be spoken to like that. I should've paused, listened, and chosen kinder words.",
+    jp: "",
+    speaker: "Ayush",
+    mood: "bow"
+  },
+  {
+    en: "I don't expect one apology to erase the pain. Trust isn't rebuilt with a single 'sorry.'",
+    jp: "",
+    speaker: "Ayush",
+    mood: "sad"
+  },
+  {
+    en: "But if you'll let me try, I'd rather show you that I can do better than just promise it.",
+    jp: "",
+    speaker: "Ayush",
+    mood: "idle"
+  },
+  {
+    en: "So... would you let me make it up to you? Just us, a good movie, some snacks, and hopefully... a fresh start.",
+    jp: "",
+    speaker: "Ayush",
+    mood: "smile"
+  }
+];
+
+const vnTextInner = document.getElementById('vn-text-inner');
+const speakerEl = document.getElementById('speaker');
+const nextHint = document.getElementById('next-hint');
+const vnBox = document.getElementById('vn-box');
+const boy = document.getElementById('boy');
+const sweat = document.querySelector('.sweat');
+const mouth = document.getElementById('mouth');
+
+let lineIndex = 0;
+let typing = false;
+
+const eyesOpen = document.getElementById('eyes-open');
+const eyesClosed = document.getElementById('eyes-closed');
+
+function setMood(mood){
+  boy.classList.remove('bow','happy');
+  sweat.style.animation = 'none';
+  if(mood==='nervous'){
+    sweat.style.animation = 'drip 2.2s ease-in infinite';
+    mouth.setAttribute('d','M92 65 Q100 62 108 65');
+    eyesOpen.style.display = 'none';
+    eyesClosed.style.display = '';
+  } else if(mood==='bow'){
+    boy.classList.add('bow');
+    mouth.setAttribute('d','M92 66 Q100 68 108 66');
+    eyesOpen.style.display = 'none';
+    eyesClosed.style.display = '';
+  } else {
+    mouth.setAttribute('d','M92 64 Q100 60 108 64');
+    eyesOpen.style.display = '';
+    eyesClosed.style.display = 'none';
+  }
+}
+
+function typeLine(line){
+  typing = true;
+  nextHint.classList.remove('show');
+  speakerEl.textContent = line.speaker;
+  setMood(line.mood);
+  vnTextInner.textContent = '';
+  let i = 0;
+  const text = line.en;
+  const speed = 26;
+  const interval = setInterval(()=>{
+    vnTextInner.textContent += text[i];
+    i++;
+    if(i>=text.length){
+      clearInterval(interval);
+      typing = false;
+      nextHint.classList.add('show');
+    }
+  }, speed);
+}
+
+function advance(){
+  if(typing){
+    // fast-forward current line
+    return;
+  }
+  lineIndex++;
+  if(lineIndex < lines.length){
+    typeLine(lines[lineIndex]);
+  } else {
+    showChoice();
+  }
+}
+
+vnBox.addEventListener('click', advance);
+document.getElementById('skip').addEventListener('click', ()=>{
+  lineIndex = lines.length;
+  showChoice();
+});
+
+typeLine(lines[0]);
+
+/* ---------------- choice screen ---------------- */
+const choiceWrap = document.getElementById('choice-wrap');
+const yesBtn = document.getElementById('yes-btn');
+const noBtn = document.getElementById('no-btn');
+const noCount = document.getElementById('no-count');
+const choiceButtons = document.getElementById('choice-buttons');
+
+const noResponses = [
+  "wait, really?",
+  "c'mon...",
+  "okay but hear me out—",
+  "one movie. that's it.",
+  "you're just avoiding the button now",
+  "impressive dodging, ngl",
+];
+let dodgeCount = 0;
+
+function showChoice(){
+  vnBox.style.display = 'none';
+  choiceWrap.style.display = 'flex';
+  setMood('nervous');
+}
+
+function dodgeNo(){
+  const wrapRect = choiceButtons.getBoundingClientRect();
+  const btnRect = noBtn.getBoundingClientRect();
+  const maxX = wrapRect.width - btnRect.width;
+  const maxY = 90;
+  const newX = Math.random()*maxX - (wrapRect.width/2 - btnRect.width/2);
+  const newY = Math.random()*maxY - maxY/2;
+  noBtn.style.position='relative';
+  noBtn.style.left = newX+'px';
+  noBtn.style.top = newY+'px';
+
+  dodgeCount++;
+  const scale = Math.max(0.45, 1 - dodgeCount*0.09);
+  noBtn.style.fontSize = (0.9*scale)+'rem';
+  noBtn.style.padding = (10*scale)+'px '+(22*scale)+'px';
+
+  noCount.textContent = noResponses[Math.min(dodgeCount-1, noResponses.length-1)];
+
+  yesBtn.style.transform = 'scale('+(1+Math.min(dodgeCount*0.04,0.35))+')';
+
+  if(dodgeCount>6){
+    noBtn.style.opacity='0.3';
+    noBtn.style.pointerEvents='none';
+    noCount.textContent = "...guess that's a yes then 🌸";
+    setTimeout(playEnding, 700);
+  }
+}
+
+noBtn.addEventListener('mouseenter', dodgeNo);
+noBtn.addEventListener('click', (e)=>{ e.preventDefault(); dodgeNo(); });
+noBtn.addEventListener('touchstart', (e)=>{ e.preventDefault(); dodgeNo(); });
+
+yesBtn.addEventListener('click', playEnding);
+
+/* ---------------- ending ---------------- */
+function playEnding(){
+  choiceWrap.style.display = 'none';
+  boy.classList.add('happy');
+  boy.style.bottom = '32%';
+  setMood('idle');
+  mouth.setAttribute('d','M90 62 Q100 72 110 62');
+
+  document.getElementById('ending').style.display = 'flex';
+  burstConfetti();
+}
+
+function burstConfetti(){
+  const colors = ['#ff8fb3','#e9c877','#b9a8dd','#ffc2d6','#fdf6e3'];
+  for(let i=0;i<80;i++){
+    setTimeout(()=>{
+      const c = document.createElement('div');
+      c.className='confetti';
+      c.style.left = Math.random()*100+'%';
+      c.style.background = colors[Math.floor(Math.random()*colors.length)];
+      c.style.animationDuration = (2.5+Math.random()*2)+'s';
+      const isCircle = Math.random()>0.5;
+      if(isCircle){ c.style.borderRadius='50%'; }
+      stage.appendChild(c);
+      setTimeout(()=>c.remove(), 5000);
+    }, i*25);
+  }
+  for(let i=0;i<24;i++){
+    setTimeout(()=>{
+      const h = document.createElement('div');
+      h.className = 'confetti';
+      h.style.background = 'transparent';
+      h.style.fontSize = '16px';
+      h.style.width = 'auto';
+      h.style.height = 'auto';
+      h.textContent = '💗';
+      h.style.left = Math.random()*100+'%';
+      h.style.animationDuration = (3+Math.random()*2)+'s';
+      stage.appendChild(h);
+      setTimeout(()=>h.remove(), 5500);
+    }, i*60);
+  }
+}
+</script>
+</body>
+</html>

@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -182,10 +183,6 @@
     animation:idle 3.2s ease-in-out infinite;
     filter:drop-shadow(0 25px 25px rgba(0,0,0,0.5));
   }
-  @keyframes idle{
-    0%,100%{ transform:translateX(-50%) translateY(0); }
-    50%{ transform:translateX(-50%) translateY(-8px); }
-  }
   #boy.bow{ animation: bow 1.4s ease-in-out; }
   @keyframes bow{
     0%{ transform:translateX(-50%) rotate(0deg); }
@@ -317,6 +314,11 @@
     background:linear-gradient(135deg, var(--sakura), var(--gold));
     color:#1c1030;
     box-shadow:0 8px 24px rgba(255,143,179,0.35);
+    animation:yes-breathe 2.4s ease-in-out infinite;
+  }
+  @keyframes yes-breathe{
+    0%,100%{ box-shadow:0 8px 24px rgba(255,143,179,0.35); }
+    50%{ box-shadow:0 8px 34px rgba(255,143,179,0.65), 0 0 0 6px rgba(255,143,179,0.12); }
   }
   #yes-btn:hover{ transform:translateY(-3px) scale(1.04); }
   #no-btn{
@@ -360,6 +362,23 @@
   @keyframes ticket-in{
     to{ transform:scale(1) rotate(-2deg); }
   }
+  #ticket::after{
+    content:'';
+    position:absolute;
+    top:-40%;
+    left:-60%;
+    width:40%;
+    height:180%;
+    background:linear-gradient(120deg, transparent, rgba(255,255,255,0.75), transparent);
+    transform:rotate(20deg);
+    animation:shine-sweep 3.2s ease-in-out infinite;
+    animation-delay:1.1s;
+  }
+  @keyframes shine-sweep{
+    0%{ left:-60%; }
+    30%{ left:130%; }
+    100%{ left:130%; }
+  }
   #ticket .top{
     padding:22px 24px 14px;
     border-bottom:2px dashed rgba(37,20,53,0.25);
@@ -401,6 +420,34 @@
   }
   #ticket .stub.left{ left:-14px; right:auto; }
 
+  #stamp{
+    position:absolute;
+    top:14px; right:20px;
+    width:64px; height:64px;
+    border:3px solid #c94f7e;
+    border-radius:50%;
+    color:#c94f7e;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:'Noto Serif JP', serif;
+    font-weight:700;
+    font-size:0.62rem;
+    letter-spacing:0.05em;
+    text-align:center;
+    text-transform:uppercase;
+    opacity:0;
+    transform:scale(2.6) rotate(-18deg);
+    animation:stamp-in 0.35s ease-out forwards;
+    animation-delay:1.05s;
+    mix-blend-mode:multiply;
+  }
+  @keyframes stamp-in{
+    0%{ opacity:0; transform:scale(2.6) rotate(-18deg); }
+    60%{ opacity:0.9; transform:scale(0.9) rotate(-18deg); }
+    100%{ opacity:0.85; transform:scale(1) rotate(-18deg); }
+  }
+
   #ending-note{
     font-family:'Poppins',sans-serif;
     color:var(--paper-dim);
@@ -425,6 +472,38 @@
   }
   @keyframes conf-fall{
     to{ transform:translateY(110vh) rotate(600deg); opacity:0; }
+  }
+
+  /* romantic heartbeat vignette used during the choice moment */
+  #vignette{
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+    background:radial-gradient(circle at 50% 62%, transparent 35%, rgba(255,110,150,0.10) 100%);
+    opacity:0;
+    transition:opacity 0.6s ease;
+  }
+  #vignette.on{
+    opacity:1;
+    animation:heartbeat 1.8s ease-in-out infinite;
+  }
+  @keyframes heartbeat{
+    0%,100%{ background:radial-gradient(circle at 50% 62%, transparent 35%, rgba(255,110,150,0.08) 100%); }
+    50%{ background:radial-gradient(circle at 50% 62%, transparent 30%, rgba(255,110,150,0.18) 100%); }
+  }
+
+  /* small puff particle when the No button teleports */
+  .puff{
+    position:absolute;
+    width:10px; height:10px;
+    border-radius:50%;
+    background:radial-gradient(circle, rgba(233,200,119,0.9), transparent 70%);
+    pointer-events:none;
+    animation:puff-out 0.5s ease-out forwards;
+  }
+  @keyframes puff-out{
+    0%{ transform:scale(0.4); opacity:0.9; }
+    100%{ transform:scale(2.2); opacity:0; }
   }
 
   #skip{
@@ -452,6 +531,7 @@
 </head>
 <body>
 <div id="stage">
+  <div id="vignette"></div>
   <div class="moon"></div>
   <svg class="bird" style="top:13%; animation-duration:19s; animation-delay:0s;" viewBox="0 0 40 16" xmlns="http://www.w3.org/2000/svg">
     <path d="M2 12 Q10 2 20 9 Q30 2 38 12" stroke="#2a2440" stroke-width="2.2" fill="none" stroke-linecap="round"/>
@@ -471,7 +551,9 @@
     <path d="M28 26 L36 10 L40 26 Z" fill="#4a3d6b"/>
     <path d="M17 27 L21 17 L26 26 Z" fill="#33284d"/>
     <path d="M29 26 L34 15 L37 26 Z" fill="#33284d"/>
-    <path d="M17 40 Q22 44 27 40" stroke="#1c1533" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+    <g id="cat-eyes">
+      <path d="M17 40 Q22 44 27 40" stroke="#1c1533" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+    </g>
     <path d="M14 34 Q10 34 8 36" stroke="#1c1533" stroke-width="1.2" fill="none" stroke-linecap="round"/>
     <path d="M14 38 Q9 39 7 42" stroke="#1c1533" stroke-width="1.2" fill="none" stroke-linecap="round"/>
     <ellipse cx="34" cy="60" rx="5" ry="8" fill="#4a3d6b"/>
@@ -511,10 +593,10 @@
     <path d="M76 96 Q100 114 124 96 L124 109 Q100 125 76 109 Z" fill="var(--sakura)"/>
     <path d="M76 96 Q100 114 124 96" stroke="#ffd9e5" stroke-width="1.5" fill="none" opacity="0.7"/>
     <!-- arms -->
-    <path d="M62 112 Q42 130 46 168" stroke="url(#coatGrad)" stroke-width="20" stroke-linecap="round" fill="none"/>
-    <path d="M138 112 Q158 130 154 168" stroke="url(#coatGrad)" stroke-width="20" stroke-linecap="round" fill="none"/>
-    <circle cx="46" cy="172" r="10" fill="url(#skinGrad)"/>
-    <circle cx="154" cy="172" r="10" fill="url(#skinGrad)"/>
+    <path id="arm-l" d="M62 112 Q42 130 46 168" stroke="url(#coatGrad)" stroke-width="20" stroke-linecap="round" fill="none"/>
+    <path id="arm-r" d="M138 112 Q158 130 154 168" stroke="url(#coatGrad)" stroke-width="20" stroke-linecap="round" fill="none"/>
+    <circle id="hand-l" cx="46" cy="172" r="10" fill="url(#skinGrad)"/>
+    <circle id="hand-r" cx="154" cy="172" r="10" fill="url(#skinGrad)"/>
     <!-- neck -->
     <rect x="90" y="62" width="20" height="20" fill="url(#skinGrad)"/>
     <!-- head -->
@@ -528,8 +610,8 @@
     <path d="M74 20 Q60 30 58 46" stroke="url(#hairGrad)" stroke-width="9" fill="none" stroke-linecap="round"/>
     <path d="M96 14 Q80 20 76 34" stroke="url(#hairHighlight)" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.8"/>
     <!-- eyebrows -->
-    <path d="M80 40 Q86 36 93 39" stroke="#3a2c5c" stroke-width="2" fill="none" stroke-linecap="round"/>
-    <path d="M107 39 Q114 36 120 40" stroke="#3a2c5c" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <path id="brow-l" d="M80 40 Q86 36 93 39" stroke="#3a2c5c" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <path id="brow-r" d="M107 39 Q114 36 120 40" stroke="#3a2c5c" stroke-width="2" fill="none" stroke-linecap="round"/>
     <!-- open eyes: warm, expressive -->
     <g id="eyes-open">
       <path d="M79 47 Q88 40 97 47 Q88 51.5 79 47 Z" fill="#fff"/>
@@ -542,15 +624,24 @@
       <circle cx="112" cy="47" r="2" fill="#241a3d"/>
       <circle cx="113.6" cy="45.2" r="1.3" fill="#fff"/>
       <path d="M103 47 Q112 40 121 47" stroke="#2a2044" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+      <g id="eye-sparkle" opacity="0">
+        <path d="M88 30 L90 36 L96 38 L90 40 L88 46 L86 40 L80 38 L86 36 Z" fill="#fff8dc"/>
+      </g>
     </g>
     <!-- closed eyes (apologetic ^ ^) -->
     <g id="eyes-closed" style="display:none;">
       <path d="M80 49 Q88 43 96 49" stroke="#241a3d" stroke-width="3" fill="none" stroke-linecap="round"/>
       <path d="M104 49 Q112 43 120 49" stroke="#241a3d" stroke-width="3" fill="none" stroke-linecap="round"/>
     </g>
+    <!-- sad, downcast eyes -->
+    <g id="eyes-sad" style="display:none;">
+      <path d="M80 49 Q88 51 96 48" stroke="#241a3d" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <path d="M104 48 Q112 51 120 49" stroke="#241a3d" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <path class="tear" d="M115 51 q3 5 0 9 q-3 -1 -3 -5 q0 -3 3 -4 Z" fill="#8fd0ff"/>
+    </g>
     <!-- blush -->
-    <ellipse cx="81" cy="58" rx="7.5" ry="4.2" fill="var(--sakura)" opacity="0.45"/>
-    <ellipse cx="119" cy="58" rx="7.5" ry="4.2" fill="var(--sakura)" opacity="0.45"/>
+    <ellipse id="blush-l" cx="81" cy="58" rx="7.5" ry="4.2" fill="var(--sakura)" opacity="0.45"/>
+    <ellipse id="blush-r" cx="119" cy="58" rx="7.5" ry="4.2" fill="var(--sakura)" opacity="0.45"/>
     <!-- mouth -->
     <path id="mouth" d="M92 64 Q100 60 108 64" stroke="#241a3d" stroke-width="2.5" fill="none" stroke-linecap="round"/>
     <rect class="sweat" x="0" y="0"/>
@@ -565,7 +656,7 @@
 
   <!-- choice -->
   <div id="choice-wrap">
-    <div id="choice-title">So… would you let me make it up to you? I’d love to take you to the movies, buy you your favorite sweets and snacks, and if you’re okay with it… hold your hand for a while. 🌙💗</div>
+    <div id="choice-title">So… would you let me make it up to you? I'd love to take you to the movies, buy you your favorite sweets and snacks, and if you're okay with it… hold your hand for a while. 🌙💗</div>
     <div id="choice-buttons">
       <button class="choice-btn" id="yes-btn">Yes, let's go 🎬</button>
       <button class="choice-btn" id="no-btn">No</button>
@@ -576,6 +667,7 @@
   <!-- ending -->
   <div id="ending">
     <div id="ticket">
+      <div id="stamp">forgiven</div>
       <div class="stub left"></div>
       <div class="stub"></div>
       <div class="top">
@@ -658,6 +750,23 @@ function spawnHeart(){
 }
 setInterval(spawnHeart, 2600);
 
+/* gentle mouse parallax on far background layers */
+let parallaxTarget = {x:0,y:0};
+let parallaxCurrent = {x:0,y:0};
+document.addEventListener('mousemove', (e)=>{
+  parallaxTarget.x = (e.clientX/window.innerWidth - 0.5);
+  parallaxTarget.y = (e.clientY/window.innerHeight - 0.5);
+});
+const moonEl = document.querySelector('.moon');
+function parallaxLoop(){
+  parallaxCurrent.x += (parallaxTarget.x - parallaxCurrent.x) * 0.04;
+  parallaxCurrent.y += (parallaxTarget.y - parallaxCurrent.y) * 0.04;
+  moonEl.style.marginLeft = (parallaxCurrent.x * -18) + 'px';
+  moonEl.style.marginTop = (parallaxCurrent.y * -12) + 'px';
+  requestAnimationFrame(parallaxLoop);
+}
+parallaxLoop();
+
 /* ---------------- dialogue sequence ---------------- */
 const lines = [
   {
@@ -705,39 +814,93 @@ const vnBox = document.getElementById('vn-box');
 const boy = document.getElementById('boy');
 const sweat = document.querySelector('.sweat');
 const mouth = document.getElementById('mouth');
+const browL = document.getElementById('brow-l');
+const browR = document.getElementById('brow-r');
+const blushL = document.getElementById('blush-l');
+const blushR = document.getElementById('blush-r');
+const eyeSparkle = document.getElementById('eye-sparkle');
 
 let lineIndex = 0;
 let typing = false;
 
 const eyesOpen = document.getElementById('eyes-open');
 const eyesClosed = document.getElementById('eyes-closed');
+const eyesSad = document.getElementById('eyes-sad');
+
+function hideAllEyes(){
+  eyesOpen.style.display = 'none';
+  eyesClosed.style.display = 'none';
+  eyesSad.style.display = 'none';
+}
 
 function setMood(mood){
   boy.classList.remove('bow','happy');
   sweat.style.animation = 'none';
+  eyeSparkle.style.opacity = 0;
+  browL.setAttribute('d','M80 40 Q86 36 93 39');
+  browR.setAttribute('d','M107 39 Q114 36 120 40');
+  blushL.style.opacity = 0.45;
+  blushR.style.opacity = 0.45;
+
   if(mood==='nervous'){
     sweat.style.animation = 'drip 2.2s ease-in infinite';
     mouth.setAttribute('d','M92 65 Q100 62 108 65');
-    eyesOpen.style.display = 'none';
-    eyesClosed.style.display = '';
+    hideAllEyes(); eyesClosed.style.display = '';
   } else if(mood==='bow'){
     boy.classList.add('bow');
     mouth.setAttribute('d','M92 66 Q100 68 108 66');
-    eyesOpen.style.display = 'none';
-    eyesClosed.style.display = '';
+    hideAllEyes(); eyesClosed.style.display = '';
+    browL.setAttribute('d','M80 41 Q86 38 93 41');
+    browR.setAttribute('d','M107 41 Q114 38 120 41');
+  } else if(mood==='sad'){
+    mouth.setAttribute('d','M92 67 Q100 62 108 67');
+    hideAllEyes(); eyesSad.style.display = '';
+    browL.setAttribute('d','M80 38 Q86 42 93 40');
+    browR.setAttribute('d','M107 40 Q114 42 120 38');
+    blushL.style.opacity = 0.2;
+    blushR.style.opacity = 0.2;
+  } else if(mood==='smile'){
+    mouth.setAttribute('d','M90 61 Q100 71 110 61');
+    hideAllEyes(); eyesOpen.style.display = '';
+    eyeSparkle.style.opacity = 1;
+    blushL.style.opacity = 0.6;
+    blushR.style.opacity = 0.6;
   } else {
     mouth.setAttribute('d','M92 64 Q100 60 108 64');
-    eyesOpen.style.display = '';
-    eyesClosed.style.display = 'none';
+    hideAllEyes(); eyesOpen.style.display = '';
   }
 }
 
+/* natural idle blink loop, independent of dialogue mood, only while eyes are open */
+function scheduleBlink(){
+  const delay = 2600 + Math.random()*3200;
+  setTimeout(()=>{
+    if(eyesOpen.style.display !== 'none'){
+      eyesOpen.style.display = 'none';
+      eyesClosed.style.display = '';
+      setTimeout(()=>{
+        // only restore if we're still meant to be in an open-eyed mood
+        if(eyesClosed.style.display !== 'none' && eyeEnabledForBlink){
+          eyesClosed.style.display = 'none';
+          eyesOpen.style.display = '';
+        }
+      }, 130);
+    }
+    scheduleBlink();
+  }, delay);
+}
+let eyeEnabledForBlink = true;
+scheduleBlink();
+
 function typeLine(line){
   typing = true;
+  eyeEnabledForBlink = (line.mood==='idle' || line.mood==='smile');
   nextHint.classList.remove('show');
   speakerEl.textContent = line.speaker;
   setMood(line.mood);
+  vnTextInner.style.opacity = 0;
   vnTextInner.textContent = '';
+  requestAnimationFrame(()=>{ vnTextInner.style.transition='opacity 0.3s ease'; vnTextInner.style.opacity = 1; });
   let i = 0;
   const text = line.en;
   const speed = 26;
@@ -779,6 +942,7 @@ const yesBtn = document.getElementById('yes-btn');
 const noBtn = document.getElementById('no-btn');
 const noCount = document.getElementById('no-count');
 const choiceButtons = document.getElementById('choice-buttons');
+const vignette = document.getElementById('vignette');
 
 const noResponses = [
   "wait, really?",
@@ -791,21 +955,51 @@ const noResponses = [
 let dodgeCount = 0;
 
 function showChoice(){
-  vnBox.style.display = 'none';
-  choiceWrap.style.display = 'flex';
-  setMood('nervous');
+  vnBox.style.opacity = 0;
+  vnBox.style.transform = 'translateX(-50%) translateY(14px)';
+  vnBox.style.transition = 'opacity 0.35s ease, transform 0.35s ease';
+  setTimeout(()=>{
+    vnBox.style.display = 'none';
+    choiceWrap.style.display = 'flex';
+    choiceWrap.style.opacity = 0;
+    choiceWrap.style.transform = 'translateX(-50%) translateY(18px)';
+    requestAnimationFrame(()=>{
+      choiceWrap.style.transition = 'opacity 0.5s ease, transform 0.5s cubic-bezier(.2,.8,.3,1.2)';
+      choiceWrap.style.opacity = 1;
+      choiceWrap.style.transform = 'translateX(-50%) translateY(0)';
+    });
+    vignette.classList.add('on');
+  }, 320);
+  setMood('sad');
+}
+
+function spawnPuff(x, y){
+  const puff = document.createElement('div');
+  puff.className = 'puff';
+  puff.style.left = x+'px';
+  puff.style.top = y+'px';
+  stage.appendChild(puff);
+  setTimeout(()=>puff.remove(), 550);
 }
 
 function dodgeNo(){
+  const stageRect = stage.getBoundingClientRect();
+  const oldRect = noBtn.getBoundingClientRect();
+  spawnPuff(oldRect.left - stageRect.left + oldRect.width/2 - 5, oldRect.top - stageRect.top + oldRect.height/2 - 5);
+
   const wrapRect = choiceButtons.getBoundingClientRect();
   const btnRect = noBtn.getBoundingClientRect();
   const maxX = wrapRect.width - btnRect.width;
   const maxY = 90;
   const newX = Math.random()*maxX - (wrapRect.width/2 - btnRect.width/2);
   const newY = Math.random()*maxY - maxY/2;
+  const wiggle = (Math.random()*16-8);
   noBtn.style.position='relative';
+  noBtn.style.transition = 'left 0.32s cubic-bezier(.3,1.6,.5,1), top 0.32s cubic-bezier(.3,1.6,.5,1), transform 0.32s ease, font-size 0.2s ease, padding 0.2s ease, opacity 0.3s';
   noBtn.style.left = newX+'px';
   noBtn.style.top = newY+'px';
+  noBtn.style.transform = 'rotate('+wiggle+'deg)';
+  setTimeout(()=>{ noBtn.style.transform = 'rotate(0deg)'; }, 320);
 
   dodgeCount++;
   const scale = Math.max(0.45, 1 - dodgeCount*0.09);
@@ -832,14 +1026,20 @@ yesBtn.addEventListener('click', playEnding);
 
 /* ---------------- ending ---------------- */
 function playEnding(){
-  choiceWrap.style.display = 'none';
-  boy.classList.add('happy');
-  boy.style.bottom = '32%';
-  setMood('idle');
-  mouth.setAttribute('d','M90 62 Q100 72 110 62');
+  vignette.classList.remove('on');
+  choiceWrap.style.opacity = 0;
+  choiceWrap.style.transform = 'translateX(-50%) translateY(10px)';
+  setTimeout(()=>{ choiceWrap.style.display = 'none'; }, 300);
 
-  document.getElementById('ending').style.display = 'flex';
-  burstConfetti();
+  boy.classList.add('happy');
+  boy.style.transition = 'bottom 0.5s ease';
+  boy.style.bottom = '32%';
+  setMood('smile');
+
+  setTimeout(()=>{
+    document.getElementById('ending').style.display = 'flex';
+    burstConfetti();
+  }, 250);
 }
 
 function burstConfetti(){
@@ -873,6 +1073,25 @@ function burstConfetti(){
     }, i*60);
   }
 }
+
+/* cat companion life: periodic blink + occasional little hop */
+const catEyes = document.getElementById('cat-eyes');
+function catBlink(){
+  catEyes.style.transform = 'scaleY(0.15)';
+  catEyes.style.transformOrigin = '22px 41px';
+  setTimeout(()=>{ catEyes.style.transform = 'scaleY(1)'; }, 140);
+  setTimeout(catBlink, 2800+Math.random()*3000);
+}
+setTimeout(catBlink, 1800);
+
+const catEl = document.getElementById('cat');
+function catHop(){
+  catEl.style.transition = 'transform 0.28s ease-out';
+  catEl.style.transform = 'translateY(-10px)';
+  setTimeout(()=>{ catEl.style.transform = 'translateY(0)'; }, 280);
+  setTimeout(catHop, 6000+Math.random()*5000);
+}
+setTimeout(catHop, 4000);
 </script>
 </body>
 </html>

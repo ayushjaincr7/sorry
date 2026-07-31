@@ -1,1097 +1,422 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Dhari — a small confession</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600;700&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<title>Cozy Coffee & Cats</title>
 <style>
   :root{
-    --ink-night:#0c0d1c;
-    --ink-deep:#14152b;
-    --moon-lavender:#b9a8dd;
-    --sakura:#ff8fb3;
-    --sakura-soft:#ffc2d6;
-    --gold:#e9c877;
-    --paper:#f3eef7;
-    --paper-dim:#c9c2da;
-    --line:rgba(233,200,119,0.25);
+    --cream:#FBF3E7;
+    --peach:#F6D9C4;
+    --lav:#E7DCF2;
+    --coat:#FFFFFF;
+    --coat-shadow:#E7E4EE;
+    --hair:#5B3A52;
+    --hair-hi:#7A527A;
+    --coffee:#6B4226;
+    --coffee-hi:#9C6B41;
+    --cat-orange:#E39B54;
+    --cat-orange-dark:#C97C36;
+    --cat-grey:#9AA0AE;
+    --cat-grey-dark:#727889;
+    --cat-cream:#F3E7D3;
+    --cat-cream-dark:#D8C6A6;
+    --book-teal:#5C8A89;
+    --book-rose:#C97575;
+    --ink:#3E2E3A;
+    --heart:#E8879A;
+    --gold:#F0C572;
   }
-  *{box-sizing:border-box; margin:0; padding:0;}
+  *{box-sizing:border-box;}
   html,body{
+    margin:0;
     height:100%;
-    background:var(--ink-night);
+    background:radial-gradient(ellipse at 50% 20%, var(--lav) 0%, var(--cream) 55%, var(--peach) 100%);
+    background-size:140% 140%;
+    animation: bgShift 16s ease-in-out infinite alternate;
+    font-family: 'Segoe UI', system-ui, sans-serif;
     overflow:hidden;
-    font-family:'Poppins',sans-serif;
-    color:var(--paper);
   }
-  #stage{
-    position:relative;
-    width:100%;
-    height:100vh;
-    background:
-      radial-gradient(ellipse at 20% 15%, rgba(185,168,221,0.15), transparent 55%),
-      radial-gradient(ellipse at 80% 75%, rgba(255,143,179,0.10), transparent 50%),
-      linear-gradient(180deg, #0a0b18 0%, #14152b 55%, #1c1436 100%);
+  @keyframes bgShift{
+    0%{ background-position: 30% 20%; }
+    100%{ background-position: 60% 40%; }
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration:0.001ms !important; animation-iteration-count:1 !important; }
   }
 
-  /* stars */
-  .star{
-    position:absolute;
-    width:2px; height:2px;
-    background:var(--paper);
-    border-radius:50%;
-    opacity:0.6;
-    animation:twinkle 3.5s ease-in-out infinite;
-  }
-  @keyframes twinkle{
-    0%,100%{opacity:0.15; transform:scale(1);}
-    50%{opacity:0.9; transform:scale(1.6);}
+  .stage{ position:relative; width:100vw; height:100vh; display:flex; align-items:flex-end; justify-content:center; overflow:hidden; }
+
+  .lights{ position:absolute; top:0; left:0; right:0; height:60px; display:flex; justify-content:space-evenly; align-items:flex-start; padding-top:14px; pointer-events:none; z-index:2; }
+  .lights span{ width:9px; height:9px; border-radius:50%; display:inline-block; box-shadow:0 0 8px 2px currentColor; animation: twinkle 2.6s ease-in-out infinite; }
+  .lights span:nth-child(odd){ color:var(--gold); background:var(--gold); margin-top:6px; }
+  .lights span:nth-child(even){ color:#F0A8B4; background:#F0A8B4; }
+  .lights span:nth-child(3n){ animation-delay:0.6s; }
+  .lights span:nth-child(4n){ animation-delay:1.2s; }
+  .lights span:nth-child(5n){ animation-delay:1.8s; }
+  @keyframes twinkle{ 0%,100%{ opacity:0.35; transform:scale(0.85);} 50%{ opacity:1; transform:scale(1.15);} }
+
+  .petal{ position:absolute; top:-30px; width:10px; height:10px; border-radius:60% 0 60% 0; opacity:0.75; animation-name:petalFall; animation-timing-function:ease-in-out; animation-iteration-count:infinite; z-index:2; }
+  @keyframes petalFall{
+    0%{ transform:translate(0,0) rotate(0deg); opacity:0; }
+    10%{ opacity:0.8; }
+    50%{ transform:translate(24px,45vh) rotate(160deg); }
+    90%{ opacity:0.5; }
+    100%{ transform:translate(-16px,92vh) rotate(320deg); opacity:0; }
   }
 
-  /* moon — layered craters + terminator shading for a realistic look */
-  .moon{
-    position:absolute;
-    top:8%; right:10%;
-    width:120px; height:120px;
-    border-radius:50%;
-    background:
-      radial-gradient(circle at 68% 30%, rgba(120,116,110,0.55), transparent 9%),
-      radial-gradient(circle at 40% 62%, rgba(120,116,110,0.4), transparent 7%),
-      radial-gradient(circle at 58% 55%, rgba(120,116,110,0.35), transparent 10%),
-      radial-gradient(circle at 30% 30%, rgba(120,116,110,0.3), transparent 6%),
-      radial-gradient(circle at 75% 65%, rgba(120,116,110,0.3), transparent 8%),
-      radial-gradient(circle at 22% 50%, rgba(120,116,110,0.25), transparent 6%),
-      radial-gradient(circle at 34% 38%, #fbf7ee 0%, #ece4d2 38%, #cdc3ac 68%, #a89e88 100%);
-    box-shadow:
-      inset -14px -10px 24px rgba(60,55,45,0.35),
-      0 0 50px 12px rgba(245,238,215,0.35),
-      0 0 110px 45px rgba(245,238,215,0.14);
-    animation:float 9s ease-in-out infinite;
-  }
-  @keyframes float{
-    0%,100%{transform:translateY(0);}
-    50%{transform:translateY(-14px);}
+  .sparkle{ position:absolute; width:6px; height:6px; border-radius:50%; background:#fff; opacity:0.6; animation:floatUp 6s linear infinite; filter:drop-shadow(0 0 4px #fff); z-index:2; }
+  @keyframes floatUp{
+    0%{ transform:translateY(0) scale(0.6); opacity:0; }
+    10%{ opacity:0.8; }
+    90%{ opacity:0.4; }
+    100%{ transform:translateY(-70vh) scale(1.1); opacity:0; }
   }
 
-  /* birds drifting past the moon */
-  .bird{
-    position:absolute;
-    width:30px;
-    opacity:0.5;
-    animation-name:fly-across, wing-bob;
-    animation-timing-function:linear, ease-in-out;
-    animation-iteration-count:infinite, infinite;
+  .title-tag{ position:absolute; top:100px; left:50%; transform:translateX(-50%); font-family:Georgia,'Times New Roman',serif; font-style:italic; color:var(--ink); letter-spacing:1px; font-size:30px; opacity:0.55; z-index:6; }
+
+  .scene{ position:relative; width:min(560px,92vw); height:78vh; animation:sceneBreathe 10s ease-in-out infinite; transform-origin:bottom center; }
+  @keyframes sceneBreathe{ 0%,100%{ transform:scale(1); } 50%{ transform:scale(1.015); } }
+
+  .floor-shadow{ position:absolute; bottom:6%; left:50%; width:70%; height:26px; background:radial-gradient(ellipse, rgba(90,60,60,0.18), transparent 70%); transform:translateX(-50%); border-radius:50%; }
+
+  /* ===== GIRL ===== */
+  .girl{ position:absolute; bottom:8%; left:50%; transform:translateX(-50%); width:230px; animation:bob 4.5s ease-in-out infinite; z-index:5; }
+  @keyframes bob{ 0%,100%{ transform:translateX(-50%) translateY(0);} 50%{ transform:translateX(-50%) translateY(-6px);} }
+  .girl svg{ width:100%; height:auto; display:block; overflow:visible; filter:drop-shadow(0 8px 8px rgba(80,50,50,0.15)); }
+
+  .torso-breathe{ transform-origin:115px 275px; animation:breathe 4s ease-in-out infinite; }
+  @keyframes breathe{ 0%,100%{ transform:scaleY(1); } 50%{ transform:scaleY(1.018); } }
+
+  .fabric-sway{ transform-origin:115px 140px; animation:fabricSway 4.6s ease-in-out infinite; }
+  @keyframes fabricSway{ 0%,100%{ transform:skewX(-1deg); } 50%{ transform:skewX(1.4deg); } }
+
+  .cup-group{ transform-origin:168px 210px; animation:sip 6s ease-in-out infinite; }
+  @keyframes sip{
+    0%,12%{ transform:rotate(0deg) translateY(0); }
+    18%{ transform:rotate(-38deg) translateY(-10px); }
+    26%{ transform:rotate(-38deg) translateY(-10px); }
+    34%,100%{ transform:rotate(0deg) translateY(0); }
   }
-  @keyframes fly-across{
-    0%{ left:-8%; }
-    100%{ left:108%; }
-  }
-  @keyframes wing-bob{
-    0%,100%{ transform:translateY(0); }
-    50%{ transform:translateY(-10px); }
+  .steam path{ animation:steamRise 3s ease-in-out infinite; transform-origin:center bottom; }
+  .steam path:nth-child(2){ animation-delay:0.6s; }
+  .steam path:nth-child(3){ animation-delay:1.2s; }
+  @keyframes steamRise{
+    0%{ opacity:0; transform:translateY(4px) scaleY(0.8); }
+    30%{ opacity:0.7; }
+    100%{ opacity:0; transform:translateY(-14px) scaleY(1.15); }
   }
 
-  /* fireflies */
-  .firefly{
-    position:absolute;
-    width:5px; height:5px;
-    border-radius:50%;
-    background:radial-gradient(circle, #fff8dc, var(--gold));
-    box-shadow:0 0 8px 3px rgba(233,200,119,0.75);
-    pointer-events:none;
-  }
-  @keyframes firefly-a{ 0%{transform:translate(0,0);} 25%{transform:translate(26px,-22px);} 50%{transform:translate(-8px,-42px);} 75%{transform:translate(18px,-14px);} 100%{transform:translate(0,0);} }
-  @keyframes firefly-b{ 0%{transform:translate(0,0);} 30%{transform:translate(-22px,-30px);} 60%{transform:translate(14px,-10px);} 100%{transform:translate(0,0);} }
-  @keyframes firefly-c{ 0%{transform:translate(0,0);} 40%{transform:translate(20px,-16px);} 70%{transform:translate(-16px,-32px);} 100%{transform:translate(0,0);} }
-  @keyframes firefly-glow{ 0%,100%{opacity:0.12;} 50%{opacity:1;} }
-
-  /* floating hearts */
-  .heart-float{
-    position:absolute;
-    bottom:-6%;
-    font-size:14px;
-    opacity:0;
-    animation-name:heart-rise, heart-fade;
-    animation-timing-function:ease-out, ease-in-out;
-    animation-iteration-count:1,1;
-    pointer-events:none;
-  }
-  @keyframes heart-rise{
-    0%{ transform:translateY(0) translateX(0) scale(0.8); }
-    100%{ transform:translateY(-70vh) translateX(var(--drift,20px)) scale(1.1); }
-  }
-  @keyframes heart-fade{
-    0%{ opacity:0; }
-    15%{ opacity:0.9; }
-    80%{ opacity:0.7; }
-    100%{ opacity:0; }
+  .heart-pop{ transform-origin:center; animation:heartPop 6s ease-out infinite; }
+  @keyframes heartPop{
+    0%,17%{ opacity:0; transform:translateY(0) scale(0.4); }
+    20%{ opacity:0.9; transform:translateY(-4px) scale(1); }
+    31%{ opacity:0.9; transform:translateY(-10px) scale(1.05); }
+    38%,100%{ opacity:0; transform:translateY(-20px) scale(1.1); }
   }
 
-  /* cat companion */
-  #cat{
-    position:absolute;
-    left:calc(50% - 148px);
-    bottom:21.5%;
-    width:76px;
-    filter:drop-shadow(0 12px 10px rgba(0,0,0,0.45));
-    animation:cat-idle 4.5s ease-in-out infinite;
-    transform-origin:bottom center;
-  }
-  @keyframes cat-idle{
-    0%,100%{ transform:translateY(0); }
-    50%{ transform:translateY(-4px); }
-  }
-  #cat .tail{
-    transform-origin:64px 62px;
-    animation:tail-sway 2.2s ease-in-out infinite;
-  }
-  @keyframes tail-sway{
-    0%,100%{ transform:rotate(-8deg); }
-    50%{ transform:rotate(14deg); }
+  .eyes{ animation:blink 4.2s infinite, eyesFadeForSip 6s infinite; transform-origin:center; }
+  @keyframes blink{ 0%,92%,100%{ transform:scaleY(1); } 95%{ transform:scaleY(0.08); } }
+  @keyframes eyesFadeForSip{ 0%,15%{ opacity:1; } 19%,31%{ opacity:0; } 35%,100%{ opacity:1; } }
+  .eyes-happy{ opacity:0; animation:eyesHappyFade 6s infinite; }
+  @keyframes eyesHappyFade{ 0%,15%{ opacity:0; } 19%,31%{ opacity:1; } 35%,100%{ opacity:0; } }
+
+  .blush{ animation:blushPulse 5s ease-in-out infinite; }
+  @keyframes blushPulse{ 0%,100%{ opacity:0.4; } 50%{ opacity:0.7; } }
+
+  .book-group{ animation:bookSway 5s ease-in-out infinite; transform-origin:70px 205px; }
+  @keyframes bookSway{ 0%,100%{ transform:rotate(-2deg); } 50%{ transform:rotate(2deg); } }
+  .page-flip{ transform-origin:23px 17px; animation:pageFlip 4s ease-in-out infinite; }
+  @keyframes pageFlip{ 0%,40%{ transform:scaleX(1); } 50%{ transform:scaleX(0.1); } 60%,100%{ transform:scaleX(1); } }
+
+  .hair-strand{ animation:strandSway 3.4s ease-in-out infinite; transform-origin:top center; }
+  @keyframes strandSway{ 0%,100%{ transform:rotate(-2deg); } 50%{ transform:rotate(3deg); } }
+  .ahoge{ transform-origin:bottom center; animation:ahogeWiggle 2.4s ease-in-out infinite; }
+  @keyframes ahogeWiggle{ 0%,100%{ transform:rotate(-6deg); } 50%{ transform:rotate(8deg); } }
+
+  /* ===== CATS ===== */
+  .cat{ position:absolute; width:70px; z-index:4; }
+  .cat svg{ width:100%; display:block; overflow:visible; filter:drop-shadow(0 4px 5px rgba(80,50,50,0.12)); }
+
+  .cat-tail{ animation:tailFlick 1.1s ease-in-out infinite; transform-origin:bottom center; }
+  @keyframes tailFlick{
+    0%{ transform:rotate(-14deg) scaleY(1); }
+    30%{ transform:rotate(10deg) scaleY(1.05); }
+    60%{ transform:rotate(-18deg) scaleY(0.98); }
+    100%{ transform:rotate(-14deg) scaleY(1); }
   }
 
-  /* petals */
-  .petal{
-    position:absolute;
-    top:-5%;
-    width:14px; height:14px;
-    background:linear-gradient(135deg, var(--sakura), var(--sakura-soft));
-    border-radius:0 60% 0 60%;
-    opacity:0.8;
-    animation-name:fall, sway;
-    animation-timing-function:linear, ease-in-out;
-    animation-iteration-count:infinite, infinite;
-  }
-  @keyframes fall{
-    to{ transform:translateY(115vh) rotate(340deg); }
-  }
-  @keyframes sway{
-    0%,100%{ margin-left:0; }
-    50%{ margin-left:40px; }
+  .ear-twitch{ transform-origin:bottom center; animation:earTwitch 3.2s ease-in-out infinite; }
+  @keyframes earTwitch{ 0%,88%,100%{ transform:rotate(0deg); } 91%{ transform:rotate(-10deg); } 94%{ transform:rotate(6deg); } }
+
+  .whiskers{ animation:whiskerTwitch 2.8s ease-in-out infinite; }
+  @keyframes whiskerTwitch{ 0%,100%{ opacity:0.55; } 50%{ opacity:0.9; } }
+
+  .paw-a{ animation:pawA 0.42s ease-in-out infinite; }
+  .paw-b{ animation:pawB 0.42s ease-in-out infinite; }
+  @keyframes pawA{ 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(-4px); } }
+  @keyframes pawB{ 0%,100%{ transform:translateY(-4px); } 50%{ transform:translateY(0); } }
+
+  .cat-body-run{ animation:catRun 0.3s steps(2) infinite; }
+  @keyframes catRun{ 0%{ transform:translateY(0); } 100%{ transform:translateY(-3px); } }
+
+  .cat--orange{ animation:orbitOrange 9s ease-in-out infinite; bottom:10%; left:50%; }
+  @keyframes orbitOrange{
+    0%{ transform:translate(-160px,10px) scale(1) scaleX(1); }
+    18%{ transform:translate(-90px,-6px) scale(1.02) scaleX(1); }
+    24%{ transform:translate(-75px,-34px) scale(1.05) scaleX(1); }
+    30%{ transform:translate(-75px,-8px) scale(1.02) scaleX(1); }
+    32%{ transform:translate(-75px,-8px) scale(1.02) scaleX(-1); }
+    48%{ transform:translate(-160px,10px) scale(1) scaleX(-1); }
+    50%{ transform:translate(-160px,10px) scale(1) scaleX(1); }
+    100%{ transform:translate(-160px,10px) scale(1) scaleX(1); }
   }
 
-  /* ---------- character ---------- */
-  #boy{
-    position:absolute;
-    left:50%;
-    bottom:26%;
-    transform:translateX(-50%);
-    width:170px;
-    animation:idle 3.2s ease-in-out infinite;
-    filter:drop-shadow(0 25px 25px rgba(0,0,0,0.5));
-  }
-  #boy.bow{ animation: bow 1.4s ease-in-out; }
-  @keyframes bow{
-    0%{ transform:translateX(-50%) rotate(0deg); }
-    30%{ transform:translateX(-50%) rotate(18deg) translateY(10px); }
-    60%{ transform:translateX(-50%) rotate(18deg) translateY(10px); }
-    100%{ transform:translateX(-50%) rotate(0deg); }
-  }
-  #boy.happy{ animation: jump 0.6s ease-in-out 2; }
-  @keyframes jump{
-    0%,100%{ transform:translateX(-50%) translateY(0); }
-    50%{ transform:translateX(-50%) translateY(-24px); }
+  .cat--grey{ animation:pounceGrey 3.6s ease-in-out infinite; bottom:9%; right:6%; left:auto; }
+  @keyframes pounceGrey{
+    0%,100%{ transform:translate(60px,0) rotate(0deg) scale(1,1); }
+    16%{ transform:translate(52px,-46px) rotate(-12deg) scale(0.95,1.05); }
+    30%{ transform:translate(40px,0) rotate(4deg) scale(1.15,0.82); }
+    36%{ transform:translate(40px,0) rotate(0deg) scale(1,1); }
   }
 
-  /* sweat drop for apology beat */
-  .sweat{
-    position:absolute;
-    top:6px; right:18px;
-    width:8px; height:12px;
-    background:#8fd0ff;
-    border-radius:0 50% 50% 50%;
-    transform:rotate(45deg);
-    opacity:0;
-    animation:drip 2.6s ease-in infinite;
-  }
-  @keyframes drip{
-    0%{ opacity:0; transform:translateY(0) rotate(45deg); }
-    10%{ opacity:0.9; }
-    80%{ opacity:0.9; transform:translateY(14px) rotate(45deg); }
-    100%{ opacity:0; transform:translateY(18px) rotate(45deg); }
+  .cat--cream{ bottom:6.5%; left:8%; animation:rollCream 7s ease-in-out infinite; }
+  @keyframes rollCream{
+    0%,15%{ transform:translate(0,0) rotate(0deg) scaleX(1) scaleY(1); }
+    35%{ transform:translate(10px,-2px) rotate(-14deg) scaleX(1.18) scaleY(0.88); }
+    55%{ transform:translate(14px,-4px) rotate(-10deg) scaleX(1.18) scaleY(0.88); }
+    75%{ transform:translate(6px,0) rotate(2deg) scaleX(1) scaleY(1); }
+    100%{ transform:translate(0,0) rotate(0deg) scaleX(1) scaleY(1); }
   }
 
-  /* ---------- dialogue box ---------- */
-  #vn-box{
-    position:absolute;
-    left:50%;
-    bottom:4%;
-    transform:translateX(-50%);
-    width:min(680px, 90vw);
-    background:rgba(12,13,28,0.82);
-    border:1px solid var(--line);
-    border-radius:14px;
-    padding:22px 26px 18px;
-    backdrop-filter:blur(6px);
-    box-shadow:0 10px 40px rgba(0,0,0,0.5);
-  }
-  #speaker{
-    font-family:'Noto Serif JP', serif;
-    font-weight:700;
-    letter-spacing:0.08em;
-    color:var(--gold);
-    font-size:0.85rem;
-    margin-bottom:8px;
-    text-transform:uppercase;
-  }
-  #vn-text{
-    font-family:'Noto Serif JP', serif;
-    font-size:1.15rem;
-    line-height:1.7;
-    color:var(--paper);
-    min-height:84px;
-  }
-  #vn-text .jp{
-    display:block;
-    color:var(--paper-dim);
-    font-size:0.85rem;
-    margin-top:6px;
-    font-style:italic;
-    font-family:'Poppins',sans-serif;
-  }
-  .cursor-blink{
-    display:inline-block;
-    width:8px; height:8px;
-    border-radius:50%;
-    background:var(--sakura);
-    margin-left:6px;
-    animation:blink 1s step-start infinite;
-    vertical-align:middle;
-  }
-  @keyframes blink{ 50%{ opacity:0; } }
-
-  #next-hint{
-    text-align:right;
-    font-size:0.75rem;
-    color:var(--paper-dim);
-    margin-top:10px;
-    opacity:0;
-    transition:opacity 0.4s;
-  }
-  #next-hint.show{ opacity:0.7; animation:bob 1.4s ease-in-out infinite; }
-  @keyframes bob{ 0%,100%{transform:translateY(0);} 50%{transform:translateY(4px);} }
-
-  /* ---------- choice screen ---------- */
-  #choice-wrap{
-    position:absolute;
-    left:50%; bottom:4%;
-    transform:translateX(-50%);
-    width:min(680px, 90vw);
-    display:none;
-    flex-direction:column;
-    align-items:center;
-    gap:18px;
-  }
-  #choice-title{
-    font-family:'Noto Serif JP', serif;
-    font-size:1.3rem;
-    text-align:center;
-    color:var(--paper);
-    text-shadow:0 2px 12px rgba(255,143,179,0.4);
-  }
-  #choice-buttons{
-    position:relative;
-    display:flex;
-    gap:28px;
-    width:100%;
-    justify-content:center;
-    min-height:70px;
-  }
-  .choice-btn{
-    font-family:'Poppins',sans-serif;
-    font-weight:600;
-    font-size:1rem;
-    padding:14px 34px;
-    border-radius:999px;
-    border:none;
-    cursor:pointer;
-    transition:transform 0.15s ease, box-shadow 0.2s ease, font-size 0.2s ease, padding 0.2s ease;
-  }
-  #yes-btn{
-    background:linear-gradient(135deg, var(--sakura), var(--gold));
-    color:#1c1030;
-    box-shadow:0 8px 24px rgba(255,143,179,0.35);
-    animation:yes-breathe 2.4s ease-in-out infinite;
-  }
-  @keyframes yes-breathe{
-    0%,100%{ box-shadow:0 8px 24px rgba(255,143,179,0.35); }
-    50%{ box-shadow:0 8px 34px rgba(255,143,179,0.65), 0 0 0 6px rgba(255,143,179,0.12); }
-  }
-  #yes-btn:hover{ transform:translateY(-3px) scale(1.04); }
-  #no-btn{
-    background:transparent;
-    color:var(--paper-dim);
-    border:1px solid var(--line);
-    position:relative;
-  }
-  #no-count{
-    display:block;
-    text-align:center;
-    font-size:0.75rem;
-    color:var(--paper-dim);
-    opacity:0.7;
-    min-height:16px;
+  .cat--kitten{ bottom:11%; left:22%; width:46px; animation:dartKitten 4.4s ease-in-out infinite; }
+  @keyframes dartKitten{
+    0%,100%{ transform:translateX(0) scaleX(1); }
+    45%{ transform:translateX(120px) scaleX(1); }
+    50%{ transform:translateX(120px) scaleX(-1); }
+    95%{ transform:translateX(0) scaleX(-1); }
   }
 
-  /* ---------- ticket / ending ---------- */
-  #ending{
-    position:absolute;
-    inset:0;
-    display:none;
-    align-items:center;
-    justify-content:center;
-    flex-direction:column;
-    gap:22px;
-    background:radial-gradient(circle at 50% 40%, rgba(255,143,179,0.18), transparent 60%);
-  }
-  #ticket{
-    width:min(420px, 86vw);
-    background:linear-gradient(135deg, #fff7ea, #ffe7f0);
-    border-radius:16px;
-    color:#251435;
-    position:relative;
-    overflow:hidden;
-    box-shadow:0 30px 60px rgba(0,0,0,0.5);
-    transform:scale(0) rotate(-8deg);
-    animation:ticket-in 0.7s cubic-bezier(.2,1.5,.4,1) forwards;
-    animation-delay:0.15s;
-  }
-  @keyframes ticket-in{
-    to{ transform:scale(1) rotate(-2deg); }
-  }
-  #ticket::after{
-    content:'';
-    position:absolute;
-    top:-40%;
-    left:-60%;
-    width:40%;
-    height:180%;
-    background:linear-gradient(120deg, transparent, rgba(255,255,255,0.75), transparent);
-    transform:rotate(20deg);
-    animation:shine-sweep 3.2s ease-in-out infinite;
-    animation-delay:1.1s;
-  }
-  @keyframes shine-sweep{
-    0%{ left:-60%; }
-    30%{ left:130%; }
-    100%{ left:130%; }
-  }
-  #ticket .top{
-    padding:22px 24px 14px;
-    border-bottom:2px dashed rgba(37,20,53,0.25);
-  }
-  #ticket .top .eyebrow{
-    font-size:0.7rem;
-    letter-spacing:0.18em;
-    text-transform:uppercase;
-    color:#a9418e;
-    font-weight:600;
-  }
-  #ticket .top h2{
-    font-family:'Noto Serif JP', serif;
-    font-size:1.5rem;
-    margin-top:6px;
-  }
-  #ticket .bottom{
-    padding:16px 24px 22px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    font-size:0.8rem;
-  }
-  #ticket .bottom .label{
-    color:#a9418e;
-    font-weight:600;
-    font-size:0.65rem;
-    letter-spacing:0.1em;
-    text-transform:uppercase;
-    display:block;
-  }
-  #ticket .stub{
-    position:absolute;
-    right:-14px; top:50%;
-    width:28px; height:28px;
-    background:var(--ink-night);
-    border-radius:50%;
-    transform:translateY(-50%);
-  }
-  #ticket .stub.left{ left:-14px; right:auto; }
-
-  #stamp{
-    position:absolute;
-    top:14px; right:20px;
-    width:64px; height:64px;
-    border:3px solid #c94f7e;
-    border-radius:50%;
-    color:#c94f7e;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-family:'Noto Serif JP', serif;
-    font-weight:700;
-    font-size:0.62rem;
-    letter-spacing:0.05em;
-    text-align:center;
-    text-transform:uppercase;
-    opacity:0;
-    transform:scale(2.6) rotate(-18deg);
-    animation:stamp-in 0.35s ease-out forwards;
-    animation-delay:1.05s;
-    mix-blend-mode:multiply;
-  }
-  @keyframes stamp-in{
-    0%{ opacity:0; transform:scale(2.6) rotate(-18deg); }
-    60%{ opacity:0.9; transform:scale(0.9) rotate(-18deg); }
-    100%{ opacity:0.85; transform:scale(1) rotate(-18deg); }
+  .yarn{ position:absolute; bottom:12.5%; left:22%; width:20px; z-index:4; filter:drop-shadow(0 3px 3px rgba(80,50,50,0.12)); animation:yarnBounce 4.4s ease-in-out infinite; }
+  @keyframes yarnBounce{
+    0%,100%{ transform:translate(0,0) rotate(0deg); }
+    22%{ transform:translate(70px,-10px) rotate(120deg); }
+    45%{ transform:translate(132px,0) rotate(240deg); }
+    50%{ transform:translate(132px,0) rotate(260deg); }
+    72%{ transform:translate(70px,-10px) rotate(380deg); }
+    95%{ transform:translate(0,0) rotate(480deg); }
   }
 
-  #ending-note{
-    font-family:'Poppins',sans-serif;
-    color:var(--paper-dim);
-    text-align:center;
-    max-width:420px;
-    font-size:0.9rem;
-    opacity:0;
-    animation:fade-up 0.8s ease forwards;
-    animation-delay:0.9s;
-  }
-  @keyframes fade-up{
-    from{ opacity:0; transform:translateY(10px); }
-    to{ opacity:1; transform:translateY(0); }
-  }
+  .side-book{ position:absolute; width:54px; z-index:3; filter:drop-shadow(0 4px 4px rgba(0,0,0,0.12)); }
+  .side-book--1{ bottom:5%; left:14%; animation:bookJiggle1 4s ease-in-out infinite; }
+  .side-book--2{ bottom:4%; left:20%; animation:bookJiggle2 4.6s ease-in-out infinite; animation-delay:0.8s; }
+  @keyframes bookJiggle1{ 0%,100%{ transform:rotate(-8deg) translateY(0); } 50%{ transform:rotate(-6deg) translateY(-2px); } }
+  @keyframes bookJiggle2{ 0%,100%{ transform:rotate(6deg) translateY(0); } 50%{ transform:rotate(8deg) translateY(-2px); } }
 
-  .confetti{
-    position:absolute;
-    top:-10%;
-    width:8px; height:14px;
-    opacity:0.9;
-    animation:conf-fall linear forwards;
+  .butterfly{ position:absolute; top:30%; left:20%; width:26px; z-index:6; filter:drop-shadow(0 2px 3px rgba(80,50,50,0.15)); animation:butterflyPath 12s ease-in-out infinite; }
+  @keyframes butterflyPath{
+    0%{ transform:translate(0,0); }
+    20%{ transform:translate(120px,-30px); }
+    40%{ transform:translate(220px,20px); }
+    60%{ transform:translate(160px,90px); }
+    80%{ transform:translate(60px,60px); }
+    100%{ transform:translate(0,0); }
   }
-  @keyframes conf-fall{
-    to{ transform:translateY(110vh) rotate(600deg); opacity:0; }
-  }
+  .wing-l,.wing-r{ animation:flap 0.32s ease-in-out infinite alternate; transform-origin:center; }
+  .wing-r{ animation-delay:0.02s; }
+  @keyframes flap{ 0%{ transform:scaleX(1); } 100%{ transform:scaleX(0.35); } }
 
-  /* romantic heartbeat vignette used during the choice moment */
-  #vignette{
-    position:absolute;
-    inset:0;
-    pointer-events:none;
-    background:radial-gradient(circle at 50% 62%, transparent 35%, rgba(255,110,150,0.10) 100%);
-    opacity:0;
-    transition:opacity 0.6s ease;
-  }
-  #vignette.on{
-    opacity:1;
-    animation:heartbeat 1.8s ease-in-out infinite;
-  }
-  @keyframes heartbeat{
-    0%,100%{ background:radial-gradient(circle at 50% 62%, transparent 35%, rgba(255,110,150,0.08) 100%); }
-    50%{ background:radial-gradient(circle at 50% 62%, transparent 30%, rgba(255,110,150,0.18) 100%); }
-  }
-
-  /* small puff particle when the No button teleports */
-  .puff{
-    position:absolute;
-    width:10px; height:10px;
-    border-radius:50%;
-    background:radial-gradient(circle, rgba(233,200,119,0.9), transparent 70%);
-    pointer-events:none;
-    animation:puff-out 0.5s ease-out forwards;
-  }
-  @keyframes puff-out{
-    0%{ transform:scale(0.4); opacity:0.9; }
-    100%{ transform:scale(2.2); opacity:0; }
-  }
-
-  #skip{
-    position:absolute;
-    top:18px; right:22px;
-    font-size:0.7rem;
-    color:var(--paper-dim);
-    background:transparent;
-    border:1px solid var(--line);
-    padding:6px 14px;
-    border-radius:999px;
-    cursor:pointer;
-    opacity:0.5;
-    transition:opacity 0.2s;
-    z-index:5;
-  }
-  #skip:hover{ opacity:1; }
-
-  @media (max-width:520px){
-    #boy{ width:130px; bottom:30%; }
-    #vn-text{ font-size:1rem; }
-    .choice-btn{ padding:12px 22px; font-size:0.9rem; }
-  }
+  .caption{ position:absolute; bottom:18px; left:50%; transform:translateX(-50%); color:var(--ink); opacity:0.5; font-size:12px; letter-spacing:2px; text-transform:uppercase; z-index:6; }
 </style>
 </head>
 <body>
-<div id="stage">
-  <div id="vignette"></div>
-  <div class="moon"></div>
-  <svg class="bird" style="top:13%; animation-duration:19s; animation-delay:0s;" viewBox="0 0 40 16" xmlns="http://www.w3.org/2000/svg">
-    <path d="M2 12 Q10 2 20 9 Q30 2 38 12" stroke="#2a2440" stroke-width="2.2" fill="none" stroke-linecap="round"/>
-  </svg>
-  <svg class="bird" style="top:19%; width:22px; animation-duration:24s; animation-delay:5s;" viewBox="0 0 40 16" xmlns="http://www.w3.org/2000/svg">
-    <path d="M2 12 Q10 2 20 9 Q30 2 38 12" stroke="#2a2440" stroke-width="2.2" fill="none" stroke-linecap="round"/>
-  </svg>
-  <button id="skip">skip ▸▸</button>
-
-  <!-- cat companion -->
-  <svg id="cat" viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg">
-    <ellipse cx="55" cy="76" rx="34" ry="4" fill="rgba(0,0,0,0.3)"/>
-    <path class="tail" d="M78 60 Q108 58 104 30 Q102 20 92 22" stroke="#3a2f52" stroke-width="8" fill="none" stroke-linecap="round"/>
-    <ellipse cx="50" cy="55" rx="30" ry="20" fill="#4a3d6b"/>
-    <circle cx="26" cy="38" r="16" fill="#4a3d6b"/>
-    <path d="M14 28 L20 12 L28 26 Z" fill="#4a3d6b"/>
-    <path d="M28 26 L36 10 L40 26 Z" fill="#4a3d6b"/>
-    <path d="M17 27 L21 17 L26 26 Z" fill="#33284d"/>
-    <path d="M29 26 L34 15 L37 26 Z" fill="#33284d"/>
-    <g id="cat-eyes">
-      <path d="M17 40 Q22 44 27 40" stroke="#1c1533" stroke-width="1.6" fill="none" stroke-linecap="round"/>
-    </g>
-    <path d="M14 34 Q10 34 8 36" stroke="#1c1533" stroke-width="1.2" fill="none" stroke-linecap="round"/>
-    <path d="M14 38 Q9 39 7 42" stroke="#1c1533" stroke-width="1.2" fill="none" stroke-linecap="round"/>
-    <ellipse cx="34" cy="60" rx="5" ry="8" fill="#4a3d6b"/>
-    <ellipse cx="48" cy="63" rx="5" ry="8" fill="#4a3d6b"/>
-  </svg>
-
-  <!-- boy character (css-drawn) -->
-  <svg id="boy" viewBox="0 0 200 260" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <radialGradient id="skinGrad" cx="38%" cy="32%" r="75%">
-        <stop offset="0%" stop-color="#ffe3c7"/>
-        <stop offset="100%" stop-color="#e8ac82"/>
-      </radialGradient>
-      <linearGradient id="hairGrad" x1="0" y1="0" x2="0.3" y2="1">
-        <stop offset="0%" stop-color="#57448c"/>
-        <stop offset="100%" stop-color="#22193a"/>
-      </linearGradient>
-      <linearGradient id="hairHighlight" x1="0" y1="0" x2="1" y2="1">
-        <stop offset="0%" stop-color="#a996db"/>
-        <stop offset="100%" stop-color="#57448c" stop-opacity="0"/>
-      </linearGradient>
-      <linearGradient id="coatGrad" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stop-color="#40316b"/>
-        <stop offset="100%" stop-color="#221a3a"/>
-      </linearGradient>
-    </defs>
-    <ellipse cx="100" cy="250" rx="55" ry="8" fill="rgba(0,0,0,0.35)"/>
-    <!-- legs -->
-    <rect x="78" y="175" width="18" height="65" rx="8" fill="#241a3d"/>
-    <rect x="104" y="175" width="18" height="65" rx="8" fill="#241a3d"/>
-    <rect x="74" y="232" width="26" height="12" rx="5" fill="#0c0d1c"/>
-    <rect x="100" y="232" width="26" height="12" rx="5" fill="#0c0d1c"/>
-    <!-- coat/body -->
-    <path d="M60 110 Q60 80 100 76 Q140 80 140 110 L146 190 Q100 205 54 190 Z" fill="url(#coatGrad)"/>
-    <path d="M100 76 L100 190" stroke="#1a1330" stroke-width="2" opacity="0.5"/>
-    <!-- scarf -->
-    <path d="M76 96 Q100 114 124 96 L124 109 Q100 125 76 109 Z" fill="var(--sakura)"/>
-    <path d="M76 96 Q100 114 124 96" stroke="#ffd9e5" stroke-width="1.5" fill="none" opacity="0.7"/>
-    <!-- arms -->
-    <path id="arm-l" d="M62 112 Q42 130 46 168" stroke="url(#coatGrad)" stroke-width="20" stroke-linecap="round" fill="none"/>
-    <path id="arm-r" d="M138 112 Q158 130 154 168" stroke="url(#coatGrad)" stroke-width="20" stroke-linecap="round" fill="none"/>
-    <circle id="hand-l" cx="46" cy="172" r="10" fill="url(#skinGrad)"/>
-    <circle id="hand-r" cx="154" cy="172" r="10" fill="url(#skinGrad)"/>
-    <!-- neck -->
-    <rect x="90" y="62" width="20" height="20" fill="url(#skinGrad)"/>
-    <!-- head -->
-    <circle cx="100" cy="47" r="33" fill="url(#skinGrad)"/>
-    <!-- jaw shading for a softer, more sculpted look -->
-    <path d="M76 58 Q100 76 124 58 Q118 70 100 72 Q82 70 76 58 Z" fill="#d99a6f" opacity="0.25"/>
-    <!-- hair back -->
-    <path d="M64 42 Q60 6 100 4 Q140 6 136 42 Q136 18 100 16 Q64 18 64 42 Z" fill="url(#hairGrad)"/>
-    <!-- hair front swoop -->
-    <path d="M64 42 Q66 14 100 12 Q134 14 136 42 Q128 24 100 22 Q72 24 64 42 Z" fill="url(#hairGrad)"/>
-    <path d="M74 20 Q60 30 58 46" stroke="url(#hairGrad)" stroke-width="9" fill="none" stroke-linecap="round"/>
-    <path d="M96 14 Q80 20 76 34" stroke="url(#hairHighlight)" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.8"/>
-    <!-- eyebrows -->
-    <path id="brow-l" d="M80 40 Q86 36 93 39" stroke="#3a2c5c" stroke-width="2" fill="none" stroke-linecap="round"/>
-    <path id="brow-r" d="M107 39 Q114 36 120 40" stroke="#3a2c5c" stroke-width="2" fill="none" stroke-linecap="round"/>
-    <!-- open eyes: warm, expressive -->
-    <g id="eyes-open">
-      <path d="M79 47 Q88 40 97 47 Q88 51.5 79 47 Z" fill="#fff"/>
-      <circle cx="88" cy="47" r="4.4" fill="#8a6bd1"/>
-      <circle cx="88" cy="47" r="2" fill="#241a3d"/>
-      <circle cx="89.6" cy="45.2" r="1.3" fill="#fff"/>
-      <path d="M79 47 Q88 40 97 47" stroke="#2a2044" stroke-width="1.6" fill="none" stroke-linecap="round"/>
-      <path d="M103 47 Q112 40 121 47 Q112 51.5 103 47 Z" fill="#fff"/>
-      <circle cx="112" cy="47" r="4.4" fill="#8a6bd1"/>
-      <circle cx="112" cy="47" r="2" fill="#241a3d"/>
-      <circle cx="113.6" cy="45.2" r="1.3" fill="#fff"/>
-      <path d="M103 47 Q112 40 121 47" stroke="#2a2044" stroke-width="1.6" fill="none" stroke-linecap="round"/>
-      <g id="eye-sparkle" opacity="0">
-        <path d="M88 30 L90 36 L96 38 L90 40 L88 46 L86 40 L80 38 L86 36 Z" fill="#fff8dc"/>
-      </g>
-    </g>
-    <!-- closed eyes (apologetic ^ ^) -->
-    <g id="eyes-closed" style="display:none;">
-      <path d="M80 49 Q88 43 96 49" stroke="#241a3d" stroke-width="3" fill="none" stroke-linecap="round"/>
-      <path d="M104 49 Q112 43 120 49" stroke="#241a3d" stroke-width="3" fill="none" stroke-linecap="round"/>
-    </g>
-    <!-- sad, downcast eyes -->
-    <g id="eyes-sad" style="display:none;">
-      <path d="M80 49 Q88 51 96 48" stroke="#241a3d" stroke-width="3" fill="none" stroke-linecap="round"/>
-      <path d="M104 48 Q112 51 120 49" stroke="#241a3d" stroke-width="3" fill="none" stroke-linecap="round"/>
-      <path class="tear" d="M115 51 q3 5 0 9 q-3 -1 -3 -5 q0 -3 3 -4 Z" fill="#8fd0ff"/>
-    </g>
-    <!-- blush -->
-    <ellipse id="blush-l" cx="81" cy="58" rx="7.5" ry="4.2" fill="var(--sakura)" opacity="0.45"/>
-    <ellipse id="blush-r" cx="119" cy="58" rx="7.5" ry="4.2" fill="var(--sakura)" opacity="0.45"/>
-    <!-- mouth -->
-    <path id="mouth" d="M92 64 Q100 60 108 64" stroke="#241a3d" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-    <rect class="sweat" x="0" y="0"/>
-  </svg>
-
-  <!-- dialogue -->
-  <div id="vn-box">
-    <div id="speaker">Ayush</div>
-    <div id="vn-text"><span id="vn-text-inner"></span><span class="cursor-blink" id="cursor"></span></div>
-    <div id="next-hint">click to continue ▸</div>
+<div class="stage">
+  <div class="lights">
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
   </div>
 
-  <!-- choice -->
-  <div id="choice-wrap">
-    <div id="choice-title">So… would you let me make it up to you? I'd love to take you to the movies, buy you your favorite sweets and snacks, and if you're okay with it… hold your hand for a while. 🌙💗</div>
-    <div id="choice-buttons">
-      <button class="choice-btn" id="yes-btn">Yes, let's go 🎬</button>
-      <button class="choice-btn" id="no-btn">No</button>
-    </div>
-    <div id="no-count"></div>
-  </div>
+  <div class="title-tag">Look at you, college postgraduate! All those late-night books, illegal coffee, and your spiritual animal—the cat—finally paid off. I’m the luckiest guy to have you this close to my heart.</div>
 
-  <!-- ending -->
-  <div id="ending">
-    <div id="ticket">
-      <div id="stamp">forgiven</div>
-      <div class="stub left"></div>
-      <div class="stub"></div>
-      <div class="top">
-        <span class="eyebrow">Admit Two · Tomorrow</span>
-        <h2>One Sweet shop, Two People</h2>
-      </div>
-      <div class="bottom">
-        <div>
-          <span class="label">Feature</span>
-          Whatever You Pick sweet
-        </div>
-        <div style="text-align:right">
-          <span class="label">Seat</span>
-          Right Next To Me
-        </div>
-      </div>
+  <div class="petal" style="left:10%; background:var(--heart); animation-duration:9s; animation-delay:0s;"></div>
+  <div class="petal" style="left:30%; background:var(--gold); animation-duration:11s; animation-delay:2s;"></div>
+  <div class="petal" style="left:55%; background:var(--heart); animation-duration:8s; animation-delay:4s;"></div>
+  <div class="petal" style="left:75%; background:var(--gold); animation-duration:10s; animation-delay:1s;"></div>
+  <div class="petal" style="left:90%; background:var(--heart); animation-duration:9.5s; animation-delay:3s;"></div>
+  <div class="petal" style="left:45%; background:var(--gold); animation-duration:12s; animation-delay:5s;"></div>
+
+  <div class="sparkle" style="left:12%; animation-delay:0s;"></div>
+  <div class="sparkle" style="left:28%; animation-delay:1.5s;"></div>
+  <div class="sparkle" style="left:70%; animation-delay:3s;"></div>
+  <div class="sparkle" style="left:85%; animation-delay:2.1s;"></div>
+  <div class="sparkle" style="left:50%; animation-delay:4.2s;"></div>
+
+  <svg class="butterfly" viewBox="0 0 30 24">
+    <ellipse class="wing-l" cx="10" cy="10" rx="9" ry="7" fill="#F0A8B4" opacity="0.85"/>
+    <ellipse class="wing-r" cx="20" cy="10" rx="9" ry="7" fill="#F0C572" opacity="0.85"/>
+    <rect x="14" y="6" width="2" height="14" rx="1" fill="var(--ink)"/>
+  </svg>
+
+  <div class="scene">
+    <div class="floor-shadow"></div>
+
+    <svg class="side-book side-book--1" viewBox="0 0 60 44">
+      <rect x="2" y="6" width="56" height="32" rx="3" fill="var(--book-rose)"/>
+      <rect x="6" y="10" width="48" height="24" rx="1" fill="#FBF3E7"/>
+    </svg>
+    <svg class="side-book side-book--2" viewBox="0 0 60 44">
+      <rect x="2" y="6" width="56" height="32" rx="3" fill="var(--book-teal)"/>
+      <rect x="6" y="10" width="48" height="24" rx="1" fill="#FBF3E7"/>
+    </svg>
+
+    <svg class="yarn" viewBox="0 0 20 20">
+      <circle cx="10" cy="10" r="9" fill="var(--book-rose)"/>
+      <path d="M2 10 Q10 2 18 10 Q10 18 2 10" fill="none" stroke="#fff" stroke-width="1.2" opacity="0.6"/>
+      <path d="M4 4 Q10 12 16 4" fill="none" stroke="#fff" stroke-width="1.2" opacity="0.5"/>
+    </svg>
+
+    <!-- ===== GIRL ===== -->
+    <div class="girl">
+      <svg viewBox="0 0 230 280">
+        <g class="torso-breathe">
+        <g class="fabric-sway">
+          <path d="M55 190 Q40 260 60 275 L170 275 Q190 260 175 190 Q170 140 115 135 Q60 140 55 190 Z" fill="var(--coat)" stroke="var(--coat-shadow)" stroke-width="2"/>
+          <path d="M100 150 L88 250 L112 235 L118 150 Z" fill="var(--coat-shadow)" opacity="0.5"/>
+          <path d="M130 150 L142 250 L118 235 L112 150 Z" fill="var(--coat-shadow)" opacity="0.5"/>
+          <circle cx="115" cy="195" r="3" fill="#C9BFAF"/>
+          <circle cx="115" cy="215" r="3" fill="#C9BFAF"/>
+          <circle cx="115" cy="235" r="3" fill="#C9BFAF"/>
+        </g>
+        </g>
+
+        <g class="book-group">
+          <path d="M60 195 Q35 210 40 235 Q45 250 70 245 L75 205 Z" fill="var(--coat)" stroke="var(--coat-shadow)" stroke-width="2"/>
+          <g transform="translate(18,220) rotate(-14)">
+            <rect x="0" y="0" width="46" height="34" rx="3" fill="var(--book-teal)"/>
+            <rect x="4" y="4" width="38" height="26" rx="1" fill="#FBF3E7"/>
+            <rect class="page-flip" x="23" y="4" width="19" height="26" fill="#FBF3E7" stroke="var(--book-teal)" stroke-width="0.6"/>
+            <line x1="23" y1="4" x2="23" y2="30" stroke="var(--book-teal)" stroke-width="1.5"/>
+          </g>
+        </g>
+
+        <path d="M170 195 Q195 205 190 228 Q186 244 165 240 L158 202 Z" fill="var(--coat)" stroke="var(--coat-shadow)" stroke-width="2"/>
+        <g class="cup-group">
+          <g class="steam" transform="translate(160,178)">
+            <path d="M0 10 C -4 4, 2 0, 0 -6" stroke="#B9A79A" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.7" transform="translate(-4,0)"/>
+            <path d="M0 10 C -4 4, 2 0, 0 -6" stroke="#B9A79A" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.7" transform="translate(2,-2)"/>
+            <path d="M0 10 C -4 4, 2 0, 0 -6" stroke="#B9A79A" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.7" transform="translate(8,1)"/>
+          </g>
+          <path d="M152 198 h24 l-3 26 q-1 8 -9 8 h-0 q-8 0 -9 -8 Z" fill="var(--coffee-hi)"/>
+          <path d="M155 200 h18 l-2 5 h-14 Z" fill="var(--coffee)"/>
+          <path d="M176 205 q10 -2 9 7 q-1 8 -10 6" fill="none" stroke="var(--coffee-hi)" stroke-width="3"/>
+        </g>
+
+        <rect x="103" y="118" width="24" height="24" rx="8" fill="#FBD9C4"/>
+        <ellipse cx="115" cy="90" rx="52" ry="50" fill="#FCE1CC"/>
+
+        <path d="M63 80 Q55 140 75 175 Q65 130 70 90 Z" fill="var(--hair)"/>
+        <path d="M167 80 Q175 140 155 175 Q165 130 160 90 Z" fill="var(--hair)"/>
+
+        <path d="M63 95 Q55 40 115 32 Q175 40 167 95 Q160 55 115 55 Q70 55 63 95 Z" fill="var(--hair)"/>
+        <path class="hair-strand" d="M92 45 Q85 70 90 95" stroke="var(--hair-hi)" stroke-width="5" fill="none" stroke-linecap="round"/>
+        <path class="hair-strand" d="M140 45 Q147 70 142 95" stroke="var(--hair-hi)" stroke-width="5" fill="none" stroke-linecap="round" style="animation-delay:0.4s"/>
+        <path class="hair-strand" d="M78 60 Q72 85 76 105" stroke="var(--hair)" stroke-width="4" fill="none" stroke-linecap="round" style="animation-delay:0.9s"/>
+        <path class="hair-strand" d="M154 60 Q160 85 156 105" stroke="var(--hair)" stroke-width="4" fill="none" stroke-linecap="round" style="animation-delay:1.3s"/>
+        <path class="ahoge" d="M112 34 Q108 18 116 8" stroke="var(--hair)" stroke-width="4" fill="none" stroke-linecap="round"/>
+
+        <circle cx="63" cy="95" r="7" fill="#FCE1CC"/>
+        <circle cx="167" cy="95" r="7" fill="#FCE1CC"/>
+
+        <path d="M89 76 Q97 72 105 76" stroke="var(--hair)" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+        <path d="M125 76 Q133 72 141 76" stroke="var(--hair)" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+
+        <g class="eyes">
+          <ellipse cx="98" cy="92" rx="7" ry="10" fill="var(--ink)"/>
+          <ellipse cx="132" cy="92" rx="7" ry="10" fill="var(--ink)"/>
+          <circle cx="100" cy="88" r="2.2" fill="#fff"/>
+          <circle cx="134" cy="88" r="2.2" fill="#fff"/>
+        </g>
+        <g class="eyes-happy">
+          <path d="M91 92 Q98 85 105 92" stroke="var(--ink)" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+          <path d="M125 92 Q132 85 139 92" stroke="var(--ink)" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+        </g>
+        <text class="heart-pop" x="147" y="70" font-size="18" fill="var(--heart)">&#9825;</text>
+
+        <ellipse class="blush" cx="90" cy="108" rx="7" ry="4" fill="#F5A6A0"/>
+        <ellipse class="blush" cx="140" cy="108" rx="7" ry="4" fill="#F5A6A0"/>
+        <path d="M108 112 Q115 118 122 112" stroke="var(--ink)" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+
+        <path d="M63 95 Q68 60 100 50 Q75 65 72 100 Z" fill="var(--hair)"/>
+        <path d="M167 95 Q162 60 130 50 Q155 65 158 100 Z" fill="var(--hair)"/>
+      </svg>
     </div>
-    <div id="ending-note">forgiven, and it's a date. save some sweet and snack for me 🍿🌸</div>
+
+    <!-- ===== CATS ===== -->
+    <div class="cat cat--orange">
+      <svg viewBox="0 0 90 60">
+        <path class="cat-tail" d="M78 40 Q95 30 88 12" stroke="var(--cat-orange-dark)" stroke-width="7" fill="none" stroke-linecap="round"/>
+        <g class="cat-body-run">
+          <ellipse cx="42" cy="40" rx="30" ry="16" fill="var(--cat-orange)"/>
+          <circle cx="16" cy="30" r="14" fill="var(--cat-orange)"/>
+          <g class="ear-twitch"><path d="M8 20 L12 8 L18 20 Z" fill="var(--cat-orange)"/></g>
+          <g class="ear-twitch" style="animation-delay:0.5s"><path d="M22 20 L26 8 L30 20 Z" fill="var(--cat-orange)"/></g>
+          <circle cx="12" cy="30" r="2" fill="var(--ink)"/>
+          <circle cx="20" cy="30" r="2" fill="var(--ink)"/>
+          <g class="whiskers" stroke="var(--cat-orange-dark)" stroke-width="1">
+            <line x1="2" y1="32" x2="-8" y2="29"/>
+            <line x1="2" y1="35" x2="-8" y2="36"/>
+            <line x1="30" y1="32" x2="40" y2="29"/>
+            <line x1="30" y1="35" x2="40" y2="36"/>
+          </g>
+          <g class="paw-a"><path d="M4 40 v10 M56 44 v9" stroke="var(--cat-orange-dark)" stroke-width="6" stroke-linecap="round"/></g>
+          <g class="paw-b"><path d="M14 44 v10 M66 42 v9" stroke="var(--cat-orange-dark)" stroke-width="6" stroke-linecap="round"/></g>
+        </g>
+      </svg>
+    </div>
+
+    <div class="cat cat--grey">
+      <svg viewBox="0 0 90 70">
+        <path class="cat-tail" d="M70 45 Q88 40 82 20" stroke="var(--cat-grey-dark)" stroke-width="7" fill="none" stroke-linecap="round"/>
+        <ellipse cx="40" cy="46" rx="26" ry="15" fill="var(--cat-grey)"/>
+        <circle cx="18" cy="36" r="13" fill="var(--cat-grey)"/>
+        <g class="ear-twitch" style="animation-delay:1s"><path d="M10 27 L14 15 L20 27 Z" fill="var(--cat-grey)"/></g>
+        <g class="ear-twitch" style="animation-delay:1.4s"><path d="M24 27 L28 15 L32 27 Z" fill="var(--cat-grey)"/></g>
+        <circle cx="14" cy="36" r="2" fill="var(--ink)"/>
+        <circle cx="22" cy="36" r="2" fill="var(--ink)"/>
+        <g class="whiskers" stroke="var(--cat-grey-dark)" stroke-width="1">
+          <line x1="4" y1="38" x2="-6" y2="35"/>
+          <line x1="4" y1="41" x2="-6" y2="42"/>
+        </g>
+        <path d="M6 46 v10 M16 50 v10 M54 50 v9 M64 48 v9" stroke="var(--cat-grey-dark)" stroke-width="6" stroke-linecap="round"/>
+      </svg>
+    </div>
+
+    <div class="cat cat--cream">
+      <svg viewBox="0 0 90 60">
+        <path class="cat-tail" d="M74 38 Q92 32 84 14" stroke="var(--cat-cream-dark)" stroke-width="7" fill="none" stroke-linecap="round"/>
+        <ellipse cx="40" cy="40" rx="28" ry="15" fill="var(--cat-cream)"/>
+        <circle cx="16" cy="30" r="13" fill="var(--cat-cream)"/>
+        <g class="ear-twitch" style="animation-delay:0.3s"><path d="M8 21 L12 10 L18 21 Z" fill="var(--cat-cream)"/></g>
+        <g class="ear-twitch" style="animation-delay:0.7s"><path d="M22 21 L26 10 L30 21 Z" fill="var(--cat-cream)"/></g>
+        <circle cx="12" cy="30" r="2" fill="var(--ink)"/>
+        <circle cx="20" cy="30" r="2" fill="var(--ink)"/>
+        <path d="M4 40 v9 M14 44 v9 M54 44 v9 M64 42 v9" stroke="var(--cat-cream-dark)" stroke-width="6" stroke-linecap="round"/>
+      </svg>
+    </div>
+
+    <div class="cat cat--kitten">
+      <svg viewBox="0 0 90 60">
+        <path class="cat-tail" d="M78 38 Q94 30 86 14" stroke="var(--cat-grey-dark)" stroke-width="6" fill="none" stroke-linecap="round"/>
+        <g class="cat-body-run">
+          <ellipse cx="42" cy="40" rx="26" ry="14" fill="var(--cat-grey)"/>
+          <circle cx="18" cy="30" r="12" fill="var(--cat-grey)"/>
+          <g class="ear-twitch" style="animation-delay:0.2s"><path d="M10 21 L14 11 L20 21 Z" fill="var(--cat-grey)"/></g>
+          <g class="ear-twitch" style="animation-delay:0.6s"><path d="M24 21 L28 11 L32 21 Z" fill="var(--cat-grey)"/></g>
+          <circle cx="14" cy="30" r="1.8" fill="var(--ink)"/>
+          <circle cx="22" cy="30" r="1.8" fill="var(--ink)"/>
+        </g>
+      </svg>
+    </div>
   </div>
 </div>
-
-<script>
-/* ---------------- ambient background ---------------- */
-const stage = document.getElementById('stage');
-
-for(let i=0;i<70;i++){
-  const s = document.createElement('div');
-  s.className='star';
-  s.style.left = Math.random()*100+'%';
-  s.style.top = Math.random()*60+'%';
-  s.style.animationDelay = (Math.random()*3.5)+'s';
-  stage.appendChild(s);
-}
-
-function spawnPetal(){
-  const p = document.createElement('div');
-  p.className='petal';
-  p.style.left = Math.random()*100+'%';
-  const fallDur = 7+Math.random()*6;
-  const swayDur = 2.5+Math.random()*2;
-  p.style.animationDuration = fallDur+'s, '+swayDur+'s';
-  p.style.animationDelay = '0s, '+(Math.random()*2)+'s';
-  p.style.opacity = 0.5+Math.random()*0.4;
-  const scale = 0.6+Math.random()*0.8;
-  p.style.transform = 'scale('+scale+')';
-  stage.appendChild(p);
-  setTimeout(()=>p.remove(), fallDur*1000+200);
-}
-setInterval(spawnPetal, 380);
-for(let i=0;i<12;i++) setTimeout(spawnPetal, i*300);
-
-/* fireflies drifting low near the ground, romantic warm glow */
-const fireflyPaths = ['firefly-a','firefly-b','firefly-c'];
-function spawnFirefly(){
-  const f = document.createElement('div');
-  f.className = 'firefly';
-  f.style.left = (10+Math.random()*80)+'%';
-  f.style.top = (48+Math.random()*38)+'%';
-  const path = fireflyPaths[Math.floor(Math.random()*fireflyPaths.length)];
-  const moveDur = 5+Math.random()*4;
-  const glowDur = 1.6+Math.random()*1.8;
-  f.style.animation = path+' '+moveDur+'s ease-in-out infinite, firefly-glow '+glowDur+'s ease-in-out infinite';
-  stage.appendChild(f);
-  setTimeout(()=>f.remove(), 16000);
-}
-for(let i=0;i<16;i++) spawnFirefly();
-setInterval(spawnFirefly, 1400);
-
-/* soft floating hearts, ambient romance */
-function spawnHeart(){
-  const h = document.createElement('div');
-  h.className = 'heart-float';
-  h.textContent = Math.random()>0.5 ? '💗' : '🌸';
-  h.style.left = (15+Math.random()*70)+'%';
-  h.style.setProperty('--drift', (Math.random()*60-30)+'px');
-  const dur = 6+Math.random()*4;
-  h.style.animationDuration = dur+'s, '+dur+'s';
-  stage.appendChild(h);
-  setTimeout(()=>h.remove(), dur*1000+300);
-}
-setInterval(spawnHeart, 2600);
-
-/* gentle mouse parallax on far background layers */
-let parallaxTarget = {x:0,y:0};
-let parallaxCurrent = {x:0,y:0};
-document.addEventListener('mousemove', (e)=>{
-  parallaxTarget.x = (e.clientX/window.innerWidth - 0.5);
-  parallaxTarget.y = (e.clientY/window.innerHeight - 0.5);
-});
-const moonEl = document.querySelector('.moon');
-function parallaxLoop(){
-  parallaxCurrent.x += (parallaxTarget.x - parallaxCurrent.x) * 0.04;
-  parallaxCurrent.y += (parallaxTarget.y - parallaxCurrent.y) * 0.04;
-  moonEl.style.marginLeft = (parallaxCurrent.x * -18) + 'px';
-  moonEl.style.marginTop = (parallaxCurrent.y * -12) + 'px';
-  requestAnimationFrame(parallaxLoop);
-}
-parallaxLoop();
-
-/* ---------------- dialogue sequence ---------------- */
-const lines = [
-  {
-    en: "Hey Dhari... I've rewritten this in my head a hundred times, and none of it feels enough.",
-    jp: "",
-    speaker: "Ayush",
-    mood: "nervous"
-  },
-  {
-    en: "The words I said earlier hurt you. I know that now, and I take full responsibility.",
-    jp: "",
-    speaker: "Ayush",
-    mood: "bow"
-  },
-  {
-    en: "You didn't deserve to be spoken to like that. I should've paused, listened, and chosen kinder words.",
-    jp: "",
-    speaker: "Ayush",
-    mood: "bow"
-  },
-  {
-    en: "I don't expect one apology to erase the pain. Trust isn't rebuilt with a single 'sorry.'",
-    jp: "",
-    speaker: "Ayush",
-    mood: "sad"
-  },
-  {
-    en: "But if you'll let me try, I'd rather show you that I can do better than just promise it.",
-    jp: "",
-    speaker: "Ayush",
-    mood: "idle"
-  },
-  {
-    en: "So... would you let me make it up to you? Just us, a good movie, some snacks, and hopefully... a fresh start.",
-    jp: "",
-    speaker: "Ayush",
-    mood: "smile"
-  }
-];
-
-const vnTextInner = document.getElementById('vn-text-inner');
-const speakerEl = document.getElementById('speaker');
-const nextHint = document.getElementById('next-hint');
-const vnBox = document.getElementById('vn-box');
-const boy = document.getElementById('boy');
-const sweat = document.querySelector('.sweat');
-const mouth = document.getElementById('mouth');
-const browL = document.getElementById('brow-l');
-const browR = document.getElementById('brow-r');
-const blushL = document.getElementById('blush-l');
-const blushR = document.getElementById('blush-r');
-const eyeSparkle = document.getElementById('eye-sparkle');
-
-let lineIndex = 0;
-let typing = false;
-
-const eyesOpen = document.getElementById('eyes-open');
-const eyesClosed = document.getElementById('eyes-closed');
-const eyesSad = document.getElementById('eyes-sad');
-
-function hideAllEyes(){
-  eyesOpen.style.display = 'none';
-  eyesClosed.style.display = 'none';
-  eyesSad.style.display = 'none';
-}
-
-function setMood(mood){
-  boy.classList.remove('bow','happy');
-  sweat.style.animation = 'none';
-  eyeSparkle.style.opacity = 0;
-  browL.setAttribute('d','M80 40 Q86 36 93 39');
-  browR.setAttribute('d','M107 39 Q114 36 120 40');
-  blushL.style.opacity = 0.45;
-  blushR.style.opacity = 0.45;
-
-  if(mood==='nervous'){
-    sweat.style.animation = 'drip 2.2s ease-in infinite';
-    mouth.setAttribute('d','M92 65 Q100 62 108 65');
-    hideAllEyes(); eyesClosed.style.display = '';
-  } else if(mood==='bow'){
-    boy.classList.add('bow');
-    mouth.setAttribute('d','M92 66 Q100 68 108 66');
-    hideAllEyes(); eyesClosed.style.display = '';
-    browL.setAttribute('d','M80 41 Q86 38 93 41');
-    browR.setAttribute('d','M107 41 Q114 38 120 41');
-  } else if(mood==='sad'){
-    mouth.setAttribute('d','M92 67 Q100 62 108 67');
-    hideAllEyes(); eyesSad.style.display = '';
-    browL.setAttribute('d','M80 38 Q86 42 93 40');
-    browR.setAttribute('d','M107 40 Q114 42 120 38');
-    blushL.style.opacity = 0.2;
-    blushR.style.opacity = 0.2;
-  } else if(mood==='smile'){
-    mouth.setAttribute('d','M90 61 Q100 71 110 61');
-    hideAllEyes(); eyesOpen.style.display = '';
-    eyeSparkle.style.opacity = 1;
-    blushL.style.opacity = 0.6;
-    blushR.style.opacity = 0.6;
-  } else {
-    mouth.setAttribute('d','M92 64 Q100 60 108 64');
-    hideAllEyes(); eyesOpen.style.display = '';
-  }
-}
-
-/* natural idle blink loop, independent of dialogue mood, only while eyes are open */
-function scheduleBlink(){
-  const delay = 2600 + Math.random()*3200;
-  setTimeout(()=>{
-    if(eyesOpen.style.display !== 'none'){
-      eyesOpen.style.display = 'none';
-      eyesClosed.style.display = '';
-      setTimeout(()=>{
-        // only restore if we're still meant to be in an open-eyed mood
-        if(eyesClosed.style.display !== 'none' && eyeEnabledForBlink){
-          eyesClosed.style.display = 'none';
-          eyesOpen.style.display = '';
-        }
-      }, 130);
-    }
-    scheduleBlink();
-  }, delay);
-}
-let eyeEnabledForBlink = true;
-scheduleBlink();
-
-function typeLine(line){
-  typing = true;
-  eyeEnabledForBlink = (line.mood==='idle' || line.mood==='smile');
-  nextHint.classList.remove('show');
-  speakerEl.textContent = line.speaker;
-  setMood(line.mood);
-  vnTextInner.style.opacity = 0;
-  vnTextInner.textContent = '';
-  requestAnimationFrame(()=>{ vnTextInner.style.transition='opacity 0.3s ease'; vnTextInner.style.opacity = 1; });
-  let i = 0;
-  const text = line.en;
-  const speed = 26;
-  const interval = setInterval(()=>{
-    vnTextInner.textContent += text[i];
-    i++;
-    if(i>=text.length){
-      clearInterval(interval);
-      typing = false;
-      nextHint.classList.add('show');
-    }
-  }, speed);
-}
-
-function advance(){
-  if(typing){
-    // fast-forward current line
-    return;
-  }
-  lineIndex++;
-  if(lineIndex < lines.length){
-    typeLine(lines[lineIndex]);
-  } else {
-    showChoice();
-  }
-}
-
-vnBox.addEventListener('click', advance);
-document.getElementById('skip').addEventListener('click', ()=>{
-  lineIndex = lines.length;
-  showChoice();
-});
-
-typeLine(lines[0]);
-
-/* ---------------- choice screen ---------------- */
-const choiceWrap = document.getElementById('choice-wrap');
-const yesBtn = document.getElementById('yes-btn');
-const noBtn = document.getElementById('no-btn');
-const noCount = document.getElementById('no-count');
-const choiceButtons = document.getElementById('choice-buttons');
-const vignette = document.getElementById('vignette');
-
-const noResponses = [
-  "wait, really?",
-  "c'mon...",
-  "okay but hear me out—",
-  "one movie. that's it.",
-  "you're just avoiding the button now",
-  "impressive dodging, ngl",
-];
-let dodgeCount = 0;
-
-function showChoice(){
-  vnBox.style.opacity = 0;
-  vnBox.style.transform = 'translateX(-50%) translateY(14px)';
-  vnBox.style.transition = 'opacity 0.35s ease, transform 0.35s ease';
-  setTimeout(()=>{
-    vnBox.style.display = 'none';
-    choiceWrap.style.display = 'flex';
-    choiceWrap.style.opacity = 0;
-    choiceWrap.style.transform = 'translateX(-50%) translateY(18px)';
-    requestAnimationFrame(()=>{
-      choiceWrap.style.transition = 'opacity 0.5s ease, transform 0.5s cubic-bezier(.2,.8,.3,1.2)';
-      choiceWrap.style.opacity = 1;
-      choiceWrap.style.transform = 'translateX(-50%) translateY(0)';
-    });
-    vignette.classList.add('on');
-  }, 320);
-  setMood('sad');
-}
-
-function spawnPuff(x, y){
-  const puff = document.createElement('div');
-  puff.className = 'puff';
-  puff.style.left = x+'px';
-  puff.style.top = y+'px';
-  stage.appendChild(puff);
-  setTimeout(()=>puff.remove(), 550);
-}
-
-function dodgeNo(){
-  const stageRect = stage.getBoundingClientRect();
-  const oldRect = noBtn.getBoundingClientRect();
-  spawnPuff(oldRect.left - stageRect.left + oldRect.width/2 - 5, oldRect.top - stageRect.top + oldRect.height/2 - 5);
-
-  const wrapRect = choiceButtons.getBoundingClientRect();
-  const btnRect = noBtn.getBoundingClientRect();
-  const maxX = wrapRect.width - btnRect.width;
-  const maxY = 90;
-  const newX = Math.random()*maxX - (wrapRect.width/2 - btnRect.width/2);
-  const newY = Math.random()*maxY - maxY/2;
-  const wiggle = (Math.random()*16-8);
-  noBtn.style.position='relative';
-  noBtn.style.transition = 'left 0.32s cubic-bezier(.3,1.6,.5,1), top 0.32s cubic-bezier(.3,1.6,.5,1), transform 0.32s ease, font-size 0.2s ease, padding 0.2s ease, opacity 0.3s';
-  noBtn.style.left = newX+'px';
-  noBtn.style.top = newY+'px';
-  noBtn.style.transform = 'rotate('+wiggle+'deg)';
-  setTimeout(()=>{ noBtn.style.transform = 'rotate(0deg)'; }, 320);
-
-  dodgeCount++;
-  const scale = Math.max(0.45, 1 - dodgeCount*0.09);
-  noBtn.style.fontSize = (0.9*scale)+'rem';
-  noBtn.style.padding = (10*scale)+'px '+(22*scale)+'px';
-
-  noCount.textContent = noResponses[Math.min(dodgeCount-1, noResponses.length-1)];
-
-  yesBtn.style.transform = 'scale('+(1+Math.min(dodgeCount*0.04,0.35))+')';
-
-  if(dodgeCount>6){
-    noBtn.style.opacity='0.3';
-    noBtn.style.pointerEvents='none';
-    noCount.textContent = "...guess that's a yes then 🌸";
-    setTimeout(playEnding, 700);
-  }
-}
-
-noBtn.addEventListener('mouseenter', dodgeNo);
-noBtn.addEventListener('click', (e)=>{ e.preventDefault(); dodgeNo(); });
-noBtn.addEventListener('touchstart', (e)=>{ e.preventDefault(); dodgeNo(); });
-
-yesBtn.addEventListener('click', playEnding);
-
-/* ---------------- ending ---------------- */
-function playEnding(){
-  vignette.classList.remove('on');
-  choiceWrap.style.opacity = 0;
-  choiceWrap.style.transform = 'translateX(-50%) translateY(10px)';
-  setTimeout(()=>{ choiceWrap.style.display = 'none'; }, 300);
-
-  boy.classList.add('happy');
-  boy.style.transition = 'bottom 0.5s ease';
-  boy.style.bottom = '32%';
-  setMood('smile');
-
-  setTimeout(()=>{
-    document.getElementById('ending').style.display = 'flex';
-    burstConfetti();
-  }, 250);
-}
-
-function burstConfetti(){
-  const colors = ['#ff8fb3','#e9c877','#b9a8dd','#ffc2d6','#fdf6e3'];
-  for(let i=0;i<80;i++){
-    setTimeout(()=>{
-      const c = document.createElement('div');
-      c.className='confetti';
-      c.style.left = Math.random()*100+'%';
-      c.style.background = colors[Math.floor(Math.random()*colors.length)];
-      c.style.animationDuration = (2.5+Math.random()*2)+'s';
-      const isCircle = Math.random()>0.5;
-      if(isCircle){ c.style.borderRadius='50%'; }
-      stage.appendChild(c);
-      setTimeout(()=>c.remove(), 5000);
-    }, i*25);
-  }
-  for(let i=0;i<24;i++){
-    setTimeout(()=>{
-      const h = document.createElement('div');
-      h.className = 'confetti';
-      h.style.background = 'transparent';
-      h.style.fontSize = '16px';
-      h.style.width = 'auto';
-      h.style.height = 'auto';
-      h.textContent = '💗';
-      h.style.left = Math.random()*100+'%';
-      h.style.animationDuration = (3+Math.random()*2)+'s';
-      stage.appendChild(h);
-      setTimeout(()=>h.remove(), 5500);
-    }, i*60);
-  }
-}
-
-/* cat companion life: periodic blink + occasional little hop */
-const catEyes = document.getElementById('cat-eyes');
-function catBlink(){
-  catEyes.style.transform = 'scaleY(0.15)';
-  catEyes.style.transformOrigin = '22px 41px';
-  setTimeout(()=>{ catEyes.style.transform = 'scaleY(1)'; }, 140);
-  setTimeout(catBlink, 2800+Math.random()*3000);
-}
-setTimeout(catBlink, 1800);
-
-const catEl = document.getElementById('cat');
-function catHop(){
-  catEl.style.transition = 'transform 0.28s ease-out';
-  catEl.style.transform = 'translateY(-10px)';
-  setTimeout(()=>{ catEl.style.transform = 'translateY(0)'; }, 280);
-  setTimeout(catHop, 6000+Math.random()*5000);
-}
-setTimeout(catHop, 4000);
-</script>
 </body>
 </html>

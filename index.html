@@ -2,534 +2,4253 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bappa, Saath Saath</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<title>Bappa, Saath Saath 🪔</title>
+
+<meta name="theme-color" content="#16070a">
+<meta name="description"
+content="A little Ganeshotsav corner for two hearts.">
+
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
 
 :root{
-  --bg-deep:#230F16;
-  --bg-panel:#341B26;
-  --bg-panel-2:#3E2230;
-  --gold:#E3A857;
-  --gold-bright:#F4C978;
-  --vermillion:#C1443C;
-  --ivory:#F5EAD9;
-  --ivory-dim:#D8C4AE;
-  --flame:#FFB74D;
-  --flame-core:#FFE9B0;
-  --shadow:rgba(0,0,0,.35);
-  --radius-arch:28px 28px 14px 14px;
-  --font-display:'Fraunces',serif;
-  --font-body:'Work Sans',sans-serif;
+  --bg:#120507;
+  --bg2:#260b0f;
+  --card:rgba(65,18,24,.78);
+  --gold:#f4c76b;
+  --gold2:#ffe7a8;
+  --orange:#e88936;
+  --cream:#fff5dd;
+  --muted:#c7a99d;
+  --red:#bd3c3c;
+  --green:#82d394;
+  --border:rgba(244,199,107,.18);
+  --shadow:0 30px 100px rgba(0,0,0,.45);
 }
-*{box-sizing:border-box;}
+
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
 body{
   margin:0;
-  background:radial-gradient(circle at 50% -10%, var(--bg-panel-2), var(--bg-deep) 62%);
-  color:var(--ivory);
-  font-family:var(--font-body);
   min-height:100vh;
+  color:var(--cream);
+  font-family:Inter,sans-serif;
+
+  background:
+    radial-gradient(circle at 20% 0%,
+      rgba(184,58,58,.24),
+      transparent 32%),
+    radial-gradient(circle at 85% 15%,
+      rgba(232,137,54,.14),
+      transparent 28%),
+    linear-gradient(145deg,var(--bg),var(--bg2));
+
+  overflow-x:hidden;
 }
-button{font:inherit;}
-.wrap{max-width:640px;margin:0 auto;padding:20px 16px 90px;}
-.boot{text-align:center;padding:90px 20px;color:var(--ivory-dim);font-family:var(--font-display);font-size:18px;}
 
-header.hero{text-align:center;padding:30px 12px 26px;}
-header.hero .mark{width:88px;height:88px;margin:0 auto 8px;}
-header.hero h1{font-family:var(--font-display);font-weight:600;font-size:clamp(26px,7vw,38px);margin:0 0 6px;color:var(--gold-bright);letter-spacing:.2px;}
-header.hero p.sub{color:var(--ivory-dim);font-size:14.5px;margin:0 0 14px;}
-.dot-rule{height:6px;background-image:radial-gradient(circle, var(--gold) 1.5px, transparent 1.6px);background-size:14px 6px;opacity:.55;margin:0 auto;width:190px;}
+body:before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  opacity:.035;
 
-.card{background:var(--bg-panel);border:1px solid rgba(227,168,87,.18);border-radius:var(--radius-arch);padding:24px 20px;margin-bottom:18px;box-shadow:0 10px 26px var(--shadow);position:relative;}
-.card h2{font-family:var(--font-display);font-size:19px;margin:0 0 6px;color:var(--gold-bright);font-weight:600;}
-.card p.hint{color:var(--ivory-dim);font-size:13.5px;line-height:1.5;margin:0 0 16px;}
+  background-image:
+    radial-gradient(#fff 1px,transparent 1px);
 
-label{display:block;font-size:13px;color:var(--ivory-dim);margin-bottom:6px;}
-input[type=text]{width:100%;padding:12px 14px;border-radius:14px;border:1.5px solid rgba(227,168,87,.3);background:var(--bg-deep);color:var(--ivory);font-size:15px;margin-bottom:14px;font-family:var(--font-body);}
-input::placeholder{color:var(--ivory-dim);opacity:.55;}
-:focus-visible{outline:2px solid var(--gold-bright);outline-offset:2px;}
-
-button.btn{font-weight:600;font-size:14.5px;padding:12px 20px;border-radius:100px;border:none;cursor:pointer;background:var(--vermillion);color:var(--ivory);}
-button.btn.secondary{background:transparent;border:1.5px solid var(--gold);color:var(--gold-bright);}
-button.btn:disabled{opacity:.5;cursor:default;}
-
-.duration-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:18px;}
-.duration-opt{border:1.5px solid rgba(227,168,87,.3);border-radius:16px;padding:11px;text-align:center;cursor:pointer;font-size:12.5px;line-height:1.5;}
-.duration-opt.selected{border-color:var(--gold-bright);background:rgba(227,168,87,.12);color:var(--gold-bright);}
-
-.diya-row{position:relative;display:flex;justify-content:center;gap:34px;align-items:flex-start;margin:8px 0 16px;}
-.diya-unit{text-align:center;}
-.diya-unit .name{font-size:12.5px;color:var(--ivory-dim);margin-top:8px;}
-.diya-btn{width:82px;height:82px;border-radius:50%;border:2px solid var(--gold);background:var(--bg-panel-2);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:transform .15s ease;padding:0;}
-.diya-btn:hover:not([disabled]){transform:scale(1.04);}
-.diya-btn.lit{background:radial-gradient(circle,var(--flame-core),var(--flame) 60%,var(--gold) 100%);box-shadow:0 0 22px 5px rgba(255,183,77,.5);}
-.diya-btn[disabled]{cursor:default;}
-.diya-btn svg{width:42px;height:42px;}
-.diya-btn.lit .flame-icon{animation:flicker 1.6s ease-in-out infinite;}
-@keyframes flicker{0%,100%{transform:scale(1) rotate(-2deg);}50%{transform:scale(1.1) rotate(2deg);}}
-
-.confetti-piece{position:absolute;width:6px;height:6px;border-radius:2px;top:38px;left:50%;pointer-events:none;animation:confetti-burst .9s ease-out forwards;}
-@keyframes confetti-burst{to{transform:translate(var(--tx),var(--ty)) rotate(var(--rot));opacity:0;}}
-
-.aarti-text summary{cursor:pointer;color:var(--gold-bright);font-weight:600;font-size:13.5px;}
-.aarti-text p{font-size:13.5px;line-height:1.75;color:var(--ivory-dim);margin:12px 0;}
-
-.modak-plate{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;min-height:30px;margin-bottom:14px;}
-
-.notes-wall{display:flex;flex-direction:column;gap:9px;max-height:300px;overflow-y:auto;padding:2px 4px 2px 2px;}
-.note{max-width:80%;padding:9px 13px;border-radius:16px;font-size:13.5px;line-height:1.4;}
-.note.mine{align-self:flex-end;background:var(--vermillion);color:var(--ivory);border-bottom-right-radius:4px;}
-.note.theirs{align-self:flex-start;background:var(--bg-panel-2);border:1px solid rgba(227,168,87,.25);border-bottom-left-radius:4px;}
-.note .meta{display:block;font-size:10.5px;opacity:.65;margin-top:4px;}
-
-.timeline{display:flex;gap:7px;justify-content:center;flex-wrap:wrap;}
-.day-dot{width:28px;height:28px;border-radius:50%;border:1.5px solid rgba(227,168,87,.4);display:flex;align-items:center;justify-content:center;font-size:11.5px;color:var(--ivory-dim);background:transparent;}
-.day-dot.today{border-color:var(--gold-bright);color:var(--gold-bright);font-weight:700;}
-.day-dot.done{background:var(--gold);color:var(--bg-deep);border-color:var(--gold);font-weight:700;}
-
-.who-btn{width:100%;margin-bottom:12px;text-align:center;}
-
-@media (prefers-reduced-motion: reduce){
-  *{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important;}
+  background-size:5px 5px;
 }
+
+button,
+input,
+textarea{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+button:active{
+  transform:scale(.97);
+}
+
+.hidden{
+  display:none!important;
+}
+
+/* =====================================================
+   PARTICLES
+===================================================== */
+
+.particle{
+  position:fixed;
+  pointer-events:none;
+  z-index:0;
+
+  color:rgba(244,199,107,.3);
+
+  animation:floatParticle linear forwards;
+}
+
+@keyframes floatParticle{
+
+  from{
+    transform:translateY(110vh) rotate(0deg);
+    opacity:0;
+  }
+
+  15%{
+    opacity:1;
+  }
+
+  to{
+    transform:translateY(-20vh) rotate(360deg);
+    opacity:0;
+  }
+
+}
+
+/* =====================================================
+   APP
+===================================================== */
+
+#app{
+  position:relative;
+  z-index:1;
+
+  width:min(1080px,100%);
+  margin:auto;
+
+  padding:18px;
+}
+
+/* =====================================================
+   TOPBAR
+===================================================== */
+
+.topbar{
+
+  position:sticky;
+  top:10px;
+  z-index:50;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+
+  padding:11px 15px;
+  margin-bottom:18px;
+
+  border:1px solid var(--border);
+  border-radius:18px;
+
+  background:rgba(22,6,9,.78);
+
+  backdrop-filter:blur(22px);
+
+  box-shadow:0 15px 50px rgba(0,0,0,.25);
+}
+
+.brand{
+
+  display:flex;
+  align-items:center;
+  gap:9px;
+
+  color:var(--gold2);
+
+  font-family:Fraunces,serif;
+  font-weight:600;
+}
+
+.brand-icon{
+  font-size:20px;
+}
+
+.status{
+
+  display:flex;
+  align-items:center;
+  gap:7px;
+
+  color:var(--muted);
+  font-size:10px;
+}
+
+.status-dot{
+
+  width:7px;
+  height:7px;
+
+  border-radius:50%;
+
+  background:#777;
+}
+
+.status-dot.ready{
+  background:var(--gold);
+}
+
+.status-dot.saved{
+
+  background:var(--green);
+
+  box-shadow:0 0 12px var(--green);
+}
+
+.status-dot.error{
+  background:var(--red);
+}
+
+/* =====================================================
+   SCREEN
+===================================================== */
+
+.screen{
+  animation:screenIn .5s ease;
+}
+
+@keyframes screenIn{
+
+  from{
+    opacity:0;
+    transform:translateY(15px);
+  }
+
+  to{
+    opacity:1;
+    transform:none;
+  }
+
+}
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.hero{
+
+  min-height:680px;
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+
+  text-align:center;
+
+  padding:60px 20px;
+
+  border:1px solid var(--border);
+  border-radius:32px;
+
+  background:
+    radial-gradient(
+      circle at 50% 15%,
+      rgba(244,199,107,.11),
+      transparent 32%
+    ),
+    linear-gradient(
+      145deg,
+      rgba(91,26,31,.5),
+      rgba(20,5,8,.82)
+    );
+
+  box-shadow:var(--shadow);
+}
+
+.eyebrow{
+
+  color:var(--gold);
+
+  font-size:10px;
+  font-weight:700;
+
+  letter-spacing:4px;
+  text-transform:uppercase;
+}
+
+.hero h1{
+
+  margin:13px 0 12px;
+
+  color:var(--gold2);
+
+  font-family:Fraunces,serif;
+
+  font-size:clamp(45px,9vw,78px);
+
+  line-height:.91;
+}
+
+.hero p{
+
+  max-width:580px;
+
+  margin:0 auto 30px;
+
+  color:var(--muted);
+
+  line-height:1.8;
+}
+
+/* =====================================================
+   GANESH HERO
+===================================================== */
+
+.ganesha{
+
+  position:relative;
+
+  width:250px;
+  height:250px;
+
+  margin-bottom:20px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  animation:
+    ganeshaFloat 4s ease-in-out infinite;
+}
+
+.ganesha:before{
+
+  content:"";
+
+  position:absolute;
+
+  width:210px;
+  height:210px;
+
+  border-radius:50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(244,199,107,.22),
+      transparent 65%
+    );
+
+  filter:blur(5px);
+
+  animation:ganeshaGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes ganeshaFloat{
+
+  50%{
+    transform:translateY(-9px);
+  }
+
+}
+
+@keyframes ganeshaGlow{
+
+  from{
+    transform:scale(.9);
+    opacity:.45;
+  }
+
+  to{
+    transform:scale(1.15);
+    opacity:.9;
+  }
+
+}
+
+.ganesha svg{
+
+  position:relative;
+  z-index:2;
+
+  width:230px;
+  height:230px;
+
+  filter:
+    drop-shadow(0 12px 25px rgba(0,0,0,.5))
+    drop-shadow(0 0 25px rgba(244,199,107,.2));
+}
+
+/* =====================================================
+   FORM
+===================================================== */
+
+.form{
+  width:min(550px,100%);
+}
+
+.field{
+  margin-bottom:14px;
+  text-align:left;
+}
+
+.field label{
+
+  display:block;
+
+  margin-bottom:7px;
+
+  color:var(--gold2);
+
+  font-size:11px;
+  font-weight:600;
+}
+
+input,
+textarea{
+
+  width:100%;
+
+  color:var(--cream);
+
+  background:rgba(0,0,0,.25);
+
+  border:1px solid var(--border);
+
+  border-radius:14px;
+
+  outline:none;
+
+  padding:14px 16px;
+
+  transition:.2s;
+}
+
+input:focus,
+textarea:focus{
+
+  border-color:rgba(244,199,107,.6);
+
+  box-shadow:
+    0 0 0 3px rgba(244,199,107,.06);
+}
+
+.duration-grid{
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(5,1fr);
+
+  gap:7px;
+}
+
+.duration{
+
+  padding:11px 5px;
+
+  color:var(--muted);
+
+  background:rgba(0,0,0,.2);
+
+  border:1px solid var(--border);
+
+  border-radius:12px;
+
+  transition:.2s;
+}
+
+.duration.active{
+
+  color:#2c1306;
+
+  background:var(--gold);
+
+  border-color:var(--gold);
+}
+
+/* =====================================================
+   BUTTONS
+===================================================== */
+
+.btn{
+
+  width:100%;
+
+  padding:14px 18px;
+
+  border:0;
+  border-radius:14px;
+
+  color:#2b1205;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--gold2),
+      var(--gold)
+    );
+
+  font-weight:800;
+
+  box-shadow:
+    0 12px 35px rgba(244,199,107,.12);
+
+  transition:.2s;
+}
+
+.btn:hover{
+
+  transform:translateY(-2px);
+
+  box-shadow:
+    0 18px 45px rgba(244,199,107,.2);
+}
+
+.btn.secondary{
+
+  color:var(--gold2);
+
+  background:rgba(255,255,255,.045);
+
+  border:1px solid var(--border);
+}
+
+.btn.small{
+
+  width:auto;
+
+  padding:9px 13px;
+
+  font-size:11px;
+}
+
+.btn.danger{
+
+  color:#ffd8d8;
+
+  background:rgba(184,58,58,.13);
+
+  border:1px solid rgba(184,58,58,.28);
+}
+
+/* =====================================================
+   WHO
+===================================================== */
+
+.center-screen{
+
+  min-height:78vh;
+
+  display:flex;
+
+  align-items:center;
+  justify-content:center;
+}
+
+.who-card{
+
+  width:min(700px,100%);
+
+  padding:45px 25px;
+
+  text-align:center;
+
+  border:1px solid var(--border);
+  border-radius:28px;
+
+  background:var(--card);
+
+  box-shadow:var(--shadow);
+}
+
+.who-card h1{
+
+  margin:10px 0;
+
+  color:var(--gold2);
+
+  font-family:Fraunces,serif;
+
+  font-size:48px;
+}
+
+.who-card p{
+  color:var(--muted);
+}
+
+.person-grid{
+
+  display:grid;
+
+  grid-template-columns:1fr 1fr;
+
+  gap:14px;
+
+  margin-top:28px;
+}
+
+.person{
+
+  padding:30px 18px;
+
+  color:var(--cream);
+
+  background:rgba(255,255,255,.035);
+
+  border:1px solid var(--border);
+
+  border-radius:20px;
+
+  transition:.25s;
+}
+
+.person:hover{
+
+  transform:translateY(-5px);
+
+  border-color:
+    rgba(244,199,107,.45);
+}
+
+.person .emoji{
+  font-size:42px;
+}
+
+.person strong{
+
+  display:block;
+
+  margin-top:10px;
+
+  color:var(--gold2);
+
+  font-family:Fraunces,serif;
+
+  font-size:23px;
+}
+
+.person span{
+
+  display:block;
+
+  margin-top:5px;
+
+  color:var(--muted);
+
+  font-size:11px;
+}
+
+/* =====================================================
+   DASHBOARD
+===================================================== */
+
+.dashboard-header{
+
+  padding:35px 25px;
+
+  text-align:center;
+
+  border:1px solid var(--border);
+
+  border-radius:28px;
+
+  background:
+    radial-gradient(
+      circle at center top,
+      rgba(232,137,54,.13),
+      transparent 55%
+    ),
+    var(--card);
+}
+
+.dashboard-header h1{
+
+  margin:11px 0;
+
+  color:var(--gold2);
+
+  font-family:Fraunces,serif;
+
+  font-size:clamp(40px,7vw,66px);
+
+  line-height:.95;
+}
+
+.dashboard-header p{
+  color:var(--muted);
+}
+
+.room-row{
+
+  display:flex;
+
+  justify-content:center;
+  align-items:center;
+
+  flex-wrap:wrap;
+
+  gap:8px;
+
+  margin-top:18px;
+}
+
+.room-code{
+
+  padding:9px 13px;
+
+  color:var(--gold2);
+
+  background:rgba(244,199,107,.08);
+
+  border:1px solid var(--border);
+
+  border-radius:999px;
+
+  font-size:11px;
+}
+
+.grid{
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(2,1fr);
+
+  gap:16px;
+
+  margin-top:16px;
+}
+
+.card{
+
+  padding:24px;
+
+  border:1px solid var(--border);
+
+  border-radius:22px;
+
+  background:var(--card);
+
+  box-shadow:
+    0 12px 40px rgba(0,0,0,.16);
+}
+
+.card.full{
+  grid-column:1/-1;
+}
+
+.card h2{
+
+  margin-top:0;
+
+  color:var(--gold2);
+
+  font-family:Fraunces,serif;
+}
+
+.card p{
+
+  color:var(--muted);
+
+  line-height:1.7;
+}
+
+/* =====================================================
+   CENTRAL GANESH MANDAP
+===================================================== */
+
+.mandap{
+
+  position:relative;
+
+  min-height:430px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  overflow:hidden;
+
+  margin-top:18px;
+
+  border:1px solid var(--border);
+
+  border-radius:28px;
+
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(244,199,107,.13),
+      transparent 48%
+    ),
+    radial-gradient(
+      circle at center,
+      rgba(184,58,58,.12),
+      transparent 70%
+    ),
+    rgba(18,5,7,.55);
+}
+
+.mandap:before{
+
+  content:"";
+
+  position:absolute;
+
+  width:300px;
+  height:300px;
+
+  border-radius:50%;
+
+  border:1px solid rgba(244,199,107,.13);
+
+  box-shadow:
+    0 0 80px rgba(244,199,107,.08);
+
+  animation:mandalaSpin 25s linear infinite;
+}
+
+@keyframes mandalaSpin{
+
+  to{
+    transform:rotate(360deg);
+  }
+
+}
+
+.mandap-title{
+
+  position:absolute;
+
+  top:20px;
+
+  left:0;
+  right:0;
+
+  text-align:center;
+
+  color:var(--gold);
+
+  font-size:10px;
+
+  font-weight:700;
+
+  letter-spacing:4px;
+
+  text-transform:uppercase;
+}
+
+.ganesh-center{
+
+  position:relative;
+
+  z-index:3;
+
+  width:270px;
+  height:270px;
+
+  display:flex;
+
+  align-items:center;
+  justify-content:center;
+
+  animation:
+    centerFloat 4s ease-in-out infinite;
+}
+
+@keyframes centerFloat{
+
+  50%{
+    transform:translateY(-10px);
+  }
+
+}
+
+.ganesh-center svg{
+
+  width:260px;
+  height:260px;
+
+  filter:
+    drop-shadow(0 18px 30px rgba(0,0,0,.5))
+    drop-shadow(0 0 35px rgba(244,199,107,.28));
+}
+
+/* Aarti */
+
+.mandap-aarti{
+
+  position:absolute;
+
+  left:9%;
+
+  bottom:60px;
+
+  z-index:4;
+
+  width:100px;
+  height:100px;
+
+  display:flex;
+
+  flex-direction:column;
+
+  align-items:center;
+
+  justify-content:center;
+
+  border-radius:50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(244,199,107,.18),
+      rgba(65,18,24,.85)
+    );
+
+  border:1px solid rgba(244,199,107,.35);
+
+  animation:
+    orbitFloat 3s ease-in-out infinite;
+}
+
+.mandap-aarti .icon{
+
+  font-size:45px;
+
+  filter:
+    drop-shadow(0 0 15px #f4c76b);
+}
+
+.mandap-aarti span{
+
+  margin-top:2px;
+
+  color:var(--gold2);
+
+  font-size:9px;
+
+  font-weight:700;
+
+  letter-spacing:2px;
+
+  text-transform:uppercase;
+}
+
+/* Modak */
+
+.mandap-modak{
+
+  position:absolute;
+
+  right:9%;
+
+  bottom:60px;
+
+  z-index:4;
+
+  width:100px;
+  height:100px;
+
+  display:flex;
+
+  flex-direction:column;
+
+  align-items:center;
+
+  justify-content:center;
+
+  border-radius:50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(232,137,54,.16),
+      rgba(65,18,24,.85)
+    );
+
+  border:1px solid rgba(244,199,107,.35);
+
+  animation:
+    orbitFloat 3.5s ease-in-out infinite;
+}
+
+.mandap-modak .icon{
+
+  font-size:42px;
+
+  filter:
+    drop-shadow(0 0 12px rgba(232,137,54,.5));
+}
+
+.mandap-modak span{
+
+  margin-top:3px;
+
+  color:var(--gold2);
+
+  font-size:9px;
+
+  font-weight:700;
+
+  letter-spacing:2px;
+
+  text-transform:uppercase;
+}
+
+@keyframes orbitFloat{
+
+  50%{
+    transform:translateY(-7px);
+  }
+
+}
+
+/* Flowers */
+
+.flower{
+
+  position:absolute;
+
+  z-index:2;
+
+  font-size:24px;
+
+  animation:flowerFloat 4s ease-in-out infinite;
+}
+
+.flower.one{
+  top:75px;
+  left:20%;
+}
+
+.flower.two{
+  top:85px;
+  right:20%;
+  animation-delay:1s;
+}
+
+.flower.three{
+  bottom:40px;
+  left:26%;
+  animation-delay:1.5s;
+}
+
+.flower.four{
+  bottom:42px;
+  right:26%;
+  animation-delay:.5s;
+}
+
+@keyframes flowerFloat{
+
+  50%{
+    transform:translateY(-5px) rotate(5deg);
+  }
+
+}
+
+/* =====================================================
+   DIYA
+===================================================== */
+
+.diya-area{
+
+  display:grid;
+
+  grid-template-columns:1fr 1fr;
+
+  gap:12px;
+}
+
+.diya{
+
+  padding:25px 15px;
+
+  text-align:center;
+
+  border:1px solid var(--border);
+
+  border-radius:18px;
+
+  background:rgba(0,0,0,.15);
+
+  transition:.3s;
+}
+
+.diya.clickable{
+  cursor:pointer;
+}
+
+.diya.clickable:hover{
+  transform:translateY(-4px);
+}
+
+.diya.lit{
+
+  background:rgba(244,199,107,.09);
+
+  border-color:
+    rgba(244,199,107,.4);
+}
+
+.diya-icon{
+
+  font-size:48px;
+
+  filter:grayscale(.8);
+
+  transition:.3s;
+}
+
+.diya.lit .diya-icon{
+
+  filter:none;
+
+  animation:
+    diyaGlow 1.4s infinite alternate;
+}
+
+@keyframes diyaGlow{
+
+  from{
+    filter:drop-shadow(0 0 3px #f4c76b);
+  }
+
+  to{
+    filter:drop-shadow(0 0 20px #f4c76b);
+  }
+
+}
+
+.diya strong{
+
+  display:block;
+
+  margin-top:7px;
+
+  color:var(--gold2);
+}
+
+.diya small{
+
+  display:block;
+
+  margin-top:4px;
+
+  color:var(--muted);
+
+  font-size:10px;
+}
+
+/* =====================================================
+   MODAK
+===================================================== */
+
+.modak-row{
+
+  display:flex;
+
+  align-items:center;
+  justify-content:space-between;
+
+  padding:14px 0;
+
+  border-bottom:
+    1px solid rgba(255,255,255,.05);
+}
+
+.modak-row:last-child{
+  border-bottom:0;
+}
+
+.modak-name{
+  color:var(--gold2);
+}
+
+.modak-right{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:12px;
+}
+
+.modak-count{
+
+  min-width:35px;
+
+  color:var(--gold2);
+
+  text-align:center;
+
+  font-family:Fraunces,serif;
+
+  font-size:22px;
+
+  font-weight:700;
+}
+
+.modak-btn{
+
+  width:38px;
+  height:38px;
+
+  border-radius:50%;
+
+  color:var(--gold2);
+
+  background:rgba(255,255,255,.05);
+
+  border:1px solid var(--border);
+
+  font-size:20px;
+}
+
+/* =====================================================
+   AARTI
+===================================================== */
+
+.aarti{
+
+  padding:25px;
+
+  text-align:center;
+
+  border-radius:18px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(244,199,107,.06),
+      transparent
+    );
+}
+
+.bell{
+
+  width:68px;
+  height:68px;
+
+  border-radius:50%;
+
+  color:var(--gold2);
+
+  background:
+    rgba(244,199,107,.07);
+
+  border:1px solid var(--border);
+
+  font-size:28px;
+}
+
+.bell.ringing{
+  animation:ring .5s ease;
+}
+
+@keyframes ring{
+
+  20%{
+    transform:rotate(12deg);
+  }
+
+  40%{
+    transform:rotate(-12deg);
+  }
+
+  60%{
+    transform:rotate(8deg);
+  }
+
+  80%{
+    transform:rotate(-8deg);
+  }
+
+}
+
+.aarti-text{
+
+  margin:20px 0;
+
+  color:var(--gold2);
+
+  font-family:
+    "Cormorant Garamond",serif;
+
+  font-size:23px;
+
+  line-height:1.8;
+}
+
+/* =====================================================
+   NOTES
+===================================================== */
+
+.notes-list{
+
+  display:grid;
+
+  gap:10px;
+
+  max-height:420px;
+
+  overflow-y:auto;
+
+  margin-top:15px;
+}
+
+.note{
+
+  padding:15px;
+
+  border-radius:15px;
+
+  background:rgba(255,255,255,.035);
+
+  border:1px solid rgba(255,255,255,.04);
+}
+
+.note-top{
+
+  display:flex;
+
+  justify-content:space-between;
+
+  gap:10px;
+
+  margin-bottom:7px;
+}
+
+.note-name{
+
+  color:var(--gold);
+
+  font-size:12px;
+
+  font-weight:700;
+}
+
+.note-time{
+
+  color:#927b72;
+
+  font-size:10px;
+}
+
+.note-body{
+
+  color:var(--cream);
+
+  line-height:1.6;
+
+  word-break:break-word;
+}
+
+/* =====================================================
+   STATS
+===================================================== */
+
+.stats{
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(3,1fr);
+
+  gap:10px;
+}
+
+.stat{
+
+  padding:18px;
+
+  text-align:center;
+
+  border-radius:16px;
+
+  background:rgba(0,0,0,.14);
+}
+
+.stat-number{
+
+  display:block;
+
+  color:var(--gold2);
+
+  font-family:Fraunces,serif;
+
+  font-size:30px;
+
+  font-weight:700;
+}
+
+.stat-label{
+
+  color:var(--muted);
+
+  font-size:10px;
+}
+
+/* =====================================================
+   TOAST
+===================================================== */
+
+.toast{
+
+  position:fixed;
+
+  left:50%;
+  bottom:25px;
+
+  z-index:999;
+
+  max-width:90vw;
+
+  padding:12px 18px;
+
+  color:var(--cream);
+
+  background:#321317;
+
+  border:1px solid var(--border);
+
+  border-radius:999px;
+
+  box-shadow:var(--shadow);
+
+  opacity:0;
+
+  transform:
+    translateX(-50%)
+    translateY(25px);
+
+  pointer-events:none;
+
+  transition:.3s;
+}
+
+.toast.show{
+
+  opacity:1;
+
+  transform:
+    translateX(-50%);
+}
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+footer{
+
+  padding:35px 0 20px;
+
+  text-align:center;
+
+  color:#806b63;
+
+  font-size:10px;
+}
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:700px){
+
+  #app{
+    padding:10px;
+  }
+
+  .topbar{
+    top:5px;
+  }
+
+  .brand span{
+    font-size:14px;
+  }
+
+  .grid{
+    grid-template-columns:1fr;
+  }
+
+  .card.full{
+    grid-column:auto;
+  }
+
+  .person-grid{
+    grid-template-columns:1fr;
+  }
+
+  .hero{
+
+    min-height:640px;
+
+    border-radius:23px;
+  }
+
+  .dashboard-header{
+    border-radius:23px;
+  }
+
+  .stats{
+    grid-template-columns:
+      repeat(3,1fr);
+  }
+
+  .stat{
+    padding:14px 6px;
+  }
+
+  .stat-number{
+    font-size:25px;
+  }
+
+  .diya-area{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .room-code{
+
+    max-width:100%;
+
+    overflow:hidden;
+
+    text-overflow:ellipsis;
+  }
+
+  .mandap{
+    min-height:390px;
+  }
+
+  .ganesh-center{
+    width:230px;
+    height:230px;
+  }
+
+  .ganesh-center svg{
+    width:220px;
+    height:220px;
+  }
+
+  .mandap-aarti,
+  .mandap-modak{
+
+    width:78px;
+    height:78px;
+  }
+
+  .mandap-aarti{
+    left:4%;
+  }
+
+  .mandap-modak{
+    right:4%;
+  }
+
+  .mandap-aarti .icon,
+  .mandap-modak .icon{
+    font-size:32px;
+  }
+
+}
+
+@media(max-width:420px){
+
+  .hero h1{
+    font-size:48px;
+  }
+
+  .ganesha{
+    width:190px;
+    height:190px;
+  }
+
+  .ganesha svg{
+    width:180px;
+    height:180px;
+  }
+
+  .diya{
+    padding:20px 8px;
+  }
+
+  .diya-icon{
+    font-size:40px;
+  }
+
+  .aarti-text{
+    font-size:20px;
+  }
+
+  .mandap{
+    min-height:350px;
+  }
+
+  .mandap-title{
+    top:14px;
+  }
+
+  .ganesh-center{
+    width:190px;
+    height:190px;
+  }
+
+  .ganesh-center svg{
+    width:185px;
+    height:185px;
+  }
+
+}
+
+/* =====================================================
+   FIREBASE SYNC INDICATOR
+===================================================== */
+
+.sync-pulse{
+
+  display:inline-block;
+
+  width:7px;
+  height:7px;
+
+  margin-right:4px;
+
+  border-radius:50%;
+
+  background:var(--green);
+
+  box-shadow:
+    0 0 10px var(--green);
+
+  animation:syncPulse 1.5s infinite;
+}
+
+@keyframes syncPulse{
+
+  50%{
+    transform:scale(.65);
+    opacity:.45;
+  }
+
+}
+
 </style>
 </head>
+
 <body>
-<div id="app"><div class="boot">Lighting the first diya&hellip;</div></div>
-<script>
-const START_DATE = new Date(2026,8,14);
-const DURATIONS = [
-  {days:1.5, label:'1.5 Days', endLabel:'Sep 15'},
-  {days:3,   label:'3 Days',   endLabel:'Sep 16'},
-  {days:5,   label:'5 Days',   endLabel:'Sep 18'},
-  {days:7,   label:'7 Days',   endLabel:'Sep 20'},
-  {days:10,  label:'10 Days \u00b7 Anant Chaturdashi', endLabel:'Sep 25'},
-];
 
-let SETUP = null, WHOAMI = null, TOTAL_DAYS = 0, TODAY_IDX = 0;
-const appEl = document.getElementById('app');
+<div id="app"></div>
 
-function pad(n){ return String(n).padStart(2,'0'); }
-function dateKeyFor(d){ return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate()); }
-function dayIndexFor(d){
-  const a = new Date(d.getFullYear(), d.getMonth(), d.getDate());
-  const diff = Math.round((a - START_DATE) / 86400000);
-  return diff + 1;
-}
-function fmtDate(d){ return d.toLocaleDateString('en-IN', {day:'numeric', month:'short'}); }
-function escapeHtml(s){
-  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-}
-function getMyRole(){ return WHOAMI === SETUP.personA ? 'personA' : 'personB'; }
-function currentDuration(){ return DURATIONS.find(d => d.days === SETUP.durationDays) || DURATIONS[4]; }
+<div id="toast" class="toast"></div>
 
-async function sGet(key, shared){
-  try{
-    const r = await window.storage.get(key, shared);
-    return r ? JSON.parse(r.value) : null;
-  }catch(e){ return null; }
-}
-async function sSet(key, value, shared){
-  try{
-    await window.storage.set(key, JSON.stringify(value), shared);
-    return true;
-  }catch(e){ console.error('storage set failed', e); return false; }
-}
-async function safeDelete(key, shared){
-  try{ await window.storage.delete(key, shared); }catch(e){ /* ignore */ }
+
+<!-- =====================================================
+     FIREBASE + APPLICATION
+===================================================== -->
+
+<script type="module">
+
+import {
+  initializeApp
+} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+
+import {
+  getAnalytics
+} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-analytics.js";
+
+import {
+  getAuth,
+  signInAnonymously
+} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+
+import {
+  getFirestore,
+  doc,
+  setDoc,
+  onSnapshot
+} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+
+
+/* =====================================================
+   FIREBASE CONFIG
+===================================================== */
+
+const firebaseConfig = {
+
+  apiKey:
+    "AIzaSyCQWTCBDcTZ7YYAtsh6Rwhb1O01G7YX27M",
+
+  authDomain:
+    "bapa-007.firebaseapp.com",
+
+  projectId:
+    "bapa-007",
+
+  storageBucket:
+    "bapa-007.firebasestorage.app",
+
+  messagingSenderId:
+    "403446120461",
+
+  appId:
+    "1:403446120461:web:ccc7551d0dcf5d772f9544",
+
+  measurementId:
+    "G-EM65P8B7YZ"
+};
+
+
+/* =====================================================
+   FIREBASE INIT
+===================================================== */
+
+const firebaseApp =
+  initializeApp(firebaseConfig);
+
+try{
+  getAnalytics(firebaseApp);
+}catch{}
+
+
+const auth =
+  getAuth(firebaseApp);
+
+const db =
+  getFirestore(firebaseApp);
+
+
+/* =====================================================
+   APP STATE
+===================================================== */
+
+const STORAGE_KEY =
+  "bappa_saath_saath_v4";
+
+const ROLE_KEY =
+  "bappa_role_v4";
+
+const DURATIONS =
+  [1,3,5,7,10];
+
+let selectedDuration = 5;
+
+let state = null;
+
+let currentRole = null;
+
+let unsubscribeRoom = null;
+
+let firebaseReady = false;
+
+
+/* =====================================================
+   HELPERS
+===================================================== */
+
+function getToday(){
+
+  const d = new Date();
+
+  return [
+    d.getFullYear(),
+    String(d.getMonth()+1).padStart(2,"0"),
+    String(d.getDate()).padStart(2,"0")
+  ].join("-");
 }
 
-function ganeshaMark(){
-  return `<svg viewBox="0 0 200 200" width="88" height="88" xmlns="http://www.w3.org/2000/svg">
-    <ellipse cx="50" cy="100" rx="32" ry="38" fill="var(--gold)"/>
-    <ellipse cx="150" cy="100" rx="32" ry="38" fill="var(--gold)"/>
-    <circle cx="100" cy="106" r="56" fill="var(--gold-bright)"/>
-    <path d="M100,150 Q88,175 100,192 Q110,200 100,184 Q98,172 106,164" stroke="var(--vermillion)" stroke-width="12" fill="none" stroke-linecap="round"/>
-    <circle cx="84" cy="102" r="5" fill="var(--bg-deep)"/>
-    <circle cx="116" cy="102" r="5" fill="var(--bg-deep)"/>
-    <path d="M78,52 Q100,34 122,52" stroke="var(--vermillion)" stroke-width="8" fill="none" stroke-linecap="round"/>
-    <circle cx="100" cy="40" r="6" fill="var(--vermillion)"/>
-  </svg>`;
-}
-function diyaSVG(){
-  return `<svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M10 40 Q32 58 54 40 Q46 48 32 48 Q18 48 10 40Z" fill="var(--gold)"/>
-    <ellipse cx="32" cy="40" rx="22" ry="6" fill="var(--gold-bright)"/>
-    <path class="flame-icon" d="M32 10 C26 20 24 26 30 32 C33 35 35 31 33 27 C38 30 40 22 32 10Z" fill="var(--flame)"/>
-  </svg>`;
-}
-function modakSVG(){
-  return `<svg viewBox="0 0 40 40" width="18" height="18" fill="none" xmlns="http://www.w3.org/2000/svg" style="vertical-align:-4px;margin-right:6px;">
-    <path d="M20 6 C10 6 6 16 6 24 C6 32 12 36 20 36 C28 36 34 32 34 24 C34 16 30 6 20 6Z" fill="var(--gold)"/>
-    <path d="M20 6 C17 10 17 14 20 16 C23 14 23 10 20 6Z" fill="var(--gold-bright)"/>
-    <path d="M14 10 C12 12 12 15 15 16" stroke="var(--gold-bright)" stroke-width="1.5" fill="none"/>
-    <path d="M26 10 C28 12 28 15 25 16" stroke="var(--gold-bright)" stroke-width="1.5" fill="none"/>
-  </svg>`;
-}
-function heroHTML(subtitle){
-  return `<header class="hero">
-    <div class="mark">${ganeshaMark()}</div>
-    <h1>Bappa, Saath Saath</h1>
-    <p class="sub">${subtitle}</p>
-    <div class="dot-rule"></div>
-  </header>`;
-}
-function dayFlavor(idx, total){
-  if(idx === 1) return 'Sthapana \u2014 Bappa moves in today.';
-  if(idx === total) return 'The last day, before the sweetest goodbye.';
-  const arr = [
-    "Distance can't dim a flame lit with love.",
-    'Every diya you light reaches further than you think.',
-    'Bappa is watching over both your homes today.',
-    'Small ritual, big togetherness.',
-    'Another day, another reason to light up for each other.',
-    'Halfway across the miles, right on time.'
-  ];
-  return arr[(idx - 2) % arr.length];
-}
-function noteHTML(n){
-  const myRole = getMyRole();
-  const mine = n.role === myRole;
-  const authorName = mine ? 'You' : escapeHtml(SETUP[n.role]);
-  return `<div class="note ${mine ? 'mine' : 'theirs'}"><span>${escapeHtml(n.text)}</span><span class="meta">${authorName} \u00b7 ${fmtDate(new Date(n.ts))}</span></div>`;
-}
-function notesWallHTML(notes){
-  const items = notes.slice(-20).reverse().map(noteHTML).join('');
-  return `<div class="notes-wall">${items || '<p class="hint" style="margin:0;">No notes yet \u2014 write the first one.</p>'}</div>`;
-}
-function noteFormHTML(){
-  return `<form data-form="note" style="display:flex;gap:8px;margin-top:14px;">
-    <input type="text" name="text" placeholder="Say something\u2026" maxlength="200" required style="margin-bottom:0;flex:1;">
-    <button class="btn" type="submit">Send</button>
-  </form>`;
-}
 
-async function getFestivalStats(){
-  const fetches = [];
-  for(let i = 0; i < TOTAL_DAYS; i++){
-    const d = new Date(START_DATE); d.setDate(d.getDate() + i);
-    fetches.push(sGet('ganpati-checkin-' + dateKeyFor(d), true));
+function createRoomCode(){
+
+  const chars =
+    "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+
+  let code = "BAPPA-";
+
+  for(let i=0;i<6;i++){
+
+    code += chars[
+      Math.floor(
+        Math.random()*chars.length
+      )
+    ];
   }
-  const results = await Promise.all(fetches);
-  const doneDays = results.map(c => !!(c && c.personA && c.personB));
-  const together = doneDays.filter(Boolean).length;
-  const isOver = TODAY_IDX > TOTAL_DAYS;
-  let streak = 0;
-  if(isOver){
-    for(let i = doneDays.length - 1; i >= 0; i--){ if(doneDays[i]) streak++; else break; }
-  }else{
-    const priorCount = Math.max(0, Math.min(TODAY_IDX - 1, TOTAL_DAYS));
-    for(let i = priorCount - 1; i >= 0; i--){ if(doneDays[i]) streak++; else break; }
+
+  return code;
+}
+
+
+function emptyState(){
+
+  return {
+
+    roomCode:createRoomCode(),
+
+    personA:"",
+
+    personB:"",
+
+    duration:5,
+
+    startDate:getToday(),
+
+    checkins:{},
+
+    modaks:{
+      personA:0,
+      personB:0
+    },
+
+    notes:[],
+
+    bellCount:0,
+
+    visarjan:false
+  };
+}
+
+
+function escapeHTML(value){
+
+  return String(value ?? "")
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+}
+
+
+function dateDiff(a,b){
+
+  return Math.round(
+    (
+      new Date(b+"T00:00:00") -
+      new Date(a+"T00:00:00")
+    ) / 86400000
+  );
+}
+
+
+function formatDate(date){
+
+  return new Date(
+    date+"T00:00:00"
+  ).toLocaleDateString(
+    "en-IN",
+    {
+      day:"numeric",
+      month:"long",
+      year:"numeric"
+    }
+  );
+}
+
+
+/* =====================================================
+   LOCAL CACHE
+===================================================== */
+
+function cacheState(){
+
+  if(!state) return;
+
+  localStorage.setItem(
+    STORAGE_KEY,
+    JSON.stringify(state)
+  );
+}
+
+
+function getCachedState(){
+
+  try{
+
+    const raw =
+      localStorage.getItem(STORAGE_KEY);
+
+    return raw
+      ? JSON.parse(raw)
+      : null;
+
+  }catch{
+
+    return null;
   }
-  return { doneDays, together, streak };
 }
 
-function setupHTML(){
-  return `<div class="wrap">
-    ${heroHTML('Your long-distance Ganeshotsav \u2014 Sthapana is ' + fmtDate(START_DATE))}
-    <div class="card">
-      <h2>Set up your corner for Bappa</h2>
-      <p class="hint">Fill this in, then share this page's link with them and they'll join from their side. Anyone with the link can see and add to your shared aarti, modaks and notes.</p>
-      <form data-form="setup">
-        <label for="you-input">Your name</label>
-        <input id="you-input" type="text" name="you" placeholder="e.g. Ayush" required maxlength="24">
-        <label for="partner-input">Their name</label>
-        <input id="partner-input" type="text" name="partner" placeholder="e.g. Dhari" required maxlength="24">
-        <label>How many days will Bappa stay?</label>
-        <div class="duration-grid">
-          ${DURATIONS.map(d => `<div class="duration-opt${d.days === 10 ? ' selected' : ''}" data-action="select-duration" data-days="${d.days}">${d.label}<br><span style="opacity:.7">Visarjan ${d.endLabel}</span></div>`).join('')}
-        </div>
-        <input type="hidden" name="duration" value="10">
-        <button class="btn" type="submit" style="width:100%;">Welcome Bappa home, together</button>
-      </form>
-    </div>
-  </div>`;
-}
-function whoHTML(){
-  return `<div class="wrap">
-    ${heroHTML(escapeHtml(SETUP.personA) + ' & ' + escapeHtml(SETUP.personB) + "'s shared Ganeshotsav")}
-    <div class="card" style="text-align:center;">
-      <h2>Quick check \u2014 which one are you?</h2>
-      <p class="hint">So we know whose diya is whose.</p>
-      <button class="btn who-btn" type="button" data-action="choose-who" data-name="${escapeHtml(SETUP.personA)}">${escapeHtml(SETUP.personA)}</button>
-      <button class="btn secondary who-btn" type="button" data-action="choose-who" data-name="${escapeHtml(SETUP.personB)}">${escapeHtml(SETUP.personB)}</button>
-    </div>
-  </div>`;
-}
-function countdownHTML(notes){
-  const daysLeft = 1 - TODAY_IDX;
-  const dur = currentDuration();
-  return `<div class="wrap">
-    ${heroHTML(escapeHtml(SETUP.personA) + ' & ' + escapeHtml(SETUP.personB))}
-    <div class="card" style="text-align:center;">
-      <h2>Bappa arrives in ${daysLeft} day${daysLeft === 1 ? '' : 's'}</h2>
-      <p class="hint">Sthapana is ${fmtDate(START_DATE)}. You've chosen ${dur.days === 10 ? 'the full 10 days' : dur.label.toLowerCase()} \u2014 visarjan on ${dur.endLabel}. Come back once he's home to light the first diya, together.</p>
-    </div>
-    <div class="card">
-      <h2>Leave an early note</h2>
-      <p class="hint">Tell them you can't wait.</p>
-      ${notesWallHTML(notes)}
-      ${noteFormHTML()}
-    </div>
-  </div>`;
-}
-function todayHTML(checkin, modaks, notes, stats){
-  const myRole = getMyRole();
-  const isLastDay = TODAY_IDX === TOTAL_DAYS;
-  const flavor = dayFlavor(TODAY_IDX, TOTAL_DAYS);
-  const modakA = modaks.personA || 0, modakB = modaks.personB || 0;
-  const modakTotal = modakA + modakB;
-  const plateIcons = Array.from({length: Math.min(modakTotal, 21)}).map(() => `<span class="modak-icon">${modakSVG()}</span>`).join('');
-  const dots = Array.from({length: TOTAL_DAYS}).map((_, i) => {
-    const idx = i + 1;
-    const cls = ['day-dot'];
-    if(idx === TODAY_IDX) cls.push('today');
-    if(stats.doneDays[i]) cls.push('done');
-    return `<div class="${cls.join(' ')}">${idx}</div>`;
-  }).join('');
 
-  return `<div class="wrap">
-    ${heroHTML(escapeHtml(SETUP.personA) + ' & ' + escapeHtml(SETUP.personB))}
-    <div class="card" style="text-align:center;">
-      <h2>Day ${TODAY_IDX} of ${TOTAL_DAYS}</h2>
-      <p class="hint">${fmtDate(new Date())} \u00b7 ${flavor}</p>
-    </div>
-    <div class="card">
-      <h2>Aarti, together</h2>
-      <p class="hint">Light your diya. When you're both lit, Bappa's watching over two homes at once.</p>
-      <div class="diya-row">
-        <div class="diya-unit">
-          <button class="diya-btn ${checkin.personA ? 'lit' : ''}" type="button" data-action="light-diya" data-role="personA" ${myRole !== 'personA' ? 'disabled' : ''}>${diyaSVG()}</button>
-          <div class="name">${escapeHtml(SETUP.personA)}${myRole === 'personA' ? ' \u00b7 you' : ''}</div>
-        </div>
-        <div class="diya-unit">
-          <button class="diya-btn ${checkin.personB ? 'lit' : ''}" type="button" data-action="light-diya" data-role="personB" ${myRole !== 'personB' ? 'disabled' : ''}>${diyaSVG()}</button>
-          <div class="name">${escapeHtml(SETUP.personB)}${myRole === 'personB' ? ' \u00b7 you' : ''}</div>
-        </div>
-      </div>
-      <div style="text-align:center;margin-bottom:4px;">
-        <button class="btn secondary" type="button" data-action="ring-bell">Ring the bell</button>
-      </div>
-      ${stats.streak > 0 ? `<p style="text-align:center;color:var(--gold-bright);font-weight:600;margin:12px 0 0;">${stats.streak}-day streak, lit together</p>` : ''}
-      <details class="aarti-text" style="margin-top:16px;">
-        <summary>Sukhkarta Dukhharta \u2014 read along</summary>
-        <p>Sukhkarta Dukhharta, Varta Vighnachi<br>Nurvi Purvi Prem Krupa Jayachi<br>Sarvangi Sundar Uti Shendurachi<br>Kanti Jhalke Mal Mukta Phalachi</p>
-        <p><em>Jai Deva Jai Deva, Jai Mangalmurti<br>Darshanamatre Manakamana Purti</em></p>
-        <p>Ratnakhachit Phara Tuj Gaurikumra<br>Chandanachi Uti Kumkumkeshara<br>Hi Phal Paane Rishi Muni Dolyara<br>Runadheen Atrisa Bhaktichya Para</p>
-        <p><em>Jai Deva Jai Deva, Jai Mangalmurti<br>Darshanamatre Manakamana Purti</em></p>
-      </details>
-    </div>
-    <div class="card">
-      <h2>Offer a modak</h2>
-      <p class="hint">His favourite. Offer one each, any time today.</p>
-      <div class="modak-plate">${plateIcons || '<p class="hint" style="margin:0;">The plate is empty \u2014 be the first today.</p>'}</div>
-      <div style="text-align:center;">
-        <button class="btn" type="button" data-action="offer-modak">${modakSVG()}Offer a modak</button>
-      </div>
-      <p style="text-align:center;color:var(--ivory-dim);font-size:12.5px;margin-top:10px;">${escapeHtml(SETUP.personA)}: ${modakA} &nbsp;\u00b7&nbsp; ${escapeHtml(SETUP.personB)}: ${modakB}</p>
-    </div>
-    <div class="card">
-      <h2>Notes to each other</h2>
-      <p class="hint">Little things you'd say if the miles weren't there.</p>
-      ${notesWallHTML(notes)}
-      ${noteFormHTML()}
-    </div>
-    <div class="card">
-      <h2>Your journey</h2>
-      <div class="timeline">${dots}</div>
-    </div>
-    ${isLastDay ? `<div class="card" style="text-align:center;">
-      <h2>Ready to say goodbye for now?</h2>
-      <p class="hint">Do today's aarti together first, then begin the visarjan whenever you're both ready.</p>
-      <button class="btn" type="button" data-action="begin-visarjan">Begin visarjan, together</button>
-    </div>` : ''}
-  </div>`;
+/* =====================================================
+   FIREBASE ROOM
+===================================================== */
+
+function roomRef(){
+
+  if(!state?.roomCode){
+    return null;
+  }
+
+  return doc(
+    db,
+    "bappaRooms",
+    state.roomCode
+  );
 }
-function farewellHTML(stats, modaks, notesCount){
-  const modakA = modaks.personA || 0, modakB = modaks.personB || 0;
-  const modakTotal = modakA + modakB;
-  return `<div class="wrap">
-    ${heroHTML('Ganpati Bappa Morya')}
-    <div class="card" style="text-align:center;">
-      <h2>Ganpati Bappa Morya, Pudhchya Varshi Lavkar Ya</h2>
-      <p class="hint">Hail Lord Ganesha \u2014 come again soon next year. ${escapeHtml(SETUP.personA)} and ${escapeHtml(SETUP.personB)} brought him home together this year, even from a distance.</p>
+
+
+async function save(){
+
+  if(!state) return;
+
+  cacheState();
+
+  updateStatus(
+    "saved",
+    "Saving..."
+  );
+
+  try{
+
+    await setDoc(
+      roomRef(),
+      state,
+      {
+        merge:true
+      }
+    );
+
+    firebaseReady = true;
+
+    updateStatus(
+      "saved",
+      "Synced"
+    );
+
+  }catch(error){
+
+    console.error(error);
+
+    updateStatus(
+      "error",
+      "Offline"
+    );
+
+    showToast(
+      "Saved locally. Firebase sync unavailable."
+    );
+  }
+}
+
+
+function listenToRoom(){
+
+  if(!state?.roomCode){
+    return;
+  }
+
+  if(unsubscribeRoom){
+    unsubscribeRoom();
+  }
+
+  unsubscribeRoom =
+    onSnapshot(
+      roomRef(),
+
+      snapshot=>{
+
+        if(!snapshot.exists()){
+          return;
+        }
+
+        const incoming =
+          snapshot.data();
+
+        state = {
+          ...emptyState(),
+          ...incoming,
+
+          checkins:
+            incoming.checkins || {},
+
+          modaks:
+            incoming.modaks || {
+              personA:0,
+              personB:0
+            },
+
+          notes:
+            incoming.notes || [],
+
+          bellCount:
+            incoming.bellCount || 0
+        };
+
+        cacheState();
+
+        updateStatus(
+          "saved",
+          "Synced"
+        );
+
+        render();
+
+      },
+
+      error=>{
+
+        console.error(
+          "Firebase listener:",
+          error
+        );
+
+        updateStatus(
+          "error",
+          "Offline"
+        );
+      }
+    );
+}
+
+
+/* =====================================================
+   ANONYMOUS LOGIN
+===================================================== */
+
+async function connectFirebase(){
+
+  try{
+
+    await signInAnonymously(auth);
+
+    firebaseReady = true;
+
+    updateStatus(
+      "saved",
+      "Connected"
+    );
+
+    if(state?.roomCode){
+
+      await save();
+
+      listenToRoom();
+    }
+
+  }catch(error){
+
+    console.error(
+      "Firebase authentication:",
+      error
+    );
+
+    firebaseReady = false;
+
+    updateStatus(
+      "error",
+      "Local mode"
+    );
+
+    showToast(
+      "Firebase login unavailable — local mode."
+    );
+  }
+}
+
+
+/* =====================================================
+   SHARE
+===================================================== */
+
+async function shareCelebration(){
+
+  if(!state) return;
+
+  const url =
+    new URL(location.href);
+
+  url.search = "";
+
+  url.searchParams.set(
+    "room",
+    state.roomCode
+  );
+
+  const text =
+    `Come celebrate Bappa with me 🪔💛\nRoom: ${state.roomCode}`;
+
+  try{
+
+    if(navigator.share){
+
+      await navigator.share({
+        title:"Bappa, Saath Saath 🪔",
+        text,
+        url:url.toString()
+      });
+
+    }else{
+
+      await navigator.clipboard.writeText(
+        url.toString()
+      );
+
+      showToast(
+        "Celebration link copied 🔗"
+      );
+    }
+
+  }catch(error){
+
+    if(error?.name !== "AbortError"){
+
+      try{
+
+        await navigator.clipboard.writeText(
+          url.toString()
+        );
+
+        showToast(
+          "Celebration link copied 🔗"
+        );
+
+      }catch{
+
+        showToast(
+          "Share this room code: "+
+          state.roomCode
+        );
+      }
+    }
+  }
+}
+
+
+/* =====================================================
+   ROOM FROM URL
+===================================================== */
+
+function getRoomFromURL(){
+
+  return new URLSearchParams(
+    location.search
+  ).get("room");
+}
+
+
+async function loadRoomFromFirebase(code){
+
+  state = {
+    ...emptyState(),
+    roomCode:code
+  };
+
+  await new Promise(resolve=>{
+
+    let done = false;
+
+    const finish = ()=>{
+      if(!done){
+        done=true;
+        resolve();
+      }
+    };
+
+    const unsubscribe =
+      onSnapshot(
+        doc(db,"bappaRooms",code),
+
+        snapshot=>{
+
+          if(snapshot.exists()){
+
+            state = {
+              ...emptyState(),
+              ...snapshot.data(),
+
+              roomCode:code
+            };
+
+            cacheState();
+
+            finish();
+
+          }else{
+
+            state = null;
+
+            finish();
+          }
+
+          unsubscribe();
+        },
+
+        error=>{
+
+          console.error(error);
+
+          finish();
+        }
+      );
+  });
+
+  return !!state;
+}
+
+
+/* =====================================================
+   CREATE CELEBRATION
+===================================================== */
+
+async function createCelebration(){
+
+  const personA =
+    document
+      .getElementById("personA")
+      .value
+      .trim();
+
+  const personB =
+    document
+      .getElementById("personB")
+      .value
+      .trim();
+
+  if(!personA || !personB){
+
+    showToast(
+      "Tell me both names first 🥺"
+    );
+
+    return;
+  }
+
+  state = emptyState();
+
+  state.personA =
+    personA;
+
+  state.personB =
+    personB;
+
+  state.duration =
+    selectedDuration;
+
+  state.startDate =
+    getToday();
+
+  currentRole =
+    "personA";
+
+  localStorage.setItem(
+    ROLE_KEY,
+    currentRole
+  );
+
+  cacheState();
+
+  if(firebaseReady){
+
+    await save();
+
+    listenToRoom();
+  }
+
+  history.replaceState(
+    {},
+    "",
+    location.pathname
+  );
+
+  render();
+
+  confetti();
+
+  showToast(
+    "Our little mandap is ready 🪔"
+  );
+}
+
+
+/* =====================================================
+   SETUP SCREEN
+===================================================== */
+
+function renderSetup(){
+
+  app.innerHTML = `
+
+    <div class="topbar">
+
+      <div class="brand">
+
+        <span class="brand-icon">
+          🪔
+        </span>
+
+        <span>
+          Bappa, Saath Saath
+        </span>
+
+      </div>
+
+      <div class="status">
+
+        <span class="status-dot ready"></span>
+
+        <span class="status-label">
+          Ready
+        </span>
+
+      </div>
+
     </div>
-    <div class="card">
-      <h2>This year, together</h2>
-      <p class="hint" style="margin-bottom:0;">
-        \ud83e\udee1 ${stats.together} of ${TOTAL_DAYS} days, both diyas lit<br>
-        \ud83d\udd25 Best streak: ${stats.streak} day${stats.streak === 1 ? '' : 's'} in a row<br>
-        ${modakSVG()}${modakTotal} modaks offered (${escapeHtml(SETUP.personA)}: ${modakA}, ${escapeHtml(SETUP.personB)}: ${modakB})<br>
-        \ud83d\udc8c ${notesCount} note${notesCount === 1 ? '' : 's'} sent to each other
+
+
+    <section class="hero">
+
+      <!-- BIG GANESH JI -->
+
+      <div class="ganesha">
+
+        <svg
+          viewBox="0 0 300 300"
+          aria-label="Ganesh Ji"
+        >
+
+          <defs>
+
+            <radialGradient
+              id="gGlow"
+            >
+              <stop
+                offset="0%"
+                stop-color="#ffe7a8"
+              />
+
+              <stop
+                offset="55%"
+                stop-color="#f4c76b"
+              />
+
+              <stop
+                offset="100%"
+                stop-color="#b83a3a"
+              />
+
+            </radialGradient>
+
+          </defs>
+
+
+          <circle
+            cx="150"
+            cy="150"
+            r="125"
+            fill="none"
+            stroke="#f4c76b"
+            stroke-width="2"
+            opacity=".35"
+          />
+
+
+          <!-- ears -->
+
+          <path
+            d="
+              M105 120
+              C35 65 20 155 105 170
+              Z
+            "
+            fill="#bd3c3c"
+            stroke="#f4c76b"
+            stroke-width="4"
+          />
+
+          <path
+            d="
+              M195 120
+              C265 65 280 155 195 170
+              Z
+            "
+            fill="#bd3c3c"
+            stroke="#f4c76b"
+            stroke-width="4"
+          />
+
+
+          <!-- head -->
+
+          <circle
+            cx="150"
+            cy="130"
+            r="76"
+            fill="url(#gGlow)"
+          />
+
+
+          <!-- crown -->
+
+          <path
+            d="
+              M100 70
+              L112 35
+              L132 58
+              L150 22
+              L168 58
+              L188 35
+              L200 70
+              Z
+            "
+            fill="#f4c76b"
+            stroke="#ffe7a8"
+            stroke-width="3"
+          />
+
+
+          <!-- eyes -->
+
+          <ellipse
+            cx="125"
+            cy="125"
+            rx="7"
+            ry="10"
+            fill="#541719"
+          />
+
+          <ellipse
+            cx="175"
+            cy="125"
+            rx="7"
+            ry="10"
+            fill="#541719"
+          />
+
+
+          <!-- tilak -->
+
+          <path
+            d="
+              M150 88
+              L142 108
+              L158 108
+              Z
+            "
+            fill="#bd3c3c"
+          />
+
+
+          <!-- trunk -->
+
+          <path
+            d="
+              M150 135
+              C125 160 125 205 150 220
+              C177 235 204 207 184 188
+              C174 179 163 183 158 194
+              C153 201 143 195 146 183
+              C150 166 171 156 150 135
+              Z
+            "
+            fill="#f4c76b"
+          />
+
+
+          <!-- body -->
+
+          <path
+            d="
+              M88 185
+              C80 225 103 265 150 268
+              C197 265 220 225 212 185
+              C190 202 110 202 88 185
+              Z
+            "
+            fill="#bd3c3c"
+            stroke="#f4c76b"
+            stroke-width="4"
+          />
+
+
+          <!-- belly -->
+
+          <ellipse
+            cx="150"
+            cy="225"
+            rx="43"
+            ry="33"
+            fill="#f4c76b"
+          />
+
+
+          <!-- arms -->
+
+          <path
+            d="
+              M100 205
+              C70 198 60 220 83 230
+            "
+            fill="none"
+            stroke="#f4c76b"
+            stroke-width="12"
+            stroke-linecap="round"
+          />
+
+          <path
+            d="
+              M200 205
+              C230 198 240 220 217 230
+            "
+            fill="none"
+            stroke="#f4c76b"
+            stroke-width="12"
+            stroke-linecap="round"
+          />
+
+
+          <!-- modak -->
+
+          <path
+            d="
+              M137 235
+              L150 220
+              L163 235
+              L159 252
+              L141 252
+              Z
+            "
+            fill="#e88936"
+          />
+
+        </svg>
+
+      </div>
+
+
+      <div class="eyebrow">
+        Ganeshotsav • Together
+      </div>
+
+
+      <h1>
+        Bappa,<br>
+        Saath Saath
+      </h1>
+
+
+      <p>
+        A tiny sacred corner for two people,
+        two homes, and one beautiful celebration.
       </p>
-    </div>
-    <div class="card" style="text-align:center;">
-      <p class="hint">Starting over for next year?</p>
-      <button class="btn secondary" type="button" data-action="reset-all">Start fresh for next year</button>
-    </div>
-  </div>`;
+
+
+      <div class="form">
+
+        <div class="field">
+
+          <label>
+            YOUR NAME
+          </label>
+
+          <input
+            id="personA"
+            placeholder="e.g. Ayush"
+            maxlength="30"
+          >
+
+        </div>
+
+
+        <div class="field">
+
+          <label>
+            THEIR NAME
+          </label>
+
+          <input
+            id="personB"
+            placeholder="e.g. Dhari"
+            maxlength="30"
+          >
+
+        </div>
+
+
+        <div class="field">
+
+          <label>
+            CELEBRATION DURATION
+          </label>
+
+          <div class="duration-grid">
+
+            ${
+              DURATIONS.map(
+                d=>`
+
+                  <button
+                    class="duration ${
+                      d===selectedDuration
+                        ?"active":""
+                    }"
+                    data-duration="${d}"
+                  >
+                    ${d}d
+                  </button>
+
+                `
+              ).join("")
+            }
+
+          </div>
+
+        </div>
+
+
+        <button
+          id="createBtn"
+          class="btn"
+          style="margin-top:10px"
+        >
+          Begin Our Ganeshotsav 🪔
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <footer>
+      Made with faith, warmth & a little bit of love.
+    </footer>
+
+  `;
+
+
+  document
+    .querySelectorAll("[data-duration]")
+    .forEach(btn=>{
+
+      btn.onclick = ()=>{
+
+        selectedDuration =
+          Number(btn.dataset.duration);
+
+        document
+          .querySelectorAll("[data-duration]")
+          .forEach(x=>
+            x.classList.remove("active")
+          );
+
+        btn.classList.add("active");
+      };
+
+    });
+
+
+  document
+    .getElementById("createBtn")
+    .onclick =
+      createCelebration;
 }
 
-async function render(){
-  if(!SETUP){ appEl.innerHTML = setupHTML(); return; }
-  if(!WHOAMI){ appEl.innerHTML = whoHTML(); return; }
-  const visarjan = await sGet('ganpati-visarjan', true);
-  const isFarewell = (visarjan && visarjan.done) || TODAY_IDX > TOTAL_DAYS;
-  if(isFarewell){
-    const stats = await getFestivalStats();
-    const modaks = (await sGet('ganpati-modaks', true)) || {personA:0, personB:0};
-    const notes = (await sGet('ganpati-notes', true)) || [];
-    appEl.innerHTML = farewellHTML(stats, modaks, notes.length);
-    return;
-  }
-  if(TODAY_IDX < 1){
-    const notes = (await sGet('ganpati-notes', true)) || [];
-    appEl.innerHTML = countdownHTML(notes);
-    return;
-  }
-  const todayKey = dateKeyFor(new Date());
-  const checkin = (await sGet('ganpati-checkin-' + todayKey, true)) || {personA:false, personB:false};
-  const modaks = (await sGet('ganpati-modaks', true)) || {personA:0, personB:0};
-  const notes = (await sGet('ganpati-notes', true)) || [];
-  const stats = await getFestivalStats();
-  appEl.innerHTML = todayHTML(checkin, modaks, notes, stats);
-}
 
-function updateDurationSelection(t){
-  const grid = t.parentElement;
-  grid.querySelectorAll('.duration-opt').forEach(el => el.classList.remove('selected'));
-  t.classList.add('selected');
-  const form = t.closest('form');
-  form.querySelector('input[name=duration]').value = t.dataset.days;
-}
-async function submitSetup(form){
-  const you = form.you.value.trim();
-  const partner = form.partner.value.trim();
-  const duration = Number(form.duration.value);
-  if(!you || !partner) return;
-  const obj = {personA: you, personB: partner, durationDays: duration, createdAt: Date.now()};
-  await sSet('ganpati-setup', obj, true);
-  await sSet('ganpati-whoami', {name: you}, false);
-  SETUP = obj; WHOAMI = you;
-  TOTAL_DAYS = Math.ceil(currentDuration().days);
-  TODAY_IDX = dayIndexFor(new Date());
+/* =====================================================
+   WHO
+===================================================== */
+
+function chooseRole(role){
+
+  currentRole =
+    role;
+
+  localStorage.setItem(
+    ROLE_KEY,
+    role
+  );
+
   render();
 }
-async function submitNote(form){
-  const text = form.text.value.trim();
+
+
+function renderWho(){
+
+  app.innerHTML = `
+
+    <div class="topbar">
+
+      <div class="brand">
+        🪔
+        <span>
+          Bappa, Saath Saath
+        </span>
+      </div>
+
+      <div class="status">
+
+        <span class="status-dot saved"></span>
+
+        <span class="status-label">
+          <span class="sync-pulse"></span>
+          Synced
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <div class="center-screen">
+
+      <div class="who-card">
+
+        <div class="eyebrow">
+          Your little mandap
+        </div>
+
+        <h1>
+          Who are you?
+        </h1>
+
+        <p>
+          Pick your side so your diyas,
+          modaks and notes belong to you.
+        </p>
+
+
+        <div class="person-grid">
+
+          <button
+            class="person"
+            id="a"
+          >
+
+            <div class="emoji">
+              🪔
+            </div>
+
+            <strong>
+              ${escapeHTML(state.personA)}
+            </strong>
+
+            <span>
+              This is me
+            </span>
+
+          </button>
+
+
+          <button
+            class="person"
+            id="b"
+          >
+
+            <div class="emoji">
+              🌼
+            </div>
+
+            <strong>
+              ${escapeHTML(state.personB)}
+            </strong>
+
+            <span>
+              This is me
+            </span>
+
+          </button>
+
+        </div>
+
+
+        <button
+          id="shareBtn"
+          class="btn secondary"
+          style="margin-top:20px"
+        >
+          🔗 Share celebration
+        </button>
+
+      </div>
+
+    </div>
+
+  `;
+
+
+  document
+    .getElementById("a")
+    .onclick =
+      ()=>chooseRole("personA");
+
+
+  document
+    .getElementById("b")
+    .onclick =
+      ()=>chooseRole("personB");
+
+
+  document
+    .getElementById("shareBtn")
+    .onclick =
+      shareCelebration;
+}
+
+
+/* =====================================================
+   TODAY CHECKIN
+===================================================== */
+
+function todayCheckin(){
+
+  const today =
+    getToday();
+
+  if(!state.checkins[today]){
+
+    state.checkins[today] = {
+
+      personA:false,
+
+      personB:false
+    };
+  }
+
+  return state.checkins[today];
+}
+
+
+/* =====================================================
+   DIYA
+===================================================== */
+
+async function toggleDiya(){
+
+  const checkin =
+    todayCheckin();
+
+  const key =
+    currentRole === "personA"
+      ? "personA"
+      : "personB";
+
+  checkin[key] =
+    !checkin[key];
+
+  render();
+
+  await save();
+
+  if(checkin[key]){
+
+    showToast(
+      `${myName()} lit their diya 🪔`
+    );
+
+    confetti();
+
+  }else{
+
+    showToast(
+      "Diya turned off."
+    );
+  }
+}
+
+
+/* =====================================================
+   MODAK
+===================================================== */
+
+async function addModak(){
+
+  const key =
+    currentRole === "personA"
+      ? "personA"
+      : "personB";
+
+  state.modaks[key]++;
+
+  render();
+
+  await save();
+
+  showToast(
+    `${myName()} offered a modak 🍥`
+  );
+}
+
+
+/* =====================================================
+   NOTES
+===================================================== */
+
+async function addNote(event){
+
+  event.preventDefault();
+
+  const input =
+    document.getElementById("noteInput");
+
+  const text =
+    input.value.trim();
+
   if(!text) return;
-  const notes = (await sGet('ganpati-notes', true)) || [];
-  notes.push({role: getMyRole(), text, ts: Date.now()});
-  if(notes.length > 300) notes.splice(0, notes.length - 300);
-  await sSet('ganpati-notes', notes, true);
-  form.reset();
-  render();
-}
-async function chooseWho(name){
-  await sSet('ganpati-whoami', {name}, false);
-  WHOAMI = name;
-  render();
-}
-function celebrate(){
-  const row = document.querySelector('.diya-row');
-  if(!row) return;
-  for(let i = 0; i < 18; i++){
-    const s = document.createElement('span');
-    s.className = 'confetti-piece';
-    const angle = Math.random() * Math.PI * 2;
-    const dist = 40 + Math.random() * 80;
-    s.style.setProperty('--tx', Math.cos(angle) * dist + 'px');
-    s.style.setProperty('--ty', Math.sin(angle) * dist + 'px');
-    s.style.setProperty('--rot', (Math.random() * 360) + 'deg');
-    s.style.background = Math.random() > 0.5 ? 'var(--gold)' : 'var(--vermillion)';
-    row.appendChild(s);
-    setTimeout(() => s.remove(), 1000);
+
+  if(text.length>500){
+
+    showToast(
+      "Keep your note under 500 characters."
+    );
+
+    return;
   }
+
+  state.notes.unshift({
+
+    id:Date.now(),
+
+    role:currentRole,
+
+    text:text,
+
+    time:new Date().toISOString()
+  });
+
+  render();
+
+  await save();
+
+  showToast(
+    "Your little note is waiting here 💌"
+  );
 }
-async function lightDiya(role){
-  if(role !== getMyRole()) return;
-  const key = 'ganpati-checkin-' + dateKeyFor(new Date());
-  const cur = (await sGet(key, true)) || {personA:false, personB:false};
-  const wasBoth = !!(cur.personA && cur.personB);
-  cur[role] = !cur[role];
-  cur[role + '_ts'] = Date.now();
-  await sSet(key, cur, true);
-  const nowBoth = !!(cur.personA && cur.personB);
-  await render();
-  if(!wasBoth && nowBoth) celebrate();
-}
-function ringBell(){
+
+
+/* =====================================================
+   AARTI
+===================================================== */
+
+async function ringBell(){
+
+  state.bellCount++;
+
+  await save();
+
+  const bell =
+    document.querySelector(".bell");
+
+  if(bell){
+
+    bell.classList.remove(
+      "ringing"
+    );
+
+    void bell.offsetWidth;
+
+    bell.classList.add(
+      "ringing"
+    );
+  }
+
+  showToast(
+    "🔔 Aarti bell rang."
+  );
+
+
   try{
-    const ctx = new (window.AudioContext || window.webkitAudioContext)();
-    const o = ctx.createOscillator();
-    const g = ctx.createGain();
-    o.type = 'sine';
-    o.frequency.setValueAtTime(880, ctx.currentTime);
-    o.frequency.exponentialRampToValueAtTime(660, ctx.currentTime + 0.8);
-    g.gain.setValueAtTime(0.2, ctx.currentTime);
-    g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 1.2);
-    o.connect(g); g.connect(ctx.destination);
-    o.start(); o.stop(ctx.currentTime + 1.2);
-  }catch(e){ /* audio not available */ }
-}
-async function offerModak(){
-  const key = 'ganpati-modaks';
-  const cur = (await sGet(key, true)) || {personA:0, personB:0};
-  const role = getMyRole();
-  cur[role] = (cur[role] || 0) + 1;
-  await sSet(key, cur, true);
-  render();
-}
-async function beginVisarjan(){
-  await sSet('ganpati-visarjan', {done:true, ts:Date.now()}, true);
-  render();
-}
-async function resetAll(){
-  if(!confirm("This clears this year's Bappa corner for both of you, so you can start fresh next year. Continue?")) return;
-  await safeDelete('ganpati-setup', true);
-  await safeDelete('ganpati-modaks', true);
-  await safeDelete('ganpati-notes', true);
-  await safeDelete('ganpati-visarjan', true);
-  for(let i = 0; i < TOTAL_DAYS; i++){
-    const d = new Date(START_DATE); d.setDate(d.getDate() + i);
-    await safeDelete('ganpati-checkin-' + dateKeyFor(d), true);
-  }
-  await safeDelete('ganpati-whoami', false);
-  SETUP = null; WHOAMI = null; TOTAL_DAYS = 0; TODAY_IDX = 0;
-  render();
+
+    const AudioContext =
+      window.AudioContext ||
+      window.webkitAudioContext;
+
+    const ctx =
+      new AudioContext();
+
+    const oscillator =
+      ctx.createOscillator();
+
+    const gain =
+      ctx.createGain();
+
+    oscillator.type =
+      "sine";
+
+    oscillator.frequency.setValueAtTime(
+      620,
+      ctx.currentTime
+    );
+
+    oscillator.frequency.exponentialRampToValueAtTime(
+      350,
+      ctx.currentTime+.8
+    );
+
+    gain.gain.setValueAtTime(
+      .0001,
+      ctx.currentTime
+    );
+
+    gain.gain.exponentialRampToValueAtTime(
+      .15,
+      ctx.currentTime+.02
+    );
+
+    gain.gain.exponentialRampToValueAtTime(
+      .0001,
+      ctx.currentTime+.9
+    );
+
+    oscillator.connect(gain);
+
+    gain.connect(
+      ctx.destination
+    );
+
+    oscillator.start();
+
+    oscillator.stop(
+      ctx.currentTime+.9
+    );
+
+  }catch{}
+
 }
 
-appEl.addEventListener('click', async (e) => {
-  const t = e.target.closest('[data-action]');
-  if(!t) return;
-  const action = t.dataset.action;
-  if(action === 'select-duration'){ updateDurationSelection(t); return; }
-  if(action === 'choose-who'){ await chooseWho(t.dataset.name); return; }
-  if(action === 'light-diya'){ await lightDiya(t.dataset.role); return; }
-  if(action === 'ring-bell'){ ringBell(); return; }
-  if(action === 'offer-modak'){ await offerModak(); return; }
-  if(action === 'begin-visarjan'){ await beginVisarjan(); return; }
-  if(action === 'reset-all'){ await resetAll(); return; }
-});
-appEl.addEventListener('submit', async (e) => {
-  const form = e.target;
-  if(form.dataset && form.dataset.form === 'setup'){ e.preventDefault(); await submitSetup(form); }
-  else if(form.dataset && form.dataset.form === 'note'){ e.preventDefault(); await submitNote(form); }
-});
 
-async function init(){
-  const setupRes = await sGet('ganpati-setup', true);
-  SETUP = setupRes;
-  if(SETUP){
-    const whoRes = await sGet('ganpati-whoami', false);
-    WHOAMI = whoRes ? whoRes.name : null;
-    TOTAL_DAYS = Math.ceil(currentDuration().days);
-    TODAY_IDX = dayIndexFor(new Date());
-  }
-  render();
+/* =====================================================
+   STATS
+===================================================== */
+
+function getStats(){
+
+  let a=0;
+  let b=0;
+  let both=0;
+
+  Object.values(
+    state.checkins
+  ).forEach(day=>{
+
+    if(day.personA) a++;
+
+    if(day.personB) b++;
+
+    if(
+      day.personA &&
+      day.personB
+    ){
+      both++;
+    }
+
+  });
+
+  return {
+    a,
+    b,
+    both
+  };
 }
-init();
+
+
+/* =====================================================
+   NAME
+===================================================== */
+
+function myName(){
+
+  return currentRole === "personA"
+    ? state.personA
+    : state.personB;
+}
+
+
+function theirName(){
+
+  return currentRole === "personA"
+    ? state.personB
+    : state.personA;
+}
+
+
+/* =====================================================
+   DASHBOARD
+===================================================== */
+
+function renderDashboard(){
+
+  const today =
+    getToday();
+
+  const dayIndex =
+    dateDiff(
+      state.startDate,
+      today
+    );
+
+  const activeDay =
+    Math.min(
+      Math.max(dayIndex+1,1),
+      state.duration
+    );
+
+  const checkin =
+    todayCheckin();
+
+  const myKey =
+    currentRole === "personA"
+      ? "personA"
+      : "personB";
+
+  const theirKey =
+    currentRole === "personA"
+      ? "personB"
+      : "personA";
+
+  const myLit =
+    checkin[myKey];
+
+  const theirLit =
+    checkin[theirKey];
+
+  const stats =
+    getStats();
+
+
+  app.innerHTML = `
+
+    <div class="topbar">
+
+      <div class="brand">
+
+        🪔
+
+        <span>
+          Bappa, Saath Saath
+        </span>
+
+      </div>
+
+      <div class="status">
+
+        <span class="status-dot saved"></span>
+
+        <span class="status-label">
+          <span class="sync-pulse"></span>
+          Firebase Synced
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <section class="dashboard-header">
+
+      <div class="eyebrow">
+        Ganeshotsav • Day ${activeDay}
+      </div>
+
+      <h1>
+        Ganpati Bappa Morya 🐘
+      </h1>
+
+      <p>
+        ${escapeHTML(myName())}
+        &nbsp;×&nbsp;
+        ${escapeHTML(theirName())}
+      </p>
+
+
+      <div class="room-row">
+
+        <span class="room-code">
+          🏠 ${escapeHTML(state.roomCode)}
+        </span>
+
+        <button
+          class="btn small secondary"
+          id="shareBtn"
+        >
+          🔗 Share
+        </button>
+
+        <button
+          class="btn small secondary"
+          id="switchBtn"
+        >
+          Switch
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- =============================================
+         GANESH JI CENTRAL MANDAP
+    ============================================== -->
+
+    <section class="mandap">
+
+      <div class="mandap-title">
+        🪔 Our Little Mandap 🪔
+      </div>
+
+
+      <div class="flower one">
+        🌼
+      </div>
+
+      <div class="flower two">
+        🌺
+      </div>
+
+      <div class="flower three">
+        🌸
+      </div>
+
+      <div class="flower four">
+        🌼
+      </div>
+
+
+      <!-- AARTI -->
+
+      <div class="mandap-aarti">
+
+        <div class="icon">
+          🪔
+        </div>
+
+        <span>
+          Aarti
+        </span>
+
+      </div>
+
+
+      <!-- GANESH JI -->
+
+      <div class="ganesh-center">
+
+        <svg
+          viewBox="0 0 300 300"
+          aria-label="Animated Ganesh Ji"
+        >
+
+          <defs>
+
+            <radialGradient
+              id="centerGlow"
+            >
+
+              <stop
+                offset="0%"
+                stop-color="#ffe7a8"
+              />
+
+              <stop
+                offset="55%"
+                stop-color="#f4c76b"
+              />
+
+              <stop
+                offset="100%"
+                stop-color="#bd3c3c"
+              />
+
+            </radialGradient>
+
+          </defs>
+
+
+          <circle
+            cx="150"
+            cy="150"
+            r="125"
+            fill="none"
+            stroke="#f4c76b"
+            stroke-width="2"
+            opacity=".35"
+          />
+
+
+          <path
+            d="
+              M105 120
+              C35 65 20 155 105 170
+              Z
+            "
+            fill="#bd3c3c"
+            stroke="#f4c76b"
+            stroke-width="4"
+          />
+
+
+          <path
+            d="
+              M195 120
+              C265 65 280 155 195 170
+              Z
+            "
+            fill="#bd3c3c"
+            stroke="#f4c76b"
+            stroke-width="4"
+          />
+
+
+          <circle
+            cx="150"
+            cy="130"
+            r="76"
+            fill="url(#centerGlow)"
+          />
+
+
+          <path
+            d="
+              M100 70
+              L112 35
+              L132 58
+              L150 22
+              L168 58
+              L188 35
+              L200 70
+              Z
+            "
+            fill="#f4c76b"
+          />
+
+
+          <ellipse
+            cx="125"
+            cy="125"
+            rx="7"
+            ry="10"
+            fill="#541719"
+          />
+
+
+          <ellipse
+            cx="175"
+            cy="125"
+            rx="7"
+            ry="10"
+            fill="#541719"
+          />
+
+
+          <path
+            d="
+              M150 88
+              L142 108
+              L158 108
+              Z
+            "
+            fill="#bd3c3c"
+          />
+
+
+          <path
+            d="
+              M150 135
+              C125 160 125 205 150 220
+              C177 235 204 207 184 188
+              C174 179 163 183 158 194
+              C153 201 143 195 146 183
+              C150 166 171 156 150 135
+              Z
+            "
+            fill="#f4c76b"
+          />
+
+
+          <path
+            d="
+              M88 185
+              C80 225 103 265 150 268
+              C197 265 220 225 212 185
+              C190 202 110 202 88 185
+              Z
+            "
+            fill="#bd3c3c"
+            stroke="#f4c76b"
+            stroke-width="4"
+          />
+
+
+          <ellipse
+            cx="150"
+            cy="225"
+            rx="43"
+            ry="33"
+            fill="#f4c76b"
+          />
+
+
+          <path
+            d="
+              M100 205
+              C70 198 60 220 83 230
+            "
+            fill="none"
+            stroke="#f4c76b"
+            stroke-width="12"
+            stroke-linecap="round"
+          />
+
+
+          <path
+            d="
+              M200 205
+              C230 198 240 220 217 230
+            "
+            fill="none"
+            stroke="#f4c76b"
+            stroke-width="12"
+            stroke-linecap="round"
+          />
+
+
+          <path
+            d="
+              M137 235
+              L150 220
+              L163 235
+              L159 252
+              L141 252
+              Z
+            "
+            fill="#e88936"
+          />
+
+        </svg>
+
+      </div>
+
+
+      <!-- MODAK -->
+
+      <div class="mandap-modak">
+
+        <div class="icon">
+          🍥
+        </div>
+
+        <span>
+          Modak
+        </span>
+
+      </div>
+
+    </section>
+
+
+    <div class="grid">
+
+
+      <!-- DIYA -->
+
+      <section class="card full">
+
+        <h2>
+          Today's Diya 🪔
+        </h2>
+
+        <p>
+          Light yours.
+          Maybe the other diya is glowing
+          somewhere too.
+        </p>
+
+
+        <div class="diya-area">
+
+          <div
+            id="myDiya"
+            class="diya clickable ${
+              myLit ? "lit" : ""
+            }"
+          >
+
+            <div class="diya-icon">
+              🪔
+            </div>
+
+            <strong>
+              ${escapeHTML(myName())}
+            </strong>
+
+            <small>
+              ${
+                myLit
+                  ? "Your diya is glowing ✨"
+                  : "Tap to light"
+              }
+            </small>
+
+          </div>
+
+
+          <div
+            class="diya ${
+              theirLit ? "lit" : ""
+            }"
+          >
+
+            <div class="diya-icon">
+              🪔
+            </div>
+
+            <strong>
+              ${escapeHTML(theirName())}
+            </strong>
+
+            <small>
+              ${
+                theirLit
+                  ? "Their diya is glowing ✨"
+                  : "Waiting for them..."
+              }
+            </small>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- MODAK -->
+
+      <section class="card">
+
+        <h2>
+          Modak Counter 🍥
+        </h2>
+
+        <p>
+          One more for Bappa.
+        </p>
+
+
+        <div class="modak-row">
+
+          <div class="modak-name">
+            ${escapeHTML(myName())}
+          </div>
+
+          <div class="modak-right">
+
+            <span class="modak-count">
+              ${state.modaks[myKey]}
+            </span>
+
+            <button
+              class="modak-btn"
+              id="modakBtn"
+            >
+              +
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <div class="modak-row">
+
+          <div class="modak-name">
+            ${escapeHTML(theirName())}
+          </div>
+
+          <div class="modak-right">
+
+            <span class="modak-count">
+              ${state.modaks[theirKey]}
+            </span>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- AARTI -->
+
+      <section class="card">
+
+        <h2>
+          Aarti 🔔
+        </h2>
+
+
+        <div class="aarti">
+
+          <button
+            class="bell"
+            id="bell"
+          >
+            🔔
+          </button>
+
+
+          <div class="aarti-text">
+
+            Jai Ganesh Deva<br>
+            Mata Jaki Parvati<br>
+            Pita Mahadeva
+
+          </div>
+
+
+          <small>
+
+            ${state.bellCount}
+
+            bells have been rung here.
+
+          </small>
+
+        </div>
+
+      </section>
+
+
+      <!-- NOTES -->
+
+      <section class="card full">
+
+        <h2>
+          Little Notes 💌
+        </h2>
+
+        <p>
+          Leave something for the other person
+          to discover.
+        </p>
+
+
+        <form id="noteForm">
+
+          <textarea
+            id="noteInput"
+            rows="3"
+            maxlength="500"
+            placeholder="Something you want them to find here..."
+          ></textarea>
+
+
+          <button
+            class="btn"
+            style="margin-top:10px"
+          >
+            Leave a note 💌
+          </button>
+
+        </form>
+
+
+        <div class="notes-list">
+
+          ${
+            state.notes.length
+
+            ?
+
+            state.notes.map(note=>{
+
+              const name =
+                note.role==="personA"
+                  ? state.personA
+                  : state.personB;
+
+              const date =
+                new Date(
+                  note.time
+                ).toLocaleString(
+                  "en-IN",
+                  {
+                    day:"numeric",
+                    month:"short",
+                    hour:"numeric",
+                    minute:"2-digit"
+                  }
+                );
+
+              return `
+
+                <div class="note">
+
+                  <div class="note-top">
+
+                    <span class="note-name">
+                      ${escapeHTML(name)}
+                    </span>
+
+                    <span class="note-time">
+                      ${escapeHTML(date)}
+                    </span>
+
+                  </div>
+
+                  <div class="note-body">
+                    ${escapeHTML(note.text)}
+                  </div>
+
+                </div>
+
+              `;
+
+            }).join("")
+
+            :
+
+            `
+
+              <div
+                class="note"
+                style="text-align:center"
+              >
+                No little notes yet.
+                Maybe you could leave the first one? 💛
+              </div>
+
+            `
+          }
+
+        </div>
+
+      </section>
+
+
+      <!-- STATS -->
+
+      <section class="card full">
+
+        <h2>
+          Our Little Journey 🌼
+        </h2>
+
+
+        <div class="stats">
+
+          <div class="stat">
+
+            <span class="stat-number">
+
+              ${
+                currentRole==="personA"
+                  ? stats.a
+                  : stats.b
+              }
+
+            </span>
+
+            <span class="stat-label">
+              My diyas
+            </span>
+
+          </div>
+
+
+          <div class="stat">
+
+            <span class="stat-number">
+
+              ${
+                currentRole==="personA"
+                  ? stats.b
+                  : stats.a
+              }
+
+            </span>
+
+            <span class="stat-label">
+              Their diyas
+            </span>
+
+          </div>
+
+
+          <div class="stat">
+
+            <span class="stat-number">
+              ${stats.both}
+            </span>
+
+            <span class="stat-label">
+              Together
+            </span>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- RESET -->
+
+      <section class="card full">
+
+        <button
+          class="btn danger"
+          id="resetBtn"
+        >
+          Reset this celebration
+        </button>
+
+      </section>
+
+    </div>
+
+
+    <footer>
+
+      ${escapeHTML(myName())}
+      &nbsp;×&nbsp;
+      ${escapeHTML(theirName())}
+
+      <br><br>
+
+      Bappa is with you,
+      wherever you are. 🪔
+
+    </footer>
+
+  `;
+
+
+  document
+    .getElementById("myDiya")
+    .onclick =
+      toggleDiya;
+
+
+  document
+    .getElementById("modakBtn")
+    .onclick =
+      addModak;
+
+
+  document
+    .getElementById("bell")
+    .onclick =
+      ringBell;
+
+
+  document
+    .getElementById("noteForm")
+    .onsubmit =
+      addNote;
+
+
+  document
+    .getElementById("shareBtn")
+    .onclick =
+      shareCelebration;
+
+
+  document
+    .getElementById("switchBtn")
+    .onclick = ()=>{
+
+      currentRole =
+        null;
+
+      localStorage.removeItem(
+        ROLE_KEY
+      );
+
+      render();
+    };
+
+
+  document
+    .getElementById("resetBtn")
+    .onclick = async ()=>{
+
+      if(
+        !confirm(
+          "Reset this celebration from this browser?"
+        )
+      ){
+        return;
+      }
+
+      localStorage.removeItem(
+        STORAGE_KEY
+      );
+
+      localStorage.removeItem(
+        ROLE_KEY
+      );
+
+      if(unsubscribeRoom){
+
+        unsubscribeRoom();
+
+        unsubscribeRoom =
+          null;
+      }
+
+      state = null;
+
+      currentRole = null;
+
+      history.replaceState(
+        {},
+        "",
+        location.pathname
+      );
+
+      render();
+
+      showToast(
+        "Celebration reset."
+      );
+    };
+
+}
+
+
+/* =====================================================
+   PARTICLES
+===================================================== */
+
+function createParticle(){
+
+  const el =
+    document.createElement("div");
+
+  el.className =
+    "particle";
+
+  el.textContent =
+    Math.random()>.5
+      ? "✦"
+      : "•";
+
+  el.style.left =
+    Math.random()*100+"vw";
+
+  el.style.fontSize =
+    8+Math.random()*12+"px";
+
+  const duration =
+    8+Math.random()*10;
+
+  el.style.animationDuration =
+    duration+"s";
+
+  document.body.appendChild(el);
+
+  setTimeout(
+    ()=>el.remove(),
+    duration*1000
+  );
+}
+
+
+setInterval(
+  createParticle,
+  1000
+);
+
+
+/* =====================================================
+   CONFETTI
+===================================================== */
+
+function confetti(){
+
+  for(let i=0;i<70;i++){
+
+    const el =
+      document.createElement("div");
+
+    el.textContent =
+      Math.random()>.5
+        ? "✦"
+        : "•";
+
+    el.style.position =
+      "fixed";
+
+    el.style.left =
+      Math.random()*100+"vw";
+
+    el.style.top =
+      "-20px";
+
+    el.style.zIndex =
+      "9999";
+
+    el.style.pointerEvents =
+      "none";
+
+    el.style.color =
+      Math.random()>.5
+        ? "#f4c76b"
+        : "#e88936";
+
+    el.style.fontSize =
+      10+Math.random()*18+"px";
+
+    document.body.appendChild(el);
+
+    const duration =
+      1200+Math.random()*1600;
+
+    el.animate(
+      [
+        {
+          transform:
+            "translateY(0) rotate(0deg)",
+          opacity:1
+        },
+        {
+          transform:
+            `translateY(110vh) rotate(${
+              Math.random()*720-360
+            }deg)`,
+          opacity:0
+        }
+      ],
+      {
+        duration,
+        easing:
+          "cubic-bezier(.2,.8,.3,1)"
+      }
+    ).finished.then(
+      ()=>el.remove()
+    );
+  }
+}
+
+
+/* =====================================================
+   TOAST
+===================================================== */
+
+function showToast(message){
+
+  const toast =
+    document.getElementById(
+      "toast"
+    );
+
+  toast.textContent =
+    message;
+
+  toast.classList.add(
+    "show"
+  );
+
+  clearTimeout(
+    showToast.timer
+  );
+
+  showToast.timer =
+    setTimeout(
+      ()=>{
+        toast.classList.remove(
+          "show"
+        );
+      },
+      2500
+    );
+}
+
+
+/* =====================================================
+   STATUS
+===================================================== */
+
+function updateStatus(
+  type,
+  text
+){
+
+  const dot =
+    document.querySelector(
+      ".status-dot"
+    );
+
+  const label =
+    document.querySelector(
+      ".status-label"
+    );
+
+  if(!dot || !label)
+    return;
+
+  dot.className =
+    "status-dot "+type;
+
+  label.textContent =
+    text;
+}
+
+
+/* =====================================================
+   RENDER
+===================================================== */
+
+function render(){
+
+  if(!state){
+
+    renderSetup();
+
+    return;
+  }
+
+  if(!currentRole){
+
+    renderWho();
+
+    return;
+  }
+
+  renderDashboard();
+}
+
+
+/* =====================================================
+   INITIALIZE
+===================================================== */
+
+async function initialize(){
+
+  state =
+    getCachedState();
+
+  currentRole =
+    localStorage.getItem(
+      ROLE_KEY
+    );
+
+
+  /* Firebase first */
+
+  try{
+
+    await signInAnonymously(
+      auth
+    );
+
+    firebaseReady = true;
+
+  }catch(error){
+
+    console.error(error);
+
+    firebaseReady = false;
+  }
+
+
+  /* Check room URL */
+
+  const room =
+    getRoomFromURL();
+
+
+  if(room){
+
+    if(firebaseReady){
+
+      const found =
+        await loadRoomFromFirebase(
+          room
+        );
+
+      if(found){
+
+        listenToRoom();
+
+        currentRole =
+          localStorage.getItem(
+            ROLE_KEY
+          );
+
+        if(
+          currentRole!=="personA" &&
+          currentRole!=="personB"
+        ){
+
+          currentRole = null;
+        }
+
+        render();
+
+        showToast(
+          "Celebration received 🪔"
+        );
+
+        return;
+      }
+    }
+
+    showToast(
+      "Couldn't find this celebration."
+    );
+  }
+
+
+  if(
+    state &&
+    currentRole &&
+    (
+      currentRole==="personA" ||
+      currentRole==="personB"
+    )
+  ){
+
+    if(firebaseReady){
+
+      listenToRoom();
+    }
+
+    render();
+
+    return;
+  }
+
+
+  if(state){
+
+    if(firebaseReady){
+
+      listenToRoom();
+    }
+
+    renderWho();
+
+    return;
+  }
+
+
+  renderSetup();
+
+}
+
+
+/* =====================================================
+   START
+===================================================== */
+
+initialize();
+
 </script>
+
 </body>
 </html>

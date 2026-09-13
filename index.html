@@ -3,3605 +3,533 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>For You, Dhari ♡</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
-
+<title>Bappa, Saath Saath</title>
 <style>
-
-/* =========================================================
-   COLORS
-========================================================= */
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&display=swap');
 
 :root{
-
-  --sky-top:#0d061d;
-  --sky-mid:#29123f;
-  --sky-low:#a84f78;
-  --sky-floor:#f5b18d;
-
-  --moon:#fff5df;
-  --moon-glow:#ffdca0;
-
-  --star:#fff9ef;
-  --firefly:#ffd477;
-
-  --hill-back:#32183f;
-  --hill-front:#160a26;
-
-  --cream:#fff3e8;
-  --blush:#ffc6d9;
-
-  --leaf:#527c69;
-
-  --rose:#e95f82;
-  --rose-light:#ff9fba;
-
-  --tulip:#ff8fa8;
-  --tulip-light:#ffc0d0;
-
-  --cherry:#ffb6ce;
-  --cherry-light:#ffe0eb;
-
-  --hibiscus:#ed668d;
-  --hibiscus-light:#ff9db9;
-
-  --daisy:#fff4d0;
-  --daisy-center:#f4b94f;
-
-  --peony:#f48aaa;
-  --peony-light:#ffc2d6;
+  --bg-deep:#230F16;
+  --bg-panel:#341B26;
+  --bg-panel-2:#3E2230;
+  --gold:#E3A857;
+  --gold-bright:#F4C978;
+  --vermillion:#C1443C;
+  --ivory:#F5EAD9;
+  --ivory-dim:#D8C4AE;
+  --flame:#FFB74D;
+  --flame-core:#FFE9B0;
+  --shadow:rgba(0,0,0,.35);
+  --radius-arch:28px 28px 14px 14px;
+  --font-display:'Fraunces',serif;
+  --font-body:'Work Sans',sans-serif;
 }
-
-
-/* =========================================================
-   GLOBAL
-========================================================= */
-
-*{
-  box-sizing:border-box;
-}
-
-html{
-  scroll-behavior:smooth;
-}
-
+*{box-sizing:border-box;}
 body{
-
   margin:0;
-
-  width:100%;
-  height:100%;
-
-  overflow:hidden;
-
-  font-family:
-    'Cormorant Garamond',
-    serif;
-
-  color:var(--cream);
-
-  background:
-    var(--sky-top);
-}
-
-
-/* =========================================================
-   MAIN SCENE
-========================================================= */
-
-.scene{
-
-  position:relative;
-
-  width:100vw;
-  height:100vh;
-
-  overflow:hidden;
-
-  background:
-
-    radial-gradient(
-      circle at 70% 20%,
-      rgba(255,220,180,.10),
-      transparent 20%
-    ),
-
-    linear-gradient(
-      180deg,
-      var(--sky-top) 0%,
-      var(--sky-mid) 46%,
-      var(--sky-low) 81%,
-      var(--sky-floor) 100%
-    );
-}
-
-
-.scene::after{
-
-  content:"";
-
-  position:absolute;
-
-  inset:0;
-
-  pointer-events:none;
-
-  z-index:8;
-
-  background:
-
-    radial-gradient(
-      circle at 50% 70%,
-      rgba(255,174,190,.10),
-      transparent 35%
-    );
-
-  mix-blend-mode:screen;
-}
-
-
-/* =========================================================
-   STARS
-========================================================= */
-
-.stars{
-
-  position:absolute;
-
-  inset:0;
-
-  z-index:1;
-}
-
-
-.star{
-
-  position:absolute;
-
-  width:var(--s,2px);
-  height:var(--s,2px);
-
-  border-radius:50%;
-
-  background:var(--star);
-
-  opacity:.45;
-
-  animation:
-
-    twinkle
-    var(--dur,3s)
-    ease-in-out
-    var(--del,0s)
-    infinite alternate;
-}
-
-
-.star.special{
-
-  box-shadow:
-    0 0 6px 2px
-    rgba(255,245,220,.55);
-}
-
-
-@keyframes twinkle{
-
-  0%{
-    opacity:.12;
-    transform:scale(.7);
-  }
-
-  100%{
-    opacity:.95;
-    transform:scale(1.3);
-  }
-
-}
-
-
-/* =========================================================
-   MOON
-========================================================= */
-
-.moon{
-
-  position:absolute;
-
-  top:8%;
-  right:12%;
-
-  width:clamp(70px,9vw,105px);
-  height:clamp(70px,9vw,105px);
-
-  border-radius:50%;
-
-  border:none;
-
-  background:
-
-    radial-gradient(
-      circle at 32% 28%,
-      #fffdf5,
-      var(--moon) 55%,
-      var(--moon-glow) 100%
-    );
-
-  box-shadow:
-
-    0 0 35px 8px
-    rgba(255,220,160,.28),
-
-    0 0 85px 25px
-    rgba(255,220,160,.12);
-
-  cursor:pointer;
-
-  z-index:5;
-
-  transition:
-    transform .4s ease,
-    box-shadow .7s ease;
-}
-
-
-.moon:hover{
-
-  transform:scale(1.07);
-}
-
-
-.moon:focus-visible{
-
-  outline:
-    2px solid
-    var(--moon-glow);
-
-  outline-offset:5px;
-}
-
-
-.moon::after{
-
-  content:"";
-
-  position:absolute;
-
-  inset:-18px;
-
-  border-radius:50%;
-
-  border:
-    1px solid
-    rgba(255,230,180,.08);
-}
-
-
-.moon.is-ready{
-
-  animation:
-    moon-pulse
-    2.5s
-    ease-in-out
-    infinite;
-}
-
-
-.moon.is-shake{
-
-  animation:
-    moon-shake
-    .5s
-    ease;
-}
-
-
-@keyframes moon-pulse{
-
-  0%,100%{
-
-    box-shadow:
-
-      0 0 35px 8px
-      rgba(255,220,160,.28),
-
-      0 0 85px 25px
-      rgba(255,220,160,.12);
-  }
-
-  50%{
-
-    box-shadow:
-
-      0 0 55px 18px
-      rgba(255,220,160,.48),
-
-      0 0 115px 42px
-      rgba(255,220,160,.20);
-  }
-
-}
-
-
-@keyframes moon-shake{
-
-  0%,100%{
-    transform:translateX(0);
-  }
-
-  25%{
-    transform:translateX(-6px);
-  }
-
-  75%{
-    transform:translateX(6px);
-  }
-
-}
-
-
-/* =========================================================
-   MOON LABEL
-========================================================= */
-
-.moon-label{
-
-  position:absolute;
-
-  top:calc(8% + 115px);
-
-  right:calc(12% - 15px);
-
-  font-family:'Caveat',cursive;
-
-  font-size:1rem;
-
-  color:
-    rgba(255,230,205,.65);
-
-  opacity:0;
-
-  transition:
-    opacity .5s ease;
-
-  z-index:5;
-
-  pointer-events:none;
-}
-
-
-.moon.is-ready + .moon-label{
-
-  opacity:1;
-}
-
-
-/* =========================================================
-   FIREFLIES
-========================================================= */
-
-.fireflies{
-
-  position:absolute;
-
-  inset:0;
-
-  z-index:3;
-
-  pointer-events:none;
-}
-
-
-.firefly{
-
-  position:absolute;
-
-  left:50%;
-  top:42%;
-
-  width:5px;
-  height:5px;
-
-  margin:-2.5px;
-
-  border-radius:50%;
-
-  background:
-    var(--firefly);
-
-  box-shadow:
-    0 0 9px 3px
-    rgba(255,212,119,.5);
-
-  opacity:.8;
-
-  animation:
-
-    wander
-    var(--dur,7s)
-    ease-in-out
-    var(--del,0s)
-    infinite;
-}
-
-
-.firefly.is-heart{
-
-  width:6px;
-  height:6px;
-
-  box-shadow:
-
-    0 0 14px 5px
-    rgba(255,212,119,.8);
-
-  opacity:1;
-}
-
-
-@keyframes wander{
-
-  0%{
-    transform:translate(0,0);
-  }
-
-  50%{
-
-    transform:
-      translate(
-        var(--ax,60px),
-        var(--ay,-40px)
-      );
-  }
-
-  100%{
-
-    transform:
-      translate(
-        calc(var(--ax,60px) * -.6),
-        calc(var(--ay,-40px) * -.5)
-      );
-  }
-
-}
-
-
-/* =========================================================
-   HILLS
-========================================================= */
-
-.hills{
-
-  position:absolute;
-
-  left:0;
-  right:0;
-  bottom:0;
-
-  width:100%;
-
-  height:
-    clamp(
-      200px,
-      30vh,
-      320px
-    );
-
-  z-index:4;
-}
-
-
-/* =========================================================
-   INTRO
-========================================================= */
-
-.intro{
-
-  position:absolute;
-
-  top:10%;
-  left:7%;
-
-  z-index:6;
-
-  max-width:440px;
-
-  animation:
-
-    introAppear
-    1.8s
-    cubic-bezier(.2,.8,.2,1)
-    both;
-}
-
-
-@keyframes introAppear{
-
-  from{
-
-    opacity:0;
-
-    transform:
-      translateY(20px);
-  }
-
-  to{
-
-    opacity:1;
-
-    transform:
-      translateY(0);
-  }
-
-}
-
-
-.intro .eyebrow{
-
-  font-family:'Caveat',cursive;
-
-  color:
-    var(--blush);
-
-  font-size:
-    clamp(
-      1.05rem,
-      2vw,
-      1.3rem
-    );
-
-  margin-bottom:.3rem;
-
-  opacity:.75;
-}
-
-
-.intro h1{
-
-  margin:0;
-
-  font-weight:400;
-
-  font-style:italic;
-
-  line-height:1.1;
-
-  font-size:
-    clamp(
-      2rem,
-      5vw,
-      3.7rem
-    );
-
-  letter-spacing:.01em;
-
-  text-shadow:
-    0 4px 25px
-    rgba(0,0,0,.2);
-}
-
-
-.intro p{
-
-  margin:
-    .8rem 0 0;
-
-  font-style:italic;
-
-  font-size:
-    clamp(
-      1.05rem,
-      2vw,
-      1.35rem
-    );
-
-  line-height:1.5;
-
-  opacity:.82;
-}
-
-
-.hint{
-
-  font-family:'Caveat',cursive;
-
-  color:
-    var(--blush);
-
-  font-size:
-    clamp(
-      1.05rem,
-      1.8vw,
-      1.25rem
-    );
-
-  opacity:.9;
-
-  transition:
-    opacity .4s ease,
-    transform .4s ease;
-}
-
-
-.hint.changed{
-
-  animation:
-    hintChange
-    .5s ease;
-}
-
-
-@keyframes hintChange{
-
-  50%{
-
-    opacity:.2;
-
-    transform:
-      translateY(-4px);
-  }
-
-}
-
-
-/* =========================================================
-   FLOWERBED
-========================================================= */
-
-.flowerbed{
-
-  position:absolute;
-
-  inset:0;
-
-  z-index:7;
-
-  pointer-events:none;
-}
-
-
-.flower{
-
-  position:absolute;
-
-  bottom:6%;
-
-  width:48px;
-  height:95px;
-
-  padding:0;
-
-  border:none;
-
-  background:none;
-
-  cursor:pointer;
-
-  pointer-events:auto;
-
-  transform:
-    translateX(-50%);
-
-  -webkit-tap-highlight-color:
-    transparent;
-}
-
-
-.flower:focus{
-  outline:none;
-}
-
-
-.flower svg{
-
-  position:absolute;
-
-  left:50%;
-  top:0;
-
-  width:76px;
-  height:95px;
-
-  transform:
-    translateX(-50%)
-    scale(.12);
-
-  transform-origin:
-    50% 100%;
-
-  transition:
-
-    transform
-    .75s
-    cubic-bezier(.34,1.56,.64,1);
-}
-
-
-.flower.is-bloomed svg{
-
-  transform:
-    translateX(-50%)
-    scale(1);
-}
-
-
-/* flower glow */
-
-.flower::after{
-
-  content:"";
-
-  position:absolute;
-
-  left:50%;
-  top:5px;
-
-  width:50px;
-  height:50px;
-
-  transform:
-    translateX(-50%);
-
-  border-radius:50%;
-
-  background:
-    rgba(255,170,200,.10);
-
-  filter:blur(10px);
-
-  opacity:0;
-
-  transition:
-    opacity .5s ease;
-}
-
-
-.flower.is-bloomed::after{
-  opacity:1;
-}
-
-
-/* =========================================================
-   FLOWER LABEL
-========================================================= */
-
-.flower-name{
-
-  position:absolute;
-
-  bottom:-18px;
-
-  left:50%;
-
-  transform:
-    translateX(-50%);
-
-  white-space:nowrap;
-
-  font-family:
-    'Caveat',
-    cursive;
-
-  font-size:.85rem;
-
-  color:
-    rgba(255,235,220,.55);
-
-  opacity:0;
-
-  transition:
-    opacity .5s ease;
-}
-
-
-.flower:hover .flower-name{
-
-  opacity:.8;
-}
-
-
-/* =========================================================
-   FLOATING WORD
-========================================================= */
-
-.word-layer{
-
-  position:absolute;
-
-  inset:0;
-
-  z-index:9;
-
-  pointer-events:none;
-}
-
-
-.bloom-word{
-
-  position:absolute;
-
-  bottom:23%;
-
-  font-family:
-    'Caveat',
-    cursive;
-
-  font-size:
-    clamp(
-      1.45rem,
-      2.8vw,
-      2rem
-    );
-
-  color:
-    var(--cream);
-
-  text-shadow:
-    0 0 12px
-    rgba(255,190,210,.45);
-
-  transform:
-    translate(-50%,0);
-
-  animation:
-    float-word
-    2.6s
-    ease-out
-    forwards;
-}
-
-
-@keyframes float-word{
-
-  0%{
-
-    opacity:0;
-
-    transform:
-      translate(-50%,10px)
-      scale(.75);
-  }
-
-  15%{
-
-    opacity:1;
-
-    transform:
-      translate(-50%,-8px)
-      scale(1);
-  }
-
-  100%{
-
-    opacity:0;
-
-    transform:
-      translate(-50%,-80px)
-      scale(1.08);
-  }
-
-}
-
-
-/* =========================================================
-   BUNNY COUPLE
-========================================================= */
-
-.couple{
-
-  position:absolute;
-
-  bottom:5%;
-  left:50%;
-
-  transform:
-    translateX(-50%);
-
-  display:flex;
-
-  align-items:flex-end;
-
-  z-index:8;
-
-  filter:
-    drop-shadow(
-      0 8px 15px
-      rgba(0,0,0,.18)
-    );
-}
-
-
-.bunny{
-
-  width:
-    clamp(
-      70px,
-      9vw,
-      100px
-    );
-
-  height:auto;
-
-  animation:
-    bob
-    3.6s
-    ease-in-out
-    infinite;
-}
-
-
-.bunny.b2{
-
-  animation:
-    bob-flip
-    3.6s
-    ease-in-out
-    .6s
-    infinite;
-
-  margin-left:-10px;
-}
-
-
-@keyframes bob{
-
-  0%,100%{
-    transform:translateY(0);
-  }
-
-  50%{
-    transform:translateY(-5px);
-  }
-
-}
-
-
-@keyframes bob-flip{
-
-  0%,100%{
-
-    transform:
-      scaleX(-1)
-      translateY(0);
-  }
-
-  50%{
-
-    transform:
-      scaleX(-1)
-      translateY(-5px);
-  }
-
-}
-
-
-/* =========================================================
-   HEART BETWEEN BUNNIES
-========================================================= */
-
-.love-pulse{
-
-  position:absolute;
-
-  bottom:13%;
-  left:50%;
-
-  transform:
-    translateX(-50%);
-
-  z-index:9;
-
-  width:17px;
-  height:17px;
-
-  opacity:0;
-
-  animation:
-
-    pulse-heart
-    5s
-    ease-in-out
-    1.4s
-    infinite;
-}
-
-
-.love-pulse svg{
-
-  width:100%;
-  height:100%;
-
-  filter:
-    drop-shadow(
-      0 0 6px
-      rgba(255,180,210,.6)
-    );
-}
-
-
-@keyframes pulse-heart{
-
-  0%{
-
-    opacity:0;
-
-    transform:
-      translate(-50%,0)
-      scale(.6);
-  }
-
-  12%{
-
-    opacity:1;
-
-    transform:
-      translate(-50%,-5px)
-      scale(1);
-  }
-
-  55%{
-
-    opacity:.8;
-
-    transform:
-      translate(-50%,-25px)
-      scale(1.05);
-  }
-
-  75%{
-
-    opacity:0;
-
-    transform:
-      translate(-50%,-38px)
-      scale(1.2);
-  }
-
-  100%{
-    opacity:0;
-  }
-
-}
-
-
-/* =========================================================
-   FINALE
-========================================================= */
-
-.finale{
-
-  position:fixed;
-
-  inset:0;
-
-  z-index:30;
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:center;
-
-  padding:
-    6vh 6vw;
-
-  background:
-
-    radial-gradient(
-      circle at center,
-      rgba(120,44,85,.3),
-      rgba(10,4,20,.78)
-    );
-
-  backdrop-filter:
-    blur(3px);
-
-  opacity:0;
-
-  pointer-events:none;
-
-  transition:
-    opacity 1s ease;
-}
-
-
-.finale.is-visible{
-
-  opacity:1;
-
-  pointer-events:auto;
-}
-
-
-.finale-card{
-
-  position:relative;
-
-  width:
-    min(
-      560px,
-      92vw
-    );
-
-  text-align:center;
-
-  background:
-
-    linear-gradient(
-      145deg,
-      rgba(83,43,101,.68),
-      rgba(37,16,53,.7)
-    );
-
-  border:
-    1px solid
-    rgba(255,228,168,.32);
-
-  border-radius:24px;
-
-  padding:
-    clamp(2.3rem,6vw,4rem)
-    clamp(1.8rem,6vw,4rem);
-
-  backdrop-filter:
-    blur(15px);
-
-  box-shadow:
-
-    0 35px 100px
-    rgba(0,0,0,.55),
-
-    inset 0 1px
-    rgba(255,255,255,.07);
-
-  transform:
-    translateY(25px)
-    scale(.94);
-
-  transition:
-
-    transform
-    1s
-    cubic-bezier(.2,.8,.2,1);
-}
-
-
-.finale.is-visible .finale-card{
-
-  transform:
-    translateY(0)
-    scale(1);
-}
-
-
-.finale-card::before{
-
-  content:"";
-
-  position:absolute;
-
-  top:-1px;
-
-  left:15%;
-  right:15%;
-
-  height:1px;
-
-  background:
-
-    linear-gradient(
-      90deg,
-      transparent,
-      rgba(255,220,170,.7),
-      transparent
-    );
-}
-
-
-.small-heart{
-
-  font-size:1.4rem;
-
-  color:
-    var(--blush);
-
-  margin-bottom:1.2rem;
-
-  animation:
-    gentleHeart
-    2.2s
-    ease-in-out
-    infinite;
-}
-
-
-@keyframes gentleHeart{
-
-  0%,100%{
-    transform:scale(1);
-  }
-
-  50%{
-    transform:scale(1.15);
-  }
-
-}
-
-
-.final-message{
-
-  font-style:italic;
-
-  font-size:
-    clamp(
-      1.35rem,
-      3vw,
-      1.75rem
-    );
-
-  line-height:1.65;
-
-  margin:
-    0 0 1.5rem;
-
-  color:
-    var(--cream);
-}
-
-
-.final-submessage{
-
-  font-size:
-    clamp(
-      1rem,
-      2vw,
-      1.15rem
-    );
-
-  line-height:1.6;
-
-  opacity:.72;
-
-  margin:
-    0 auto 1.5rem;
-
-  max-width:420px;
-}
-
-
-.signature-line{
-
-  font-family:
-    'Caveat',
-    cursive;
-
-  font-size:
-    clamp(
-      1.35rem,
-      2.7vw,
-      1.65rem
-    );
-
-  color:
-    var(--blush);
-
-  margin:
-    0 0 2rem;
-}
-
-
-.replay-btn{
-
-  background:transparent;
-
-  border:
-    1px solid
-    rgba(255,220,160,.6);
-
-  color:
-    var(--moon-glow);
-
-  padding:
-    .6rem 1.6rem;
-
-  border-radius:999px;
-
-  font-family:
-    'Cormorant Garamond',
-    serif;
-
-  font-style:italic;
-
-  font-size:1rem;
-
-  cursor:pointer;
-
-  transition:
-    background .3s ease,
-    color .3s ease,
-    transform .3s ease;
-}
-
-
-.replay-btn:hover{
-
-  background:
-    var(--moon-glow);
-
-  color:
-    var(--sky-top);
-
-  transform:
-    translateY(-2px);
-}
-
-
-.replay-btn:focus-visible{
-
-  outline:
-    2px solid
-    var(--moon-glow);
-
-  outline-offset:4px;
-}
-
-
-/* =========================================================
-   CONFETTI
-========================================================= */
-
-.confetti-layer{
-
-  position:fixed;
-
-  inset:0;
-
-  z-index:25;
-
-  pointer-events:none;
-}
-
-
-.confetti-piece{
-
-  position:absolute;
-
-  bottom:-5%;
-
-  width:15px;
-  height:15px;
-
-  opacity:0;
-
-  animation:
-    rise
-    3.5s
-    ease-out
-    forwards;
-}
-
-
-.confetti-piece svg{
-
-  width:100%;
-  height:100%;
-}
-
-
-@keyframes rise{
-
-  0%{
-
-    opacity:0;
-
-    transform:
-      translate(0,0)
-      rotate(0deg)
-      scale(.6);
-  }
-
-  12%{
-    opacity:.9;
-  }
-
-  100%{
-
-    opacity:0;
-
-    transform:
-      translate(
-        var(--dx,20px),
-        -100vh
-      )
-      rotate(var(--rot,180deg))
-      scale(1);
-  }
-
-}
-
-
-/* =========================================================
-   MOBILE
-========================================================= */
-
-@media(max-width:560px){
-
-  .intro{
-
-    top:8%;
-    left:8%;
-
-    max-width:290px;
-  }
-
-
-  .intro h1{
-    font-size:2.25rem;
-  }
-
-
-  .intro p{
-    font-size:1.05rem;
-  }
-
-
-  .moon{
-
-    top:8%;
-    right:8%;
-  }
-
-
-  .moon-label{
-
-    top:
-      calc(8% + 90px);
-
-    right:7%;
-
-    font-size:.9rem;
-  }
-
-
-  .flower{
-
-    bottom:6%;
-  }
-
-
-  .flower svg{
-
-    width:65px;
-    height:90px;
-  }
-
-
-  .couple{
-    bottom:4%;
-  }
-
-
-  .bunny{
-    width:72px;
-  }
-
-
-  .finale-card{
-
-    padding:
-      2.2rem 1.5rem;
-  }
-
-}
-
-
-/* =========================================================
-   REDUCED MOTION
-========================================================= */
-
-@media(prefers-reduced-motion:reduce){
-
-  .star,
-  .firefly,
-  .bunny,
-  .love-pulse,
-  .moon,
-  .small-heart{
-
-    animation:none !important;
-  }
-
-
-  .flower svg,
-  .finale-card,
-  .finale,
-  .moon{
-
-    transition-duration:
-      .01ms !important;
-  }
-
-
-  .bloom-word,
-  .confetti-piece{
-
-    animation-duration:
-      .01ms !important;
-  }
-
+  background:radial-gradient(circle at 50% -10%, var(--bg-panel-2), var(--bg-deep) 62%);
+  color:var(--ivory);
+  font-family:var(--font-body);
+  min-height:100vh;
+}
+button{font:inherit;}
+.wrap{max-width:640px;margin:0 auto;padding:20px 16px 90px;}
+.boot{text-align:center;padding:90px 20px;color:var(--ivory-dim);font-family:var(--font-display);font-size:18px;}
+
+header.hero{text-align:center;padding:30px 12px 26px;}
+header.hero .mark{width:88px;height:88px;margin:0 auto 8px;}
+header.hero h1{font-family:var(--font-display);font-weight:600;font-size:clamp(26px,7vw,38px);margin:0 0 6px;color:var(--gold-bright);letter-spacing:.2px;}
+header.hero p.sub{color:var(--ivory-dim);font-size:14.5px;margin:0 0 14px;}
+.dot-rule{height:6px;background-image:radial-gradient(circle, var(--gold) 1.5px, transparent 1.6px);background-size:14px 6px;opacity:.55;margin:0 auto;width:190px;}
+
+.card{background:var(--bg-panel);border:1px solid rgba(227,168,87,.18);border-radius:var(--radius-arch);padding:24px 20px;margin-bottom:18px;box-shadow:0 10px 26px var(--shadow);position:relative;}
+.card h2{font-family:var(--font-display);font-size:19px;margin:0 0 6px;color:var(--gold-bright);font-weight:600;}
+.card p.hint{color:var(--ivory-dim);font-size:13.5px;line-height:1.5;margin:0 0 16px;}
+
+label{display:block;font-size:13px;color:var(--ivory-dim);margin-bottom:6px;}
+input[type=text]{width:100%;padding:12px 14px;border-radius:14px;border:1.5px solid rgba(227,168,87,.3);background:var(--bg-deep);color:var(--ivory);font-size:15px;margin-bottom:14px;font-family:var(--font-body);}
+input::placeholder{color:var(--ivory-dim);opacity:.55;}
+:focus-visible{outline:2px solid var(--gold-bright);outline-offset:2px;}
+
+button.btn{font-weight:600;font-size:14.5px;padding:12px 20px;border-radius:100px;border:none;cursor:pointer;background:var(--vermillion);color:var(--ivory);}
+button.btn.secondary{background:transparent;border:1.5px solid var(--gold);color:var(--gold-bright);}
+button.btn:disabled{opacity:.5;cursor:default;}
+
+.duration-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:18px;}
+.duration-opt{border:1.5px solid rgba(227,168,87,.3);border-radius:16px;padding:11px;text-align:center;cursor:pointer;font-size:12.5px;line-height:1.5;}
+.duration-opt.selected{border-color:var(--gold-bright);background:rgba(227,168,87,.12);color:var(--gold-bright);}
+
+.diya-row{position:relative;display:flex;justify-content:center;gap:34px;align-items:flex-start;margin:8px 0 16px;}
+.diya-unit{text-align:center;}
+.diya-unit .name{font-size:12.5px;color:var(--ivory-dim);margin-top:8px;}
+.diya-btn{width:82px;height:82px;border-radius:50%;border:2px solid var(--gold);background:var(--bg-panel-2);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:transform .15s ease;padding:0;}
+.diya-btn:hover:not([disabled]){transform:scale(1.04);}
+.diya-btn.lit{background:radial-gradient(circle,var(--flame-core),var(--flame) 60%,var(--gold) 100%);box-shadow:0 0 22px 5px rgba(255,183,77,.5);}
+.diya-btn[disabled]{cursor:default;}
+.diya-btn svg{width:42px;height:42px;}
+.diya-btn.lit .flame-icon{animation:flicker 1.6s ease-in-out infinite;}
+@keyframes flicker{0%,100%{transform:scale(1) rotate(-2deg);}50%{transform:scale(1.1) rotate(2deg);}}
+
+.confetti-piece{position:absolute;width:6px;height:6px;border-radius:2px;top:38px;left:50%;pointer-events:none;animation:confetti-burst .9s ease-out forwards;}
+@keyframes confetti-burst{to{transform:translate(var(--tx),var(--ty)) rotate(var(--rot));opacity:0;}}
+
+.aarti-text summary{cursor:pointer;color:var(--gold-bright);font-weight:600;font-size:13.5px;}
+.aarti-text p{font-size:13.5px;line-height:1.75;color:var(--ivory-dim);margin:12px 0;}
+
+.modak-plate{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;min-height:30px;margin-bottom:14px;}
+
+.notes-wall{display:flex;flex-direction:column;gap:9px;max-height:300px;overflow-y:auto;padding:2px 4px 2px 2px;}
+.note{max-width:80%;padding:9px 13px;border-radius:16px;font-size:13.5px;line-height:1.4;}
+.note.mine{align-self:flex-end;background:var(--vermillion);color:var(--ivory);border-bottom-right-radius:4px;}
+.note.theirs{align-self:flex-start;background:var(--bg-panel-2);border:1px solid rgba(227,168,87,.25);border-bottom-left-radius:4px;}
+.note .meta{display:block;font-size:10.5px;opacity:.65;margin-top:4px;}
+
+.timeline{display:flex;gap:7px;justify-content:center;flex-wrap:wrap;}
+.day-dot{width:28px;height:28px;border-radius:50%;border:1.5px solid rgba(227,168,87,.4);display:flex;align-items:center;justify-content:center;font-size:11.5px;color:var(--ivory-dim);background:transparent;}
+.day-dot.today{border-color:var(--gold-bright);color:var(--gold-bright);font-weight:700;}
+.day-dot.done{background:var(--gold);color:var(--bg-deep);border-color:var(--gold);font-weight:700;}
+
+.who-btn{width:100%;margin-bottom:12px;text-align:center;}
+
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important;}
 }
-
 </style>
 </head>
-
-
 <body>
-
-
-<div class="scene">
-
-
-  <!-- =====================================================
-       STARS
-  ====================================================== -->
-
-  <div
-    class="stars"
-    id="stars">
-  </div>
-
-
-  <!-- =====================================================
-       MOON
-  ====================================================== -->
-
-  <button
-    class="moon"
-    id="moon"
-    aria-label="make a wish">
-  </button>
-
-  <div class="moon-label">
-    make a wish...
-  </div>
-
-
-  <!-- =====================================================
-       FIREFLIES
-  ====================================================== -->
-
-  <div
-    class="fireflies"
-    id="fireflies">
-  </div>
-
-
-  <!-- =====================================================
-       HILLS
-  ====================================================== -->
-
-  <svg
-    class="hills"
-    viewBox="0 0 1200 300"
-    preserveAspectRatio="none">
-
-    <path
-      d="
-        M0,180
-        C200,120 400,200 600,150
-        C800,100 1000,190 1200,140
-        L1200,300
-        L0,300
-        Z
-      "
-      fill="var(--hill-back)"
-    />
-
-    <path
-      d="
-        M0,220
-        C220,160 380,240 620,190
-        C860,140 1040,230 1200,180
-        L1200,300
-        L0,300
-        Z
-      "
-      fill="var(--hill-front)"
-    />
-
-  </svg>
-
-
-  <!-- =====================================================
-       INTRO
-  ====================================================== -->
-
-  <div class="intro">
-
-    <div class="eyebrow">
-      a little something, only for you
-    </div>
-
-    <h1 id="introTitle">
-      For the one who feels like home.
-    </h1>
-
-    <p id="introLine">
-      I wanted to make you a little garden...
-      because some feelings are better grown slowly.
-    </p>
-
-    <p
-      class="hint"
-      id="hint"
-      aria-live="polite">
-
-      tap the flowers and let them bloom
-
-    </p>
-
-  </div>
-
-
-  <!-- =====================================================
-       FLOWERS
-  ====================================================== -->
-
-  <div
-    class="flowerbed"
-    id="flowerbed">
-  </div>
-
-
-  <!-- FLOATING WORDS -->
-
-  <div
-    class="word-layer"
-    id="wordLayer">
-  </div>
-
-
-  <!-- =====================================================
-       BUNNY COUPLE
-  ====================================================== -->
-
-  <div class="couple">
-
-
-    <!-- Bunny 1 -->
-
-    <svg
-      class="bunny b1"
-      viewBox="0 0 100 90">
-
-      <ellipse
-        cx="34"
-        cy="18"
-        rx="9"
-        ry="24"
-        fill="#d9c9f1"
-        transform="rotate(-12 34 18)"
-      />
-
-      <ellipse
-        cx="58"
-        cy="18"
-        rx="9"
-        ry="24"
-        fill="#d9c9f1"
-        transform="rotate(10 58 18)"
-      />
-
-      <ellipse
-        cx="34"
-        cy="21"
-        rx="4"
-        ry="15"
-        fill="#ffc4d6"
-        transform="rotate(-12 34 21)"
-      />
-
-      <ellipse
-        cx="58"
-        cy="21"
-        rx="4"
-        ry="15"
-        fill="#ffc4d6"
-        transform="rotate(10 58 21)"
-      />
-
-      <ellipse
-        cx="46"
-        cy="62"
-        rx="34"
-        ry="26"
-        fill="#d9c9f1"
-      />
-
-      <circle
-        cx="30"
-        cy="64"
-        r="6"
-        fill="#ffc4d6"
-        opacity=".7"
-      />
-
-      <circle
-        cx="62"
-        cy="64"
-        r="6"
-        fill="#ffc4d6"
-        opacity=".7"
-      />
-
-      <path
-        d="M32 54 Q36 58 40 54"
-        stroke="#3a1f45"
-        stroke-width="2.4"
-        fill="none"
-        stroke-linecap="round"
-      />
-
-      <path
-        d="M52 54 Q56 58 60 54"
-        stroke="#3a1f45"
-        stroke-width="2.4"
-        fill="none"
-        stroke-linecap="round"
-      />
-
-      <path
-        d="M42 67 Q46 70 50 67"
-        stroke="#3a1f45"
-        stroke-width="2"
-        fill="none"
-        stroke-linecap="round"
-      />
-
-    </svg>
-
-
-    <!-- Bunny 2 -->
-
-    <svg
-      class="bunny b2"
-      viewBox="0 0 100 90">
-
-      <ellipse
-        cx="34"
-        cy="18"
-        rx="9"
-        ry="24"
-        fill="#ffd9b8"
-        transform="rotate(-12 34 18)"
-      />
-
-      <ellipse
-        cx="58"
-        cy="18"
-        rx="9"
-        ry="24"
-        fill="#ffd9b8"
-        transform="rotate(10 58 18)"
-      />
-
-      <ellipse
-        cx="34"
-        cy="21"
-        rx="4"
-        ry="15"
-        fill="#ffc4d6"
-        transform="rotate(-12 34 21)"
-      />
-
-      <ellipse
-        cx="58"
-        cy="21"
-        rx="4"
-        ry="15"
-        fill="#ffc4d6"
-        transform="rotate(10 58 21)"
-      />
-
-      <ellipse
-        cx="46"
-        cy="62"
-        rx="34"
-        ry="26"
-        fill="#ffd9b8"
-      />
-
-      <circle
-        cx="30"
-        cy="64"
-        r="6"
-        fill="#ffc4d6"
-        opacity=".7"
-      />
-
-      <circle
-        cx="62"
-        cy="64"
-        r="6"
-        fill="#ffc4d6"
-        opacity=".7"
-      />
-
-      <path
-        d="M32 54 Q36 58 40 54"
-        stroke="#3a1f45"
-        stroke-width="2.4"
-        fill="none"
-        stroke-linecap="round"
-      />
-
-      <path
-        d="M52 54 Q56 58 60 54"
-        stroke="#3a1f45"
-        stroke-width="2.4"
-        fill="none"
-        stroke-linecap="round"
-      />
-
-      <path
-        d="M42 67 Q46 70 50 67"
-        stroke="#3a1f45"
-        stroke-width="2"
-        fill="none"
-        stroke-linecap="round"
-      />
-
-    </svg>
-
-  </div>
-
-
-  <!-- HEART -->
-
-  <div class="love-pulse">
-
-    <svg viewBox="0 0 32 32">
-
-      <path
-        d="
-          M16 28
-          C4 20 2 12 8 8
-          C12 5.5 16 8 16 12
-          C16 8 20 5.5 24 8
-          C30 12 28 20 16 28
-          Z
-        "
-        fill="#ffc9dc"
-      />
-
-    </svg>
-
-  </div>
-
-
-</div>
-
-
-<!-- =========================================================
-     FINALE
-========================================================= -->
-
-<div
-  class="finale"
-  id="finale">
-
-  <div class="finale-card">
-
-    <div class="small-heart">
-      ♡
-    </div>
-
-    <p
-      class="final-message"
-      id="finalMessage">
-    </p>
-
-    <p
-      class="final-submessage"
-      id="finalSubmessage">
-    </p>
-
-    <p
-      class="signature-line"
-      id="signatureLine">
-    </p>
-
-    <button
-      class="replay-btn"
-      id="replayBtn">
-
-      let it bloom again
-
-    </button>
-
-  </div>
-
-</div>
-
-
-<!-- =========================================================
-     CONFETTI
-========================================================= -->
-
-<div
-  class="confetti-layer"
-  id="confettiLayer">
-</div>
-
-
+<div id="app"><div class="boot">Lighting the first diya&hellip;</div></div>
 <script>
-
-/* ============================================================
-   CUSTOMIZE
-============================================================ */
-
-const CONFIG = {
-
-  recipientName:
-    "Dhari",
-
-  senderName:
-    "Ayush",
-
-
-  introTitle:
-    "For the one who feels like home.",
-
-
-  introLine:
-    "I wanted to make you a little garden... because some feelings are better grown slowly.",
-
-
-  /*
-     Six flowers:
-
-     1. Rose
-     2. Tulip
-     3. Cherry Blossom
-     4. Hibiscus
-     5. Daisy
-     6. Peony
-  */
-
-  flowers: [
-
-    {
-      name:"Rose",
-      word:"love"
-    },
-
-    {
-      name:"Tulip",
-      word:"affection"
-    },
-
-    {
-      name:"Cherry Blossom",
-      word:"tenderness"
-    },
-
-    {
-      name:"Hibiscus",
-      word:"passion"
-    },
-
-    {
-      name:"Daisy",
-      word:"happiness"
-    },
-
-    {
-      name:"Peony",
-      word:"home"
-    }
-
-  ],
-
-
-  finalMessage:
-
-    "Somehow, out of everyone, it's you I keep choosing — not because everything is always perfect, but because even in the imperfect moments, my heart still finds its way back to you.",
-
-
-  finalSubmessage:
-
-    "If I could make one wish tonight, it wouldn't be for something grand. It would simply be for more little moments with you — more conversations, more laughter, more quiet nights, and more reasons to choose each other."
-
-};
-
-
-/* ============================================================
-   TEXT
-============================================================ */
-
-document
-  .getElementById("introTitle")
-  .textContent =
-  CONFIG.introTitle;
-
-
-document
-  .getElementById("introLine")
-  .textContent =
-  CONFIG.introLine;
-
-
-document
-  .getElementById("finalMessage")
-  .textContent =
-  CONFIG.finalMessage;
-
-
-document
-  .getElementById("finalSubmessage")
-  .textContent =
-  CONFIG.finalSubmessage;
-
-
-const recipient =
-  CONFIG.recipientName || "you";
-
-
-document
-  .getElementById("signatureLine")
-  .textContent =
-
-  CONFIG.senderName
-
-    ? `for ${recipient}, always — ${CONFIG.senderName}`
-
-    : `for ${recipient}, always`;
-
-
-/* ============================================================
-   REDUCED MOTION
-============================================================ */
-
-const prefersReducedMotion =
-
-  window.matchMedia(
-    "(prefers-reduced-motion: reduce)"
-  ).matches;
-
-
-/* ============================================================
-   STARS
-============================================================ */
-
-const starsEl =
-  document.getElementById("stars");
-
-
-for(let i=0;i<70;i++){
-
-  const star =
-    document.createElement("div");
-
-  star.className =
-    "star";
-
-
-  if(Math.random()>.85){
-
-    star.classList.add(
-      "special"
-    );
-
-  }
-
-
-  const size =
-    1 + Math.random()*2.2;
-
-
-  star.style.left =
-    Math.random()*100 + "%";
-
-
-  star.style.top =
-    Math.random()*68 + "%";
-
-
-  star.style.setProperty(
-    "--s",
-    size + "px"
-  );
-
-
-  star.style.setProperty(
-    "--dur",
-    (2.5 + Math.random()*4) + "s"
-  );
-
-
-  star.style.setProperty(
-    "--del",
-    Math.random()*5 + "s"
-  );
-
-
-  starsEl.appendChild(star);
-
-}
-
-
-/* ============================================================
-   FIREFLIES
-============================================================ */
-
-const fliesEl =
-  document.getElementById(
-    "fireflies"
-  );
-
-
-const FIREFLY_COUNT =
-  32;
-
-
-const fireflies = [];
-
-
-for(let i=0;i<FIREFLY_COUNT;i++){
-
-  const f =
-    document.createElement("div");
-
-
-  f.className =
-    "firefly";
-
-
-  const ax =
-    Math.random()*300 - 150;
-
-
-  const ay =
-    Math.random()*200 - 100;
-
-
-  f.style.setProperty(
-    "--ax",
-    ax + "px"
-  );
-
-
-  f.style.setProperty(
-    "--ay",
-    ay + "px"
-  );
-
-
-  f.style.setProperty(
-    "--dur",
-    (6 + Math.random()*6) + "s"
-  );
-
-
-  f.style.setProperty(
-    "--del",
-    Math.random()*6 + "s"
-  );
-
-
-  if(prefersReducedMotion){
-
-    f.style.animation =
-      "none";
-
-  }
-
-
-  fliesEl.appendChild(f);
-
-  fireflies.push(f);
-
-}
-
-
-/* ============================================================
-   FLOWER SVG DESIGNS
-============================================================ */
-
-
-/*
-   ROSE
-*/
-
-function roseSVG(){
-
-  return `
-
-  <svg
-    viewBox="0 0 80 100"
-    aria-hidden="true">
-
-    <!-- stem -->
-
-    <path
-      d="M40 52 C40 65 39 80 38 96"
-      stroke="var(--leaf)"
-      stroke-width="3"
-      fill="none"
-      stroke-linecap="round"
-    />
-
-    <!-- leaves -->
-
-    <path
-      d="M39 73 C28 68 23 73 20 80 C29 80 35 78 39 73"
-      fill="var(--leaf)"
-    />
-
-    <path
-      d="M39 82 C49 76 56 78 59 85 C51 87 45 86 39 82"
-      fill="var(--leaf)"
-    />
-
-    <!-- rose petals -->
-
-    <circle
-      cx="40"
-      cy="36"
-      r="17"
-      fill="var(--rose)"
-    />
-
-    <path
-      d="
-        M25 38
-        C22 28 30 20 40 22
-        C50 18 59 27 55 37
-        C61 44 51 52 42 49
-        C32 54 23 47 25 38
-        Z
-      "
-      fill="var(--rose-light)"
-    />
-
-    <path
-      d="
-        M30 36
-        C27 28 35 25 40 29
-        C45 24 53 30 49 36
-        C54 41 46 46 41 42
-        C36 47 28 42 30 36
-        Z
-      "
-      fill="var(--rose)"
-    />
-
-    <path
-      d="
-        M35 35
-        C34 30 39 29 42 33
-        C45 29 49 34 46 38
-        C43 42 36 40 35 35
-        Z
-      "
-      fill="var(--rose-light)"
-    />
-
-  </svg>
-
-  `;
-
-}
-
-
-/*
-   TULIP
-*/
-
-function tulipSVG(){
-
-  return `
-
-  <svg
-    viewBox="0 0 80 100"
-    aria-hidden="true">
-
-    <!-- stem -->
-
-    <path
-      d="M40 47 C40 63 40 80 39 96"
-      stroke="var(--leaf)"
-      stroke-width="3"
-      fill="none"
-      stroke-linecap="round"
-    />
-
-    <!-- leaves -->
-
-    <path
-      d="
-        M39 76
-        C27 67 20 70 17 80
-        C26 81 34 80 39 76
-        Z
-      "
-      fill="var(--leaf)"
-    />
-
-    <path
-      d="
-        M40 83
-        C51 76 57 80 61 88
-        C52 89 46 87 40 83
-        Z
-      "
-      fill="var(--leaf)"
-    />
-
-    <!-- tulip head -->
-
-    <path
-      d="
-        M22 27
-
-        C25 37 29 43 40 45
-
-        C51 43 55 37 58 27
-
-        C52 31 48 26 44 22
-
-        C42 30 38 31 35 22
-
-        C31 27 27 31 22 27
-
-        Z
-      "
-      fill="var(--tulip)"
-    />
-
-    <path
-      d="
-        M28 28
-        C31 34 34 38 40 40
-        C46 38 50 34 52 28
-        C47 31 43 28 40 23
-        C37 29 33 31 28 28
-        Z
-      "
-      fill="var(--tulip-light)"
-    />
-
-  </svg>
-
-  `;
-
-}
-
-
-/*
-   CHERRY BLOSSOM
-*/
-
-function cherrySVG(){
-
-  return `
-
-  <svg
-    viewBox="0 0 80 100"
-    aria-hidden="true">
-
-    <!-- branch -->
-
-    <path
-      d="
-        M39 95
-        C40 75 39 58 34 42
-        C31 32 25 26 18 22
-
-        M35 55
-        C45 46 53 37 59 26
-
-        M37 66
-        C28 58 22 52 17 43
-      "
-      stroke="#5a3d4b"
-      stroke-width="2.5"
-      fill="none"
-      stroke-linecap="round"
-    />
-
-    <!-- blossom 1 -->
-
-    <g transform="translate(18 22)">
-
-      <circle
-        cx="0"
-        cy="-6"
-        r="6"
-        fill="var(--cherry)"
-      />
-
-      <circle
-        cx="6"
-        cy="0"
-        r="6"
-        fill="var(--cherry-light)"
-      />
-
-      <circle
-        cx="0"
-        cy="6"
-        r="6"
-        fill="var(--cherry)"
-      />
-
-      <circle
-        cx="-6"
-        cy="0"
-        r="6"
-        fill="var(--cherry-light)"
-      />
-
-      <circle
-        cx="0"
-        cy="0"
-        r="3"
-        fill="#f2b15b"
-      />
-
-    </g>
-
-
-    <!-- blossom 2 -->
-
-    <g transform="translate(59 26)">
-
-      <circle
-        cx="0"
-        cy="-6"
-        r="6"
-        fill="var(--cherry-light)"
-      />
-
-      <circle
-        cx="6"
-        cy="0"
-        r="6"
-        fill="var(--cherry)"
-      />
-
-      <circle
-        cx="0"
-        cy="6"
-        r="6"
-        fill="var(--cherry-light)"
-      />
-
-      <circle
-        cx="-6"
-        cy="0"
-        r="6"
-        fill="var(--cherry)"
-      />
-
-      <circle
-        cx="0"
-        cy="0"
-        r="3"
-        fill="#f2b15b"
-      />
-
-    </g>
-
-
-    <!-- blossom 3 -->
-
-    <g transform="translate(17 43)">
-
-      <circle
-        cx="0"
-        cy="-5"
-        r="5"
-        fill="var(--cherry)"
-      />
-
-      <circle
-        cx="5"
-        cy="0"
-        r="5"
-        fill="var(--cherry-light)"
-      />
-
-      <circle
-        cx="0"
-        cy="5"
-        r="5"
-        fill="var(--cherry)"
-      />
-
-      <circle
-        cx="-5"
-        cy="0"
-        r="5"
-        fill="var(--cherry-light)"
-      />
-
-      <circle
-        cx="0"
-        cy="0"
-        r="2.5"
-        fill="#f2b15b"
-      />
-
-    </g>
-
-
-    <!-- little petals -->
-
-    <circle
-      cx="29"
-      cy="34"
-      r="2.5"
-      fill="var(--cherry-light)"
-    />
-
-    <circle
-      cx="52"
-      cy="45"
-      r="2.5"
-      fill="var(--cherry)"
-    />
-
-  </svg>
-
-  `;
-
-}
-
-
-/*
-   HIBISCUS
-*/
-
-function hibiscusSVG(){
-
-  return `
-
-  <svg
-    viewBox="0 0 80 100"
-    aria-hidden="true">
-
-    <!-- stem -->
-
-    <path
-      d="M40 55 C40 68 39 82 38 96"
-      stroke="var(--leaf)"
-      stroke-width="3"
-      fill="none"
-      stroke-linecap="round"
-    />
-
-    <!-- leaves -->
-
-    <path
-      d="
-        M39 76
-        C27 68 20 72 18 82
-        C28 82 35 80 39 76
-        Z
-      "
-      fill="var(--leaf)"
-    />
-
-    <path
-      d="
-        M40 84
-        C50 78 57 81 61 89
-        C51 90 45 88 40 84
-        Z
-      "
-      fill="var(--leaf)"
-    />
-
-    <!-- large hibiscus -->
-
-    <path
-      d="
-        M40 47
-
-        C31 49 19 45 19 34
-
-        C19 27 25 22 32 24
-
-        C33 15 41 12 47 18
-
-        C53 11 62 17 60 26
-
-        C70 24 73 34 67 40
-
-        C61 47 50 47 40 47
-
-        Z
-      "
-      fill="var(--hibiscus)"
-    />
-
-    <path
-      d="
-        M40 43
-
-        C32 42 25 38 25 32
-
-        C25 28 29 27 34 30
-
-        C34 22 40 20 44 27
-
-        C49 20 56 23 53 31
-
-        C62 27 66 34 60 39
-
-        C55 44 47 44 40 43
-
-        Z
-      "
-      fill="var(--hibiscus-light)"
-    />
-
-    <!-- center -->
-
-    <path
-      d="
-        M43 39
-        C48 34 54 30 60 29
-      "
-      stroke="#f4d27a"
-      stroke-width="3"
-      fill="none"
-      stroke-linecap="round"
-    />
-
-    <circle
-      cx="61"
-      cy="29"
-      r="3"
-      fill="#ffe48a"
-    />
-
-  </svg>
-
-  `;
-
-}
-
-
-/*
-   DAISY
-*/
-
-function daisySVG(){
-
-  return `
-
-  <svg
-    viewBox="0 0 80 100"
-    aria-hidden="true">
-
-    <!-- stem -->
-
-    <path
-      d="M40 48 C40 65 40 82 39 96"
-      stroke="var(--leaf)"
-      stroke-width="3"
-      fill="none"
-      stroke-linecap="round"
-    />
-
-    <!-- leaves -->
-
-    <path
-      d="
-        M39 76
-        C27 69 21 74 19 82
-        C28 82 35 80 39 76
-        Z
-      "
-      fill="var(--leaf)"
-    />
-
-    <path
-      d="
-        M40 84
-        C50 78 57 82 60 89
-        C51 90 45 88 40 84
-        Z
-      "
-      fill="var(--leaf)"
-    />
-
-    <!-- daisy petals -->
-
-    <g>
-
-      <ellipse
-        cx="40"
-        cy="22"
-        rx="7"
-        ry="14"
-        fill="var(--daisy)"
-      />
-
-      <ellipse
-        cx="54"
-        cy="28"
-        rx="7"
-        ry="14"
-        fill="var(--daisy)"
-        transform="rotate(45 54 28)"
-      />
-
-      <ellipse
-        cx="58"
-        cy="42"
-        rx="7"
-        ry="14"
-        fill="var(--daisy)"
-        transform="rotate(90 58 42)"
-      />
-
-      <ellipse
-        cx="50"
-        cy="54"
-        rx="7"
-        ry="14"
-        fill="var(--daisy)"
-        transform="rotate(135 50 54)"
-      />
-
-      <ellipse
-        cx="36"
-        cy="56"
-        rx="7"
-        ry="14"
-        fill="var(--daisy)"
-        transform="rotate(170 36 56)"
-      />
-
-      <ellipse
-        cx="24"
-        cy="47"
-        rx="7"
-        ry="14"
-        fill="var(--daisy)"
-        transform="rotate(220 24 47)"
-      />
-
-      <ellipse
-        cx="22"
-        cy="33"
-        rx="7"
-        ry="14"
-        fill="var(--daisy)"
-        transform="rotate(260 22 33)"
-      />
-
-      <ellipse
-        cx="30"
-        cy="23"
-        rx="7"
-        ry="14"
-        fill="var(--daisy)"
-        transform="rotate(310 30 23)"
-      />
-
-    </g>
-
-    <!-- center -->
-
-    <circle
-      cx="40"
-      cy="39"
-      r="10"
-      fill="var(--daisy-center)"
-    />
-
-    <circle
-      cx="37"
-      cy="36"
-      r="2"
-      fill="#ffe58b"
-    />
-
-    <circle
-      cx="44"
-      cy="42"
-      r="2"
-      fill="#ffe58b"
-    />
-
-  </svg>
-
-  `;
-
-}
-
-
-/*
-   PEONY
-*/
-
-function peonySVG(){
-
-  return `
-
-  <svg
-    viewBox="0 0 80 100"
-    aria-hidden="true">
-
-    <!-- stem -->
-
-    <path
-      d="
-        M40 48
-        C40 64 40 82 39 96
-      "
-      stroke="var(--leaf)"
-      stroke-width="3"
-      fill="none"
-      stroke-linecap="round"
-    />
-
-    <!-- leaves -->
-
-    <path
-      d="
-        M39 74
-        C27 65 20 71 18 80
-        C27 81 35 79 39 74
-        Z
-      "
-      fill="var(--leaf)"
-    />
-
-    <path
-      d="
-        M40 82
-        C51 75 58 80 61 88
-        C51 89 45 87 40 82
-        Z
-      "
-      fill="var(--leaf)"
-    />
-
-    <!-- outer petals -->
-
-    <circle
-      cx="40"
-      cy="37"
-      r="21"
-      fill="var(--peony)"
-    />
-
-    <circle
-      cx="28"
-      cy="33"
-      r="10"
-      fill="var(--peony-light)"
-    />
-
-    <circle
-      cx="52"
-      cy="33"
-      r="10"
-      fill="var(--peony-light)"
-    />
-
-    <circle
-      cx="30"
-      cy="46"
-      r="10"
-      fill="var(--peony-light)"
-    />
-
-    <circle
-      cx="50"
-      cy="46"
-      r="10"
-      fill="var(--peony-light)"
-    />
-
-    <!-- inner petals -->
-
-    <circle
-      cx="40"
-      cy="28"
-      r="10"
-      fill="#ffb3ca"
-    />
-
-    <circle
-      cx="33"
-      cy="38"
-      r="10"
-      fill="#ffb3ca"
-    />
-
-    <circle
-      cx="47"
-      cy="38"
-      r="10"
-      fill="#ffb3ca"
-    />
-
-    <circle
-      cx="40"
-      cy="47"
-      r="9"
-      fill="#ff9fbf"
-    />
-
-    <!-- center -->
-
-    <circle
-      cx="40"
-      cy="38"
-      r="5"
-      fill="#ffe28a"
-    />
-
-  </svg>
-
-  `;
-
-}
-
-
-/* ============================================================
-   FLOWER ARRAY
-============================================================ */
-
-const flowerDesigns = [
-
-  roseSVG,
-
-  tulipSVG,
-
-  cherrySVG,
-
-  hibiscusSVG,
-
-  daisySVG,
-
-  peonySVG
-
+const START_DATE = new Date(2026,8,14);
+const DURATIONS = [
+  {days:1.5, label:'1.5 Days', endLabel:'Sep 15'},
+  {days:3,   label:'3 Days',   endLabel:'Sep 16'},
+  {days:5,   label:'5 Days',   endLabel:'Sep 18'},
+  {days:7,   label:'7 Days',   endLabel:'Sep 20'},
+  {days:10,  label:'10 Days \u00b7 Anant Chaturdashi', endLabel:'Sep 25'},
 ];
 
-
-const positions = [
-
-  7,
-  20,
-  33,
-  67,
-  80,
-  93
-
-];
-
-
-const flowerbed =
-  document.getElementById(
-    "flowerbed"
-  );
-
-
-const wordLayer =
-  document.getElementById(
-    "wordLayer"
-  );
-
-
-const hint =
-  document.getElementById(
-    "hint"
-  );
-
-
-const moon =
-  document.getElementById(
-    "moon"
-  );
-
-
-let bloomCount = 0;
-
-
-/* ============================================================
-   CREATE SIX DIFFERENT FLOWERS
-============================================================ */
-
-positions.forEach(
-  (left,index) => {
-
-    const flower =
-      document.createElement(
-        "button"
-      );
-
-
-    flower.className =
-      "flower";
-
-
-    flower.style.left =
-      left + "%";
-
-
-    flower.setAttribute(
-      "aria-label",
-      `Bloom the ${CONFIG.flowers[index].name}`
-    );
-
-
-    flower.innerHTML =
-
-      flowerDesigns[index]() +
-
-      `
-
-      <span class="flower-name">
-
-        ${CONFIG.flowers[index].name}
-
-      </span>
-
-      `;
-
-
-    flower.addEventListener(
-      "click",
-      () => {
-
-        if(
-          flower.classList.contains(
-            "is-bloomed"
-          )
-        ){
-
-          return;
-
-        }
-
-
-        flower.classList.add(
-          "is-bloomed"
-        );
-
-
-        bloomCount++;
-
-
-        /* =================================================
-           FLOATING ROMANTIC WORD
-        ================================================= */
-
-        const word =
-          document.createElement(
-            "span"
-          );
-
-
-        word.className =
-          "bloom-word";
-
-
-        word.style.left =
-          left + "%";
-
-
-        word.textContent =
-          CONFIG.flowers[index].word;
-
-
-        wordLayer.appendChild(
-          word
-        );
-
-
-        setTimeout(
-          () => word.remove(),
-          2700
-        );
-
-
-        /* =================================================
-           UPDATE HINT
-        ================================================= */
-
-        if(
-          bloomCount < positions.length
-        ){
-
-          hint.textContent =
-            `${bloomCount} of ${positions.length} have bloomed...`;
-
-        }
-
-        else{
-
-          hint.textContent =
-            "all six feelings have bloomed... now make a wish.";
-
-          moon.classList.add(
-            "is-ready"
-          );
-
-        }
-
-
-        hint.classList.remove(
-          "changed"
-        );
-
-
-        void hint.offsetWidth;
-
-
-        hint.classList.add(
-          "changed"
-        );
-
-      }
-    );
-
-
-    flowerbed.appendChild(
-      flower
-    );
-
-  }
-);
-
-
-/* ============================================================
-   HEART MATHEMATICS
-============================================================ */
-
-function heartTarget(
-  t,
-  scale
-){
-
-  const x =
-    16 *
-    Math.pow(
-      Math.sin(t),
-      3
-    );
-
-
-  const yRaw =
-
-      13 * Math.cos(t)
-
-    - 5 * Math.cos(2*t)
-
-    - 2 * Math.cos(3*t)
-
-    - Math.cos(4*t);
-
-
-  return {
-
-    x:
-      x * scale,
-
-    y:
-      -yRaw * scale
-
-  };
-
+let SETUP = null, WHOAMI = null, TOTAL_DAYS = 0, TODAY_IDX = 0;
+const appEl = document.getElementById('app');
+
+function pad(n){ return String(n).padStart(2,'0'); }
+function dateKeyFor(d){ return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate()); }
+function dayIndexFor(d){
+  const a = new Date(d.getFullYear(), d.getMonth(), d.getDate());
+  const diff = Math.round((a - START_DATE) / 86400000);
+  return diff + 1;
+}
+function fmtDate(d){ return d.toLocaleDateString('en-IN', {day:'numeric', month:'short'}); }
+function escapeHtml(s){
+  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+function getMyRole(){ return WHOAMI === SETUP.personA ? 'personA' : 'personB'; }
+function currentDuration(){ return DURATIONS.find(d => d.days === SETUP.durationDays) || DURATIONS[4]; }
+
+async function sGet(key, shared){
+  try{
+    const r = await window.storage.get(key, shared);
+    return r ? JSON.parse(r.value) : null;
+  }catch(e){ return null; }
+}
+async function sSet(key, value, shared){
+  try{
+    await window.storage.set(key, JSON.stringify(value), shared);
+    return true;
+  }catch(e){ console.error('storage set failed', e); return false; }
+}
+async function safeDelete(key, shared){
+  try{ await window.storage.delete(key, shared); }catch(e){ /* ignore */ }
 }
 
-
-/* ============================================================
-   GATHER FIREFLIES
-============================================================ */
-
-function gatherFireflies(){
-
-  const scale =
-
-    Math.max(
-      2.8,
-      Math.min(
-        5.5,
-        window.innerWidth * .0055
-      )
-    );
-
-
-  fireflies.forEach(
-    (f,i) => {
-
-      const t =
-
-        (i /
-          fireflies.length)
-        *
-        Math.PI *
-        2;
-
-
-      const {
-        x,
-        y
-      } =
-
-        heartTarget(
-          t,
-          scale
-        );
-
-
-      f.style.animation =
-        "none";
-
-
-      requestAnimationFrame(
-        () => {
-
-          requestAnimationFrame(
-            () => {
-
-              f.classList.add(
-                "is-heart"
-              );
-
-
-              f.style.transition =
-
-                `
-                  transform
-                  ${
-                    prefersReducedMotion
-                      ? ".05s"
-                      : "2.4s"
-                  }
-                  cubic-bezier(.3,.7,.2,1)
-                `;
-
-
-              f.style.transform =
-
-                `translate(${x}px,${y}px)`;
-
-            }
-          );
-
-        }
-      );
-
-    }
-  );
-
+function ganeshaMark(){
+  return `<svg viewBox="0 0 200 200" width="88" height="88" xmlns="http://www.w3.org/2000/svg">
+    <ellipse cx="50" cy="100" rx="32" ry="38" fill="var(--gold)"/>
+    <ellipse cx="150" cy="100" rx="32" ry="38" fill="var(--gold)"/>
+    <circle cx="100" cy="106" r="56" fill="var(--gold-bright)"/>
+    <path d="M100,150 Q88,175 100,192 Q110,200 100,184 Q98,172 106,164" stroke="var(--vermillion)" stroke-width="12" fill="none" stroke-linecap="round"/>
+    <circle cx="84" cy="102" r="5" fill="var(--bg-deep)"/>
+    <circle cx="116" cy="102" r="5" fill="var(--bg-deep)"/>
+    <path d="M78,52 Q100,34 122,52" stroke="var(--vermillion)" stroke-width="8" fill="none" stroke-linecap="round"/>
+    <circle cx="100" cy="40" r="6" fill="var(--vermillion)"/>
+  </svg>`;
 }
-
-
-/* ============================================================
-   CONFETTI
-============================================================ */
-
-function launchConfetti(){
-
-  const layer =
-    document.getElementById(
-      "confettiLayer"
-    );
-
-
-  const shapes = [
-
-    `
-    <path
-      d="
-        M16 28
-        C4 20 2 12 8 8
-        C12 5.5 16 8 16 12
-        C16 8 20 5.5 24 8
-        C30 12 28 20 16 28
-        Z
-      "
-      fill="#ffc9dc"
-    />
-    `,
-
-
-    `
-    <path
-      d="
-        M16 2
-        L19 13
-        L30 13
-        L21 20
-        L24 30
-        L16 23
-        L8 30
-        L11 20
-        L2 13
-        L13 13
-        Z
-      "
-      fill="#ffe27a"
-    />
-    `
-
+function diyaSVG(){
+  return `<svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M10 40 Q32 58 54 40 Q46 48 32 48 Q18 48 10 40Z" fill="var(--gold)"/>
+    <ellipse cx="32" cy="40" rx="22" ry="6" fill="var(--gold-bright)"/>
+    <path class="flame-icon" d="M32 10 C26 20 24 26 30 32 C33 35 35 31 33 27 C38 30 40 22 32 10Z" fill="var(--flame)"/>
+  </svg>`;
+}
+function modakSVG(){
+  return `<svg viewBox="0 0 40 40" width="18" height="18" fill="none" xmlns="http://www.w3.org/2000/svg" style="vertical-align:-4px;margin-right:6px;">
+    <path d="M20 6 C10 6 6 16 6 24 C6 32 12 36 20 36 C28 36 34 32 34 24 C34 16 30 6 20 6Z" fill="var(--gold)"/>
+    <path d="M20 6 C17 10 17 14 20 16 C23 14 23 10 20 6Z" fill="var(--gold-bright)"/>
+    <path d="M14 10 C12 12 12 15 15 16" stroke="var(--gold-bright)" stroke-width="1.5" fill="none"/>
+    <path d="M26 10 C28 12 28 15 25 16" stroke="var(--gold-bright)" stroke-width="1.5" fill="none"/>
+  </svg>`;
+}
+function heroHTML(subtitle){
+  return `<header class="hero">
+    <div class="mark">${ganeshaMark()}</div>
+    <h1>Bappa, Saath Saath</h1>
+    <p class="sub">${subtitle}</p>
+    <div class="dot-rule"></div>
+  </header>`;
+}
+function dayFlavor(idx, total){
+  if(idx === 1) return 'Sthapana \u2014 Bappa moves in today.';
+  if(idx === total) return 'The last day, before the sweetest goodbye.';
+  const arr = [
+    "Distance can't dim a flame lit with love.",
+    'Every diya you light reaches further than you think.',
+    'Bappa is watching over both your homes today.',
+    'Small ritual, big togetherness.',
+    'Another day, another reason to light up for each other.',
+    'Halfway across the miles, right on time.'
   ];
-
-
-  for(
-    let i=0;
-    i<20;
-    i++
-  ){
-
-    const piece =
-      document.createElement(
-        "div"
-      );
-
-
-    piece.className =
-      "confetti-piece";
-
-
-    piece.style.left =
-      Math.random()*100 + "%";
-
-
-    piece.style.setProperty(
-      "--dx",
-      (
-        Math.random()*160 - 80
-      ) + "px"
-    );
-
-
-    piece.style.setProperty(
-      "--rot",
-      (
-        Math.random()*720 - 360
-      ) + "deg"
-    );
-
-
-    piece.style.animationDelay =
-      Math.random()*.8 + "s";
-
-
-    piece.innerHTML =
-
-      `
-      <svg viewBox="0 0 32 32">
-
-        ${shapes[i % 2]}
-
-      </svg>
-      `;
-
-
-    layer.appendChild(
-      piece
-    );
-
-
-    setTimeout(
-      () => piece.remove(),
-      4500
-    );
-
-  }
-
+  return arr[(idx - 2) % arr.length];
+}
+function noteHTML(n){
+  const myRole = getMyRole();
+  const mine = n.role === myRole;
+  const authorName = mine ? 'You' : escapeHtml(SETUP[n.role]);
+  return `<div class="note ${mine ? 'mine' : 'theirs'}"><span>${escapeHtml(n.text)}</span><span class="meta">${authorName} \u00b7 ${fmtDate(new Date(n.ts))}</span></div>`;
+}
+function notesWallHTML(notes){
+  const items = notes.slice(-20).reverse().map(noteHTML).join('');
+  return `<div class="notes-wall">${items || '<p class="hint" style="margin:0;">No notes yet \u2014 write the first one.</p>'}</div>`;
+}
+function noteFormHTML(){
+  return `<form data-form="note" style="display:flex;gap:8px;margin-top:14px;">
+    <input type="text" name="text" placeholder="Say something\u2026" maxlength="200" required style="margin-bottom:0;flex:1;">
+    <button class="btn" type="submit">Send</button>
+  </form>`;
 }
 
-
-/* ============================================================
-   MOON / FINAL MOMENT
-============================================================ */
-
-const finale =
-  document.getElementById(
-    "finale"
-  );
-
-
-let finaleShown =
-  false;
-
-
-moon.addEventListener(
-  "click",
-  () => {
-
-    /* garden unfinished */
-
-    if(
-      bloomCount <
-      positions.length
-    ){
-
-      moon.classList.add(
-        "is-shake"
-      );
-
-
-      const previous =
-        hint.textContent;
-
-
-      hint.textContent =
-        "not yet... there are still feelings waiting to bloom ♡";
-
-
-      setTimeout(
-        () => {
-
-          moon.classList.remove(
-            "is-shake"
-          );
-
-
-          hint.textContent =
-            previous;
-
-        },
-        1800
-      );
-
-
-      return;
-
-    }
-
-
-    if(finaleShown){
-      return;
-    }
-
-
-    finaleShown =
-      true;
-
-
-    gatherFireflies();
-
-
-    setTimeout(
-      () => {
-
-        finale.classList.add(
-          "is-visible"
-        );
-
-
-        launchConfetti();
-
-      },
-
-      prefersReducedMotion
-        ? 100
-        : 2200
-
-    );
-
+async function getFestivalStats(){
+  const fetches = [];
+  for(let i = 0; i < TOTAL_DAYS; i++){
+    const d = new Date(START_DATE); d.setDate(d.getDate() + i);
+    fetches.push(sGet('ganpati-checkin-' + dateKeyFor(d), true));
   }
-);
-
-
-/* ============================================================
-   REPLAY
-============================================================ */
-
-document
-  .getElementById(
-    "replayBtn"
-  )
-  .addEventListener(
-    "click",
-    () => {
-
-      finale.classList.remove(
-        "is-visible"
-      );
-
-
-      finaleShown =
-        false;
-
-
-      bloomCount =
-        0;
-
-
-      moon.classList.remove(
-        "is-ready"
-      );
-
-
-      hint.textContent =
-        "tap the flowers and let them bloom";
-
-
-      /* reset flowers */
-
-      document
-        .querySelectorAll(
-          ".flower.is-bloomed"
-        )
-        .forEach(
-          flower =>
-
-            flower.classList.remove(
-              "is-bloomed"
-            )
-        );
-
-
-      /* reset fireflies */
-
-      fireflies.forEach(
-        f => {
-
-          f.classList.remove(
-            "is-heart"
-          );
-
-
-          f.style.transition =
-            "";
-
-
-          f.style.transform =
-            "";
-
-
-          f.style.animation =
-            "";
-
-        }
-      );
-
-    }
-  );
-
-
-/* ============================================================
-   ESCAPE
-============================================================ */
-
-document.addEventListener(
-  "keydown",
-  e => {
-
-    if(
-      e.key === "Escape" &&
-      finaleShown
-    ){
-
-      finale.classList.remove(
-        "is-visible"
-      );
-
-    }
-
+  const results = await Promise.all(fetches);
+  const doneDays = results.map(c => !!(c && c.personA && c.personB));
+  const together = doneDays.filter(Boolean).length;
+  const isOver = TODAY_IDX > TOTAL_DAYS;
+  let streak = 0;
+  if(isOver){
+    for(let i = doneDays.length - 1; i >= 0; i--){ if(doneDays[i]) streak++; else break; }
+  }else{
+    const priorCount = Math.max(0, Math.min(TODAY_IDX - 1, TOTAL_DAYS));
+    for(let i = priorCount - 1; i >= 0; i--){ if(doneDays[i]) streak++; else break; }
   }
-);
+  return { doneDays, together, streak };
+}
 
+function setupHTML(){
+  return `<div class="wrap">
+    ${heroHTML('Your long-distance Ganeshotsav \u2014 Sthapana is ' + fmtDate(START_DATE))}
+    <div class="card">
+      <h2>Set up your corner for Bappa</h2>
+      <p class="hint">Fill this in, then share this page's link with them and they'll join from their side. Anyone with the link can see and add to your shared aarti, modaks and notes.</p>
+      <form data-form="setup">
+        <label for="you-input">Your name</label>
+        <input id="you-input" type="text" name="you" placeholder="e.g. Ayush" required maxlength="24">
+        <label for="partner-input">Their name</label>
+        <input id="partner-input" type="text" name="partner" placeholder="e.g. Dhari" required maxlength="24">
+        <label>How many days will Bappa stay?</label>
+        <div class="duration-grid">
+          ${DURATIONS.map(d => `<div class="duration-opt${d.days === 10 ? ' selected' : ''}" data-action="select-duration" data-days="${d.days}">${d.label}<br><span style="opacity:.7">Visarjan ${d.endLabel}</span></div>`).join('')}
+        </div>
+        <input type="hidden" name="duration" value="10">
+        <button class="btn" type="submit" style="width:100%;">Welcome Bappa home, together</button>
+      </form>
+    </div>
+  </div>`;
+}
+function whoHTML(){
+  return `<div class="wrap">
+    ${heroHTML(escapeHtml(SETUP.personA) + ' & ' + escapeHtml(SETUP.personB) + "'s shared Ganeshotsav")}
+    <div class="card" style="text-align:center;">
+      <h2>Quick check \u2014 which one are you?</h2>
+      <p class="hint">So we know whose diya is whose.</p>
+      <button class="btn who-btn" type="button" data-action="choose-who" data-name="${escapeHtml(SETUP.personA)}">${escapeHtml(SETUP.personA)}</button>
+      <button class="btn secondary who-btn" type="button" data-action="choose-who" data-name="${escapeHtml(SETUP.personB)}">${escapeHtml(SETUP.personB)}</button>
+    </div>
+  </div>`;
+}
+function countdownHTML(notes){
+  const daysLeft = 1 - TODAY_IDX;
+  const dur = currentDuration();
+  return `<div class="wrap">
+    ${heroHTML(escapeHtml(SETUP.personA) + ' & ' + escapeHtml(SETUP.personB))}
+    <div class="card" style="text-align:center;">
+      <h2>Bappa arrives in ${daysLeft} day${daysLeft === 1 ? '' : 's'}</h2>
+      <p class="hint">Sthapana is ${fmtDate(START_DATE)}. You've chosen ${dur.days === 10 ? 'the full 10 days' : dur.label.toLowerCase()} \u2014 visarjan on ${dur.endLabel}. Come back once he's home to light the first diya, together.</p>
+    </div>
+    <div class="card">
+      <h2>Leave an early note</h2>
+      <p class="hint">Tell them you can't wait.</p>
+      ${notesWallHTML(notes)}
+      ${noteFormHTML()}
+    </div>
+  </div>`;
+}
+function todayHTML(checkin, modaks, notes, stats){
+  const myRole = getMyRole();
+  const isLastDay = TODAY_IDX === TOTAL_DAYS;
+  const flavor = dayFlavor(TODAY_IDX, TOTAL_DAYS);
+  const modakA = modaks.personA || 0, modakB = modaks.personB || 0;
+  const modakTotal = modakA + modakB;
+  const plateIcons = Array.from({length: Math.min(modakTotal, 21)}).map(() => `<span class="modak-icon">${modakSVG()}</span>`).join('');
+  const dots = Array.from({length: TOTAL_DAYS}).map((_, i) => {
+    const idx = i + 1;
+    const cls = ['day-dot'];
+    if(idx === TODAY_IDX) cls.push('today');
+    if(stats.doneDays[i]) cls.push('done');
+    return `<div class="${cls.join(' ')}">${idx}</div>`;
+  }).join('');
+
+  return `<div class="wrap">
+    ${heroHTML(escapeHtml(SETUP.personA) + ' & ' + escapeHtml(SETUP.personB))}
+    <div class="card" style="text-align:center;">
+      <h2>Day ${TODAY_IDX} of ${TOTAL_DAYS}</h2>
+      <p class="hint">${fmtDate(new Date())} \u00b7 ${flavor}</p>
+    </div>
+    <div class="card">
+      <h2>Aarti, together</h2>
+      <p class="hint">Light your diya. When you're both lit, Bappa's watching over two homes at once.</p>
+      <div class="diya-row">
+        <div class="diya-unit">
+          <button class="diya-btn ${checkin.personA ? 'lit' : ''}" type="button" data-action="light-diya" data-role="personA" ${myRole !== 'personA' ? 'disabled' : ''}>${diyaSVG()}</button>
+          <div class="name">${escapeHtml(SETUP.personA)}${myRole === 'personA' ? ' \u00b7 you' : ''}</div>
+        </div>
+        <div class="diya-unit">
+          <button class="diya-btn ${checkin.personB ? 'lit' : ''}" type="button" data-action="light-diya" data-role="personB" ${myRole !== 'personB' ? 'disabled' : ''}>${diyaSVG()}</button>
+          <div class="name">${escapeHtml(SETUP.personB)}${myRole === 'personB' ? ' \u00b7 you' : ''}</div>
+        </div>
+      </div>
+      <div style="text-align:center;margin-bottom:4px;">
+        <button class="btn secondary" type="button" data-action="ring-bell">Ring the bell</button>
+      </div>
+      ${stats.streak > 0 ? `<p style="text-align:center;color:var(--gold-bright);font-weight:600;margin:12px 0 0;">${stats.streak}-day streak, lit together</p>` : ''}
+      <details class="aarti-text" style="margin-top:16px;">
+        <summary>Sukhkarta Dukhharta \u2014 read along</summary>
+        <p>Sukhkarta Dukhharta, Varta Vighnachi<br>Nurvi Purvi Prem Krupa Jayachi<br>Sarvangi Sundar Uti Shendurachi<br>Kanti Jhalke Mal Mukta Phalachi</p>
+        <p><em>Jai Deva Jai Deva, Jai Mangalmurti<br>Darshanamatre Manakamana Purti</em></p>
+        <p>Ratnakhachit Phara Tuj Gaurikumra<br>Chandanachi Uti Kumkumkeshara<br>Hi Phal Paane Rishi Muni Dolyara<br>Runadheen Atrisa Bhaktichya Para</p>
+        <p><em>Jai Deva Jai Deva, Jai Mangalmurti<br>Darshanamatre Manakamana Purti</em></p>
+      </details>
+    </div>
+    <div class="card">
+      <h2>Offer a modak</h2>
+      <p class="hint">His favourite. Offer one each, any time today.</p>
+      <div class="modak-plate">${plateIcons || '<p class="hint" style="margin:0;">The plate is empty \u2014 be the first today.</p>'}</div>
+      <div style="text-align:center;">
+        <button class="btn" type="button" data-action="offer-modak">${modakSVG()}Offer a modak</button>
+      </div>
+      <p style="text-align:center;color:var(--ivory-dim);font-size:12.5px;margin-top:10px;">${escapeHtml(SETUP.personA)}: ${modakA} &nbsp;\u00b7&nbsp; ${escapeHtml(SETUP.personB)}: ${modakB}</p>
+    </div>
+    <div class="card">
+      <h2>Notes to each other</h2>
+      <p class="hint">Little things you'd say if the miles weren't there.</p>
+      ${notesWallHTML(notes)}
+      ${noteFormHTML()}
+    </div>
+    <div class="card">
+      <h2>Your journey</h2>
+      <div class="timeline">${dots}</div>
+    </div>
+    ${isLastDay ? `<div class="card" style="text-align:center;">
+      <h2>Ready to say goodbye for now?</h2>
+      <p class="hint">Do today's aarti together first, then begin the visarjan whenever you're both ready.</p>
+      <button class="btn" type="button" data-action="begin-visarjan">Begin visarjan, together</button>
+    </div>` : ''}
+  </div>`;
+}
+function farewellHTML(stats, modaks, notesCount){
+  const modakA = modaks.personA || 0, modakB = modaks.personB || 0;
+  const modakTotal = modakA + modakB;
+  return `<div class="wrap">
+    ${heroHTML('Ganpati Bappa Morya')}
+    <div class="card" style="text-align:center;">
+      <h2>Ganpati Bappa Morya, Pudhchya Varshi Lavkar Ya</h2>
+      <p class="hint">Hail Lord Ganesha \u2014 come again soon next year. ${escapeHtml(SETUP.personA)} and ${escapeHtml(SETUP.personB)} brought him home together this year, even from a distance.</p>
+    </div>
+    <div class="card">
+      <h2>This year, together</h2>
+      <p class="hint" style="margin-bottom:0;">
+        \ud83e\udee1 ${stats.together} of ${TOTAL_DAYS} days, both diyas lit<br>
+        \ud83d\udd25 Best streak: ${stats.streak} day${stats.streak === 1 ? '' : 's'} in a row<br>
+        ${modakSVG()}${modakTotal} modaks offered (${escapeHtml(SETUP.personA)}: ${modakA}, ${escapeHtml(SETUP.personB)}: ${modakB})<br>
+        \ud83d\udc8c ${notesCount} note${notesCount === 1 ? '' : 's'} sent to each other
+      </p>
+    </div>
+    <div class="card" style="text-align:center;">
+      <p class="hint">Starting over for next year?</p>
+      <button class="btn secondary" type="button" data-action="reset-all">Start fresh for next year</button>
+    </div>
+  </div>`;
+}
+
+async function render(){
+  if(!SETUP){ appEl.innerHTML = setupHTML(); return; }
+  if(!WHOAMI){ appEl.innerHTML = whoHTML(); return; }
+  const visarjan = await sGet('ganpati-visarjan', true);
+  const isFarewell = (visarjan && visarjan.done) || TODAY_IDX > TOTAL_DAYS;
+  if(isFarewell){
+    const stats = await getFestivalStats();
+    const modaks = (await sGet('ganpati-modaks', true)) || {personA:0, personB:0};
+    const notes = (await sGet('ganpati-notes', true)) || [];
+    appEl.innerHTML = farewellHTML(stats, modaks, notes.length);
+    return;
+  }
+  if(TODAY_IDX < 1){
+    const notes = (await sGet('ganpati-notes', true)) || [];
+    appEl.innerHTML = countdownHTML(notes);
+    return;
+  }
+  const todayKey = dateKeyFor(new Date());
+  const checkin = (await sGet('ganpati-checkin-' + todayKey, true)) || {personA:false, personB:false};
+  const modaks = (await sGet('ganpati-modaks', true)) || {personA:0, personB:0};
+  const notes = (await sGet('ganpati-notes', true)) || [];
+  const stats = await getFestivalStats();
+  appEl.innerHTML = todayHTML(checkin, modaks, notes, stats);
+}
+
+function updateDurationSelection(t){
+  const grid = t.parentElement;
+  grid.querySelectorAll('.duration-opt').forEach(el => el.classList.remove('selected'));
+  t.classList.add('selected');
+  const form = t.closest('form');
+  form.querySelector('input[name=duration]').value = t.dataset.days;
+}
+async function submitSetup(form){
+  const you = form.you.value.trim();
+  const partner = form.partner.value.trim();
+  const duration = Number(form.duration.value);
+  if(!you || !partner) return;
+  const obj = {personA: you, personB: partner, durationDays: duration, createdAt: Date.now()};
+  await sSet('ganpati-setup', obj, true);
+  await sSet('ganpati-whoami', {name: you}, false);
+  SETUP = obj; WHOAMI = you;
+  TOTAL_DAYS = Math.ceil(currentDuration().days);
+  TODAY_IDX = dayIndexFor(new Date());
+  render();
+}
+async function submitNote(form){
+  const text = form.text.value.trim();
+  if(!text) return;
+  const notes = (await sGet('ganpati-notes', true)) || [];
+  notes.push({role: getMyRole(), text, ts: Date.now()});
+  if(notes.length > 300) notes.splice(0, notes.length - 300);
+  await sSet('ganpati-notes', notes, true);
+  form.reset();
+  render();
+}
+async function chooseWho(name){
+  await sSet('ganpati-whoami', {name}, false);
+  WHOAMI = name;
+  render();
+}
+function celebrate(){
+  const row = document.querySelector('.diya-row');
+  if(!row) return;
+  for(let i = 0; i < 18; i++){
+    const s = document.createElement('span');
+    s.className = 'confetti-piece';
+    const angle = Math.random() * Math.PI * 2;
+    const dist = 40 + Math.random() * 80;
+    s.style.setProperty('--tx', Math.cos(angle) * dist + 'px');
+    s.style.setProperty('--ty', Math.sin(angle) * dist + 'px');
+    s.style.setProperty('--rot', (Math.random() * 360) + 'deg');
+    s.style.background = Math.random() > 0.5 ? 'var(--gold)' : 'var(--vermillion)';
+    row.appendChild(s);
+    setTimeout(() => s.remove(), 1000);
+  }
+}
+async function lightDiya(role){
+  if(role !== getMyRole()) return;
+  const key = 'ganpati-checkin-' + dateKeyFor(new Date());
+  const cur = (await sGet(key, true)) || {personA:false, personB:false};
+  const wasBoth = !!(cur.personA && cur.personB);
+  cur[role] = !cur[role];
+  cur[role + '_ts'] = Date.now();
+  await sSet(key, cur, true);
+  const nowBoth = !!(cur.personA && cur.personB);
+  await render();
+  if(!wasBoth && nowBoth) celebrate();
+}
+function ringBell(){
+  try{
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    const o = ctx.createOscillator();
+    const g = ctx.createGain();
+    o.type = 'sine';
+    o.frequency.setValueAtTime(880, ctx.currentTime);
+    o.frequency.exponentialRampToValueAtTime(660, ctx.currentTime + 0.8);
+    g.gain.setValueAtTime(0.2, ctx.currentTime);
+    g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 1.2);
+    o.connect(g); g.connect(ctx.destination);
+    o.start(); o.stop(ctx.currentTime + 1.2);
+  }catch(e){ /* audio not available */ }
+}
+async function offerModak(){
+  const key = 'ganpati-modaks';
+  const cur = (await sGet(key, true)) || {personA:0, personB:0};
+  const role = getMyRole();
+  cur[role] = (cur[role] || 0) + 1;
+  await sSet(key, cur, true);
+  render();
+}
+async function beginVisarjan(){
+  await sSet('ganpati-visarjan', {done:true, ts:Date.now()}, true);
+  render();
+}
+async function resetAll(){
+  if(!confirm("This clears this year's Bappa corner for both of you, so you can start fresh next year. Continue?")) return;
+  await safeDelete('ganpati-setup', true);
+  await safeDelete('ganpati-modaks', true);
+  await safeDelete('ganpati-notes', true);
+  await safeDelete('ganpati-visarjan', true);
+  for(let i = 0; i < TOTAL_DAYS; i++){
+    const d = new Date(START_DATE); d.setDate(d.getDate() + i);
+    await safeDelete('ganpati-checkin-' + dateKeyFor(d), true);
+  }
+  await safeDelete('ganpati-whoami', false);
+  SETUP = null; WHOAMI = null; TOTAL_DAYS = 0; TODAY_IDX = 0;
+  render();
+}
+
+appEl.addEventListener('click', async (e) => {
+  const t = e.target.closest('[data-action]');
+  if(!t) return;
+  const action = t.dataset.action;
+  if(action === 'select-duration'){ updateDurationSelection(t); return; }
+  if(action === 'choose-who'){ await chooseWho(t.dataset.name); return; }
+  if(action === 'light-diya'){ await lightDiya(t.dataset.role); return; }
+  if(action === 'ring-bell'){ ringBell(); return; }
+  if(action === 'offer-modak'){ await offerModak(); return; }
+  if(action === 'begin-visarjan'){ await beginVisarjan(); return; }
+  if(action === 'reset-all'){ await resetAll(); return; }
+});
+appEl.addEventListener('submit', async (e) => {
+  const form = e.target;
+  if(form.dataset && form.dataset.form === 'setup'){ e.preventDefault(); await submitSetup(form); }
+  else if(form.dataset && form.dataset.form === 'note'){ e.preventDefault(); await submitNote(form); }
+});
+
+async function init(){
+  const setupRes = await sGet('ganpati-setup', true);
+  SETUP = setupRes;
+  if(SETUP){
+    const whoRes = await sGet('ganpati-whoami', false);
+    WHOAMI = whoRes ? whoRes.name : null;
+    TOTAL_DAYS = Math.ceil(currentDuration().days);
+    TODAY_IDX = dayIndexFor(new Date());
+  }
+  render();
+}
+init();
 </script>
-
 </body>
 </html>

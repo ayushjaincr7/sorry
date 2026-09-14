@@ -48,7 +48,6 @@ html {
 
 body {
     min-height: 100vh;
-
     background:
         radial-gradient(
             circle at 50% -10%,
@@ -63,11 +62,7 @@ body {
         var(--bg);
 
     color: var(--cream);
-
-    font-family:
-        "DM Sans",
-        sans-serif;
-
+    font-family: "DM Sans", sans-serif;
     overflow-x: hidden;
 }
 
@@ -89,16 +84,14 @@ button:disabled {
 }
 
 
-/* =========================================================
+/* =========================================
    BACKGROUND
-========================================================= */
+========================================= */
 
 .bg-glow {
     position: fixed;
     inset: 0;
-
     pointer-events: none;
-
     z-index: -2;
 
     background:
@@ -117,24 +110,17 @@ button:disabled {
 #particles {
     position: fixed;
     inset: 0;
-
     pointer-events: none;
-
     z-index: -1;
-
     overflow: hidden;
 }
 
 .particle {
     position: absolute;
-
     width: 3px;
     height: 3px;
-
     border-radius: 50%;
-
     background: var(--gold);
-
     opacity: .35;
 
     animation:
@@ -154,9 +140,9 @@ button:disabled {
 }
 
 
-/* =========================================================
+/* =========================================
    COMMON
-========================================================= */
+========================================= */
 
 #app {
     width: 100%;
@@ -168,7 +154,6 @@ button:disabled {
     min-height: 100vh;
 
     display: flex;
-
     align-items: center;
     justify-content: center;
 
@@ -184,9 +169,9 @@ h3 {
 }
 
 
-/* =========================================================
+/* =========================================
    SETUP
-========================================================= */
+========================================= */
 
 .setup-card {
 
@@ -222,7 +207,6 @@ h3 {
     margin: 0 auto 18px;
 
     display: flex;
-
     align-items: center;
     justify-content: center;
 
@@ -305,8 +289,7 @@ input {
 
 input:focus {
 
-    border-color:
-        var(--gold);
+    border-color: var(--gold);
 
     box-shadow:
         0 0 0 3px
@@ -318,9 +301,9 @@ input::placeholder {
 }
 
 
-/* =========================================================
+/* =========================================
    DURATION
-========================================================= */
+========================================= */
 
 .duration-grid {
 
@@ -363,9 +346,9 @@ input::placeholder {
 }
 
 
-/* =========================================================
+/* =========================================
    BUTTONS
-========================================================= */
+========================================= */
 
 .primary-btn {
 
@@ -399,8 +382,7 @@ input::placeholder {
 
 .primary-btn:hover {
 
-    transform:
-        translateY(-2px);
+    transform: translateY(-2px);
 
     box-shadow:
         0 15px 35px
@@ -419,9 +401,9 @@ input::placeholder {
 }
 
 
-/* =========================================================
+/* =========================================
    ROLE
-========================================================= */
+========================================= */
 
 .role-card {
 
@@ -478,8 +460,7 @@ input::placeholder {
 
 .role-btn:hover {
 
-    transform:
-        translateY(-4px);
+    transform: translateY(-4px);
 
     border-color:
         rgba(231,183,95,.5);
@@ -513,14 +494,13 @@ input::placeholder {
 }
 
 
-/* =========================================================
+/* =========================================
    DASHBOARD
-========================================================= */
+========================================= */
 
 .dashboard {
 
-    width:
-        min(1100px, 100%);
+    width: min(1100px, 100%);
 
     margin: auto;
 
@@ -617,9 +597,9 @@ input::placeholder {
 }
 
 
-/* =========================================================
+/* =========================================
    HERO
-========================================================= */
+========================================= */
 
 .hero {
 
@@ -628,7 +608,7 @@ input::placeholder {
     overflow: hidden;
 
     padding:
-        42px 25px 32px;
+        42px 25px;
 
     margin-bottom: 20px;
 
@@ -710,7 +690,7 @@ input::placeholder {
     padding:
         9px 16px;
 
-    margin-top: 15px;
+    margin-top: 20px;
 
     border-radius: 50px;
 
@@ -727,494 +707,66 @@ input::placeholder {
 }
 
 
-/* =========================================================
-   ANIMATED GANESH JI
-========================================================= */
+/* =========================================
+   GANESH
+========================================= */
 
 .ganesh-wrap {
 
     width:
-        min(300px, 75vw);
+        min(270px, 70vw);
 
     aspect-ratio: 1;
 
     position: relative;
 
     margin:
-        25px auto 10px;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    animation:
-        ganeshFloat 4s ease-in-out infinite;
+        30px auto 15px;
 }
 
-
-/* Golden aura */
-
-.ganesh-aura {
+.ganesh-glow {
 
     position: absolute;
 
-    width: 82%;
-    height: 82%;
+    inset: 10%;
 
     border-radius: 50%;
 
     background:
         radial-gradient(
             circle,
-            rgba(255,213,125,.38) 0%,
-            rgba(231,183,95,.18) 35%,
-            transparent 72%
+            rgba(231,183,95,.22),
+            transparent 68%
         );
 
-    filter: blur(12px);
-
-    animation:
-        auraPulse 3s ease-in-out infinite;
+    filter: blur(10px);
 }
-
-
-/* SVG container */
 
 .ganesh {
 
     position: absolute;
 
-    inset: 5%;
+    inset: 18%;
 
     display: flex;
 
     align-items: center;
     justify-content: center;
 
+    font-size:
+        clamp(100px, 25vw, 170px);
+
     filter:
         drop-shadow(
-            0 15px 25px
-            rgba(231,183,95,.25)
+            0 10px 25px
+            rgba(231,183,95,.16)
         );
 }
 
-.ganesh-svg {
 
-    width: 100%;
-    height: 100%;
-
-    overflow: visible;
-}
-
-
-/* =========================================================
-   GANESH SVG COLORS
-========================================================= */
-
-.g-crown,
-.g-jewel,
-.g-face,
-.g-ear,
-.g-body,
-.g-belly,
-.g-arm,
-.g-foot,
-.g-trunk,
-.g-modak {
-
-    transform-box:
-        fill-box;
-
-    transform-origin:
-        center;
-}
-
-
-/* Crown */
-
-.g-crown {
-
-    fill: #d79a32;
-
-    stroke: #ffe2a0;
-
-    stroke-width: 3;
-
-    animation:
-        crownGlow 2.5s ease-in-out infinite;
-}
-
-
-/* Crown jewel */
-
-.g-jewel {
-
-    fill: #ffdf7e;
-
-    animation:
-        jewelPulse 1.8s ease-in-out infinite;
-}
-
-
-/* Face */
-
-.g-face,
-.g-ear {
-
-    fill: #d87942;
-
-    stroke: #ffd08a;
-
-    stroke-width: 3;
-}
-
-
-/* Body */
-
-.g-body {
-
-    fill: #c9693d;
-
-    stroke: #ffd08a;
-
-    stroke-width: 3;
-}
-
-
-/* Belly */
-
-.g-belly {
-
-    fill: #df8a4e;
-
-    stroke: #ffd08a;
-
-    stroke-width: 2;
-}
-
-
-/* Eyes */
-
-.g-eye {
-
-    fill: #241016;
-
-    transform-box:
-        fill-box;
-
-    transform-origin:
-        center;
-
-    animation:
-        eyeBlink 5s infinite;
-}
-
-
-/* Tilak */
-
-.g-tilak {
-
-    fill: #8d2639;
-}
-
-
-/* Trunk */
-
-.g-trunk {
-
-    fill: none;
-
-    stroke: #d87942;
-
-    stroke-width: 24;
-
-    stroke-linecap: round;
-
-    transform-box:
-        fill-box;
-
-    transform-origin:
-        center;
-
-    animation:
-        trunkMove 4s ease-in-out infinite;
-}
-
-.g-trunk-tip {
-
-    fill: none;
-
-    stroke: #d87942;
-
-    stroke-width: 12;
-
-    stroke-linecap: round;
-}
-
-
-/* Arms */
-
-.g-arm {
-
-    fill: none;
-
-    stroke: #d87942;
-
-    stroke-width: 15;
-
-    stroke-linecap: round;
-}
-
-
-/* Modak */
-
-.g-modak {
-
-    fill: #e7b75f;
-
-    stroke: #ffe3a5;
-
-    stroke-width: 2;
-
-    animation:
-        modakGlow 2s ease-in-out infinite;
-}
-
-.g-modak-lines {
-
-    fill: none;
-
-    stroke: #9a552d;
-
-    stroke-width: 2;
-}
-
-
-/* Feet */
-
-.g-foot {
-
-    fill: #c9693d;
-
-    stroke: #ffd08a;
-
-    stroke-width: 2;
-}
-
-
-/* =========================================================
-   GANESH ANIMATIONS
-========================================================= */
-
-@keyframes ganeshFloat {
-
-    0%,
-    100% {
-        transform:
-            translateY(0);
-    }
-
-    50% {
-        transform:
-            translateY(-9px);
-    }
-}
-
-@keyframes auraPulse {
-
-    0%,
-    100% {
-
-        transform:
-            scale(.92);
-
-        opacity: .65;
-    }
-
-    50% {
-
-        transform:
-            scale(1.08);
-
-        opacity: 1;
-    }
-}
-
-@keyframes crownGlow {
-
-    0%,
-    100% {
-
-        filter:
-            drop-shadow(
-                0 0 3px
-                rgba(255,215,120,.2)
-            );
-    }
-
-    50% {
-
-        filter:
-            drop-shadow(
-                0 0 14px
-                rgba(255,215,120,.75)
-            );
-    }
-}
-
-@keyframes jewelPulse {
-
-    0%,
-    100% {
-
-        transform:
-            scale(.85);
-
-        opacity: .75;
-    }
-
-    50% {
-
-        transform:
-            scale(1.25);
-
-        opacity: 1;
-    }
-}
-
-@keyframes modakGlow {
-
-    0%,
-    100% {
-
-        filter:
-            drop-shadow(
-                0 0 2px
-                rgba(255,215,120,.2)
-            );
-    }
-
-    50% {
-
-        filter:
-            drop-shadow(
-                0 0 12px
-                rgba(255,215,120,.7)
-            );
-    }
-}
-
-@keyframes trunkMove {
-
-    0%,
-    100% {
-
-        transform:
-            rotate(0deg);
-    }
-
-    50% {
-
-        transform:
-            rotate(-2deg);
-    }
-}
-
-@keyframes eyeBlink {
-
-    0%,
-    46%,
-    49%,
-    100% {
-
-        transform:
-            scaleY(1);
-    }
-
-    47%,
-    48% {
-
-        transform:
-            scaleY(.08);
-    }
-}
-
-
-/* =========================================================
-   GANESH SPARKLES
-========================================================= */
-
-.ganesh-sparkle {
-
-    position: absolute;
-
-    color:
-        var(--gold2);
-
-    font-size: 20px;
-
-    text-shadow:
-        0 0 10px
-        rgba(255,215,120,.8);
-
-    animation:
-        sparkleFloat 2.5s ease-in-out infinite;
-}
-
-.sparkle-1 {
-
-    top: 16%;
-    left: 10%;
-
-    animation-delay:
-        0s;
-}
-
-.sparkle-2 {
-
-    top: 28%;
-    right: 8%;
-
-    animation-delay:
-        .8s;
-}
-
-.sparkle-3 {
-
-    bottom: 18%;
-    left: 17%;
-
-    animation-delay:
-        1.5s;
-}
-
-@keyframes sparkleFloat {
-
-    0%,
-    100% {
-
-        transform:
-            scale(.5)
-            rotate(0deg);
-
-        opacity: .2;
-    }
-
-    50% {
-
-        transform:
-            scale(1.25)
-            rotate(180deg);
-
-        opacity: 1;
-    }
-}
-
-
-/* =========================================================
+/* =========================================
    CONTENT
-========================================================= */
+========================================= */
 
 .content-grid {
 
@@ -1230,21 +782,17 @@ input::placeholder {
 
     padding: 22px;
 
-    border-radius:
-        var(--radius);
+    border-radius: var(--radius);
 
     border:
         1px solid
         rgba(231,183,95,.13);
 
-    background:
-        var(--card);
+    background: var(--card);
 
-    box-shadow:
-        var(--shadow);
+    box-shadow: var(--shadow);
 
-    backdrop-filter:
-        blur(12px);
+    backdrop-filter: blur(12px);
 }
 
 .card-title {
@@ -1281,16 +829,15 @@ input::placeholder {
 }
 
 
-/* =========================================================
+/* =========================================
    DIYAS
-========================================================= */
+========================================= */
 
 .diya-area {
 
     display: flex;
 
-    align-items:
-        flex-end;
+    align-items: flex-end;
 
     justify-content:
         space-around;
@@ -1300,7 +847,6 @@ input::placeholder {
 }
 
 .diya {
-
     text-align: center;
 }
 
@@ -1317,8 +863,7 @@ input::placeholder {
 
 .diya-name {
 
-    color:
-        var(--muted);
+    color: var(--muted);
 
     font-size: 11px;
 
@@ -1328,7 +873,6 @@ input::placeholder {
 @keyframes flicker {
 
     from {
-
         transform:
             scale(.95)
             rotate(-2deg);
@@ -1337,7 +881,6 @@ input::placeholder {
     }
 
     to {
-
         transform:
             scale(1.08)
             rotate(2deg);
@@ -1347,9 +890,9 @@ input::placeholder {
 }
 
 
-/* =========================================================
+/* =========================================
    ACTIONS
-========================================================= */
+========================================= */
 
 .action-grid {
 
@@ -1376,8 +919,7 @@ input::placeholder {
     background:
         rgba(0,0,0,.16);
 
-    color:
-        var(--cream);
+    color: var(--cream);
 
     transition: .2s;
 }
@@ -1402,8 +944,7 @@ input::placeholder {
 
 .action-label {
 
-    color:
-        var(--gold2);
+    color: var(--gold2);
 
     font-size: 12px;
 
@@ -1412,8 +953,7 @@ input::placeholder {
 
 .action-value {
 
-    color:
-        var(--muted);
+    color: var(--muted);
 
     font-size: 10px;
 
@@ -1421,9 +961,9 @@ input::placeholder {
 }
 
 
-/* =========================================================
+/* =========================================
    MODAK
-========================================================= */
+========================================= */
 
 .modak-count {
 
@@ -1435,8 +975,7 @@ input::placeholder {
 
 .modak-number {
 
-    color:
-        var(--gold2);
+    color: var(--gold2);
 
     font-family:
         "Cormorant Garamond",
@@ -1449,8 +988,7 @@ input::placeholder {
 
 .modak-label {
 
-    color:
-        var(--muted);
+    color: var(--muted);
 
     font-size: 12px;
 }
@@ -1473,8 +1011,7 @@ input::placeholder {
     background:
         rgba(231,183,95,.08);
 
-    color:
-        var(--gold2);
+    color: var(--gold2);
 
     transition: .2s;
 }
@@ -1486,9 +1023,9 @@ input::placeholder {
 }
 
 
-/* =========================================================
+/* =========================================
    NOTES
-========================================================= */
+========================================= */
 
 .note-input {
 
@@ -1509,8 +1046,7 @@ input::placeholder {
 
     border-radius: 14px;
 
-    background:
-        var(--gold);
+    background: var(--gold);
 
     color: #25120d;
 
@@ -1548,8 +1084,7 @@ input::placeholder {
 
 .note-author {
 
-    color:
-        var(--gold);
+    color: var(--gold);
 
     font-size: 10px;
 
@@ -1558,8 +1093,7 @@ input::placeholder {
 
 .note-text {
 
-    color:
-        var(--cream);
+    color: var(--cream);
 
     font-size: 12px;
 
@@ -1567,9 +1101,9 @@ input::placeholder {
 }
 
 
-/* =========================================================
+/* =========================================
    STATS
-========================================================= */
+========================================= */
 
 .stats-grid {
 
@@ -1583,8 +1117,7 @@ input::placeholder {
 
 .stat {
 
-    padding:
-        16px 8px;
+    padding: 16px 8px;
 
     text-align: center;
 
@@ -1596,8 +1129,7 @@ input::placeholder {
 
 .stat-number {
 
-    color:
-        var(--gold2);
+    color: var(--gold2);
 
     font-family:
         "Cormorant Garamond",
@@ -1608,16 +1140,15 @@ input::placeholder {
 
 .stat-label {
 
-    color:
-        var(--muted);
+    color: var(--muted);
 
     font-size: 9px;
 }
 
 
-/* =========================================================
+/* =========================================
    SHARE
-========================================================= */
+========================================= */
 
 .share-box {
 
@@ -1626,8 +1157,7 @@ input::placeholder {
 
 .share-box p {
 
-    color:
-        var(--muted);
+    color: var(--muted);
 
     font-size: 12px;
 
@@ -1651,8 +1181,7 @@ input::placeholder {
     background:
         rgba(231,183,95,.08);
 
-    color:
-        var(--gold2);
+    color: var(--gold2);
 
     font-weight: 600;
 }
@@ -1669,9 +1198,9 @@ input::placeholder {
 }
 
 
-/* =========================================================
+/* =========================================
    FOOTER
-========================================================= */
+========================================= */
 
 .footer {
 
@@ -1690,9 +1219,9 @@ input::placeholder {
 }
 
 
-/* =========================================================
+/* =========================================
    TOAST
-========================================================= */
+========================================= */
 
 #toast {
 
@@ -1711,11 +1240,9 @@ input::placeholder {
 
     border-radius: 50px;
 
-    background:
-        #fff1d2;
+    background: #fff1d2;
 
-    color:
-        #301710;
+    color: #301710;
 
     font-size: 12px;
 
@@ -1746,16 +1273,14 @@ input::placeholder {
 }
 
 
-/* =========================================================
+/* =========================================
    MOBILE
-========================================================= */
+========================================= */
 
 @media (max-width: 800px) {
 
     .content-grid {
-
-        grid-template-columns:
-            1fr;
+        grid-template-columns: 1fr;
     }
 
 }
@@ -1763,102 +1288,62 @@ input::placeholder {
 @media (max-width: 560px) {
 
     .screen {
-
         padding: 15px;
     }
 
     .setup-card {
-
-        padding:
-            27px 20px;
-
-        border-radius:
-            25px;
+        padding: 27px 20px;
+        border-radius: 25px;
     }
 
     .role-grid {
-
         gap: 10px;
     }
 
     .role-btn {
-
-        padding:
-            22px 8px;
+        padding: 22px 8px;
     }
 
     .topbar {
-
-        align-items:
-            flex-start;
+        align-items: flex-start;
     }
 
     .brand-title {
-
         font-size: 23px;
     }
 
     .sync-status {
-
         font-size: 9px;
-
-        padding:
-            7px 9px;
+        padding: 7px 9px;
     }
 
     .hero {
-
-        padding:
-            35px 18px;
+        padding: 35px 18px;
     }
 
     .card {
-
-        padding:
-            17px;
-
-        border-radius:
-            20px;
+        padding: 17px;
+        border-radius: 20px;
     }
 
     .duration-grid {
-
         gap: 5px;
     }
 
     .duration-btn {
-
         font-size: 12px;
     }
-
-    .ganesh-wrap {
-
-        width:
-            min(270px, 78vw);
-
-        margin-top: 22px;
-    }
-
 }
 
 @media (max-width: 380px) {
 
     .brand-subtitle {
-
         display: none;
     }
 
     .action-grid {
-
-        grid-template-columns:
-            1fr 1fr;
+        grid-template-columns: 1fr 1fr;
     }
-
-    .ganesh-wrap {
-
-        width: 240px;
-    }
-
 }
 
 </style>
@@ -1877,7 +1362,6 @@ input::placeholder {
 
 
 <script type="module">
-
 
 /* =========================================================
    FIREBASE IMPORTS
@@ -1952,7 +1436,6 @@ const firebaseConfig = {
 const firebaseApp =
     initializeApp(firebaseConfig);
 
-
 let analytics = null;
 
 try {
@@ -1989,9 +1472,7 @@ const ROLE_KEY =
 
 
 const app =
-    document.getElementById(
-        "app"
-    );
+    document.getElementById("app");
 
 
 let state = null;
@@ -2024,9 +1505,7 @@ async function authenticate() {
     try {
 
         const result =
-            await signInAnonymously(
-                auth
-            );
+            await signInAnonymously(auth);
 
         currentUser =
             result.user;
@@ -2070,8 +1549,7 @@ onAuthStateChanged(
     auth,
     user => {
 
-        currentUser =
-            user;
+        currentUser = user;
 
         if (user) {
 
@@ -2081,6 +1559,7 @@ onAuthStateChanged(
                 "online",
                 "Connected"
             );
+
         }
 
     }
@@ -2135,31 +1614,15 @@ function escapeHTML(value) {
         value === null ||
         value === undefined
     ) {
-
         return "";
     }
 
     return String(value)
-        .replaceAll(
-            "&",
-            "&amp;"
-        )
-        .replaceAll(
-            "<",
-            "&lt;"
-        )
-        .replaceAll(
-            ">",
-            "&gt;"
-        )
-        .replaceAll(
-            '"',
-            "&quot;"
-        )
-        .replaceAll(
-            "'",
-            "&#039;"
-        );
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
 }
 
 
@@ -2268,7 +1731,6 @@ function updateSyncStatus(
         !dot ||
         !label
     ) {
-
         return;
     }
 
@@ -2278,7 +1740,6 @@ function updateSyncStatus(
     if (
         type === "online"
     ) {
-
         dot.classList.add(
             "online"
         );
@@ -2287,7 +1748,6 @@ function updateSyncStatus(
     if (
         type === "error"
     ) {
-
         dot.classList.add(
             "error"
         );
@@ -2339,7 +1799,7 @@ function toast(message) {
 
 
 /* =========================================================
-   CREATE STATE
+   CREATE EMPTY STATE
 ========================================================= */
 
 function createState(
@@ -2397,26 +1857,17 @@ async function createRoom() {
 
     const nameA =
         document
-            .getElementById(
-                "nameA"
-            )
+            .getElementById("nameA")
             ?.value
             .trim();
-
 
     const nameB =
         document
-            .getElementById(
-                "nameB"
-            )
+            .getElementById("nameB")
             ?.value
             .trim();
 
-
-    if (
-        !nameA ||
-        !nameB
-    ) {
+    if (!nameA || !nameB) {
 
         toast(
             "Please enter both names ❤️"
@@ -2434,11 +1885,25 @@ async function createRoom() {
         );
 
 
+    /*
+     * Creator is automatically
+     * person A.
+     */
+
     setRole("A");
 
 
     saveLocal();
 
+
+    /*
+     * Add room code to URL.
+     *
+     * Example:
+     *
+     * https://your-site.github.io/
+     * ?room=BAPPA-ABC123
+     */
 
     setRoomURL(
         state.roomCode
@@ -2508,7 +1973,7 @@ async function createRoom() {
 
 
 /* =========================================================
-   FIREBASE ERROR
+   FIREBASE ERROR MESSAGE
 ========================================================= */
 
 function firebaseErrorMessage(error) {
@@ -2516,14 +1981,14 @@ function firebaseErrorMessage(error) {
     const code =
         error?.code || "";
 
-
     if (
         code ===
         "auth/operation-not-allowed"
     ) {
 
-        return:
-        "Enable Anonymous Authentication in Firebase.";
+        return (
+            "Enable Anonymous Authentication in Firebase."
+        );
     }
 
 
@@ -2532,8 +1997,9 @@ function firebaseErrorMessage(error) {
         "auth/unauthorized-domain"
     ) {
 
-        return:
-        "Add this website domain in Firebase Authorized Domains.";
+        return (
+            "Add this website domain in Firebase Authorized Domains."
+        );
     }
 
 
@@ -2542,8 +2008,9 @@ function firebaseErrorMessage(error) {
         "permission-denied"
     ) {
 
-        return:
-        "Firestore rules are blocking access.";
+        return (
+            "Firestore rules are blocking access."
+        );
     }
 
 
@@ -2552,18 +2019,20 @@ function firebaseErrorMessage(error) {
         "failed-precondition"
     ) {
 
-        return:
-        "Please create your Firestore database.";
+        return (
+            "Please create your Firestore database."
+        );
     }
 
 
-    return:
-    "Firebase connection failed.";
+    return (
+        "Firebase connection failed."
+    );
 }
 
 
 /* =========================================================
-   ROOM LISTENER
+   START ROOM LISTENER
 ========================================================= */
 
 async function startRoomListener() {
@@ -2571,7 +2040,6 @@ async function startRoomListener() {
     if (!state?.roomCode) {
         return;
     }
-
 
     try {
 
@@ -2598,9 +2066,7 @@ async function startRoomListener() {
 
                 snapshot => {
 
-                    if (
-                        !snapshot.exists()
-                    ) {
+                    if (!snapshot.exists()) {
 
                         updateSyncStatus(
                             "error",
@@ -2614,6 +2080,11 @@ async function startRoomListener() {
                     const remoteData =
                         snapshot.data();
 
+
+                    /*
+                     * Firestore becomes
+                     * shared source of truth.
+                     */
 
                     state = {
                         ...state,
@@ -2642,7 +2113,6 @@ async function startRoomListener() {
                         error
                     );
 
-
                     updateSyncStatus(
                         "error",
                         "Sync error"
@@ -2657,7 +2127,6 @@ async function startRoomListener() {
             error
         );
 
-
         updateSyncStatus(
             "error",
             "Connection error"
@@ -2667,7 +2136,7 @@ async function startRoomListener() {
 
 
 /* =========================================================
-   LOAD ROOM
+   LOAD ROOM FROM FIRESTORE
 ========================================================= */
 
 async function loadRoom(
@@ -2699,9 +2168,7 @@ async function loadRoom(
             );
 
 
-        if (
-            !snapshot.exists()
-        ) {
+        if (!snapshot.exists()) {
 
             throw new Error(
                 "ROOM_NOT_FOUND"
@@ -2728,12 +2195,10 @@ async function loadRoom(
             error
         );
 
-
         updateSyncStatus(
             "error",
             "Room unavailable"
         );
-
 
         return false;
     }
@@ -2741,7 +2206,7 @@ async function loadRoom(
 
 
 /* =========================================================
-   URL
+   URL FUNCTIONS
 ========================================================= */
 
 function getRoomFromURL() {
@@ -2766,7 +2231,6 @@ function setRoomURL(
             window.location.href
         );
 
-
     url.searchParams.set(
         "room",
         roomCode
@@ -2788,7 +2252,6 @@ function clearRoomURL() {
             window.location.href
         );
 
-
     url.searchParams.delete(
         "room"
     );
@@ -2803,7 +2266,7 @@ function clearRoomURL() {
 
 
 /* =========================================================
-   SHARE
+   SHARE ROOM
 ========================================================= */
 
 async function shareRoom() {
@@ -2860,6 +2323,11 @@ async function shareRoom() {
 
     } catch (error) {
 
+        /*
+         * Try clipboard if native
+         * sharing isn't available.
+         */
+
         try {
 
             await copyText(
@@ -2901,38 +2369,31 @@ async function copyText(text) {
             "textarea"
         );
 
-
     textarea.value =
         text;
-
 
     textarea.style.position =
         "fixed";
 
-
     textarea.style.left =
         "-9999px";
-
 
     document.body.appendChild(
         textarea
     );
 
-
     textarea.select();
-
 
     document.execCommand(
         "copy"
     );
-
 
     textarea.remove();
 }
 
 
 /* =========================================================
-   SETUP
+   SETUP SCREEN
 ========================================================= */
 
 function renderSetup() {
@@ -3013,9 +2474,7 @@ function renderSetup() {
                                     }"
                                     onclick="chooseDuration(${days})"
                                 >
-
                                     ${days}D
-
                                 </button>
 
                             `)
@@ -3031,9 +2490,7 @@ function renderSetup() {
                     class="primary-btn"
                     onclick="createRoom()"
                 >
-
                     🪔 Begin Our Celebration
-
                 </button>
 
 
@@ -3103,11 +2560,7 @@ function renderRoleScreen() {
                         </div>
 
                         <div class="role-name">
-
-                            ${escapeHTML(
-                                state.nameA
-                            )}
-
+                            ${escapeHTML(state.nameA)}
                         </div>
 
                         <div class="role-small">
@@ -3127,11 +2580,7 @@ function renderRoleScreen() {
                         </div>
 
                         <div class="role-name">
-
-                            ${escapeHTML(
-                                state.nameB
-                            )}
-
+                            ${escapeHTML(state.nameB)}
                         </div>
 
                         <div class="role-small">
@@ -3150,7 +2599,7 @@ function renderRoleScreen() {
 
 
 /* =========================================================
-   ROLE
+   SELECT ROLE
 ========================================================= */
 
 window.selectRole =
@@ -3224,7 +2673,6 @@ function renderDashboard() {
     const daysPassed =
         Math.max(
             1,
-
             Math.floor(
                 (
                     today -
@@ -3238,30 +2686,21 @@ function renderDashboard() {
     const daysRemaining =
         Math.max(
             0,
-
-            Number(
-                state.duration
-            ) -
+            Number(state.duration) -
             daysPassed
         );
 
 
     const notes =
-        Array.isArray(
-            state.notes
-        )
-        ? [
-            ...state.notes
-        ].reverse()
-        : [];
+        Array.isArray(state.notes)
+            ? [...state.notes].reverse()
+            : [];
 
 
     app.innerHTML = `
 
         <main class="dashboard">
 
-
-            <!-- TOP BAR -->
 
             <header class="topbar">
 
@@ -3311,14 +2750,11 @@ function renderDashboard() {
             </header>
 
 
-            <!-- HERO -->
-
             <section class="hero">
 
                 <div class="hero-date">
 
                     Ganeshotsav •
-
                     ${escapeHTML(
                         state.startDate
                     )}
@@ -3334,318 +2770,12 @@ function renderDashboard() {
                 </h1>
 
 
-                <!-- ANIMATED GANESH JI -->
-
                 <div class="ganesh-wrap">
 
-                    <div
-                        class="ganesh-aura"
-                    ></div>
-
+                    <div class="ganesh-glow"></div>
 
                     <div class="ganesh">
-
-                        <svg
-                            class="ganesh-svg"
-                            viewBox="0 0 300 300"
-                            xmlns="http://www.w3.org/2000/svg"
-                            aria-label="Animated Ganesh Ji"
-                        >
-
-                            <!-- CROWN -->
-
-                            <path
-                                class="g-crown"
-                                d="
-                                    M108 78
-                                    L120 38
-                                    L137 61
-                                    L150 28
-                                    L163 61
-                                    L181 38
-                                    L192 78
-                                    Z
-                                "
-                            />
-
-                            <!-- CROWN JEWEL -->
-
-                            <circle
-                                class="g-jewel"
-                                cx="150"
-                                cy="48"
-                                r="6"
-                            />
-
-
-                            <!-- LEFT EAR -->
-
-                            <path
-                                class="g-ear"
-                                d="
-                                    M105 105
-                                    C70 82
-                                    42 103
-                                    57 139
-                                    C67 164
-                                    91 157
-                                    111 137
-                                    Z
-                                "
-                            />
-
-
-                            <!-- RIGHT EAR -->
-
-                            <path
-                                class="g-ear"
-                                d="
-                                    M195 105
-                                    C230 82
-                                    258 103
-                                    243 139
-                                    C233 164
-                                    209 157
-                                    189 137
-                                    Z
-                                "
-                            />
-
-
-                            <!-- FACE -->
-
-                            <ellipse
-                                class="g-face"
-                                cx="150"
-                                cy="112"
-                                rx="58"
-                                ry="57"
-                            />
-
-
-                            <!-- TILAK -->
-
-                            <path
-                                class="g-tilak"
-                                d="
-                                    M150 72
-                                    C140 88
-                                    140 99
-                                    150 108
-                                    C160 99
-                                    160 88
-                                    150 72
-                                    Z
-                                "
-                            />
-
-
-                            <!-- LEFT EYE -->
-
-                            <ellipse
-                                class="g-eye"
-                                cx="128"
-                                cy="113"
-                                rx="8"
-                                ry="5"
-                            />
-
-
-                            <!-- RIGHT EYE -->
-
-                            <ellipse
-                                class="g-eye"
-                                cx="172"
-                                cy="113"
-                                rx="8"
-                                ry="5"
-                            />
-
-
-                            <!-- TRUNK -->
-
-                            <path
-                                class="g-trunk"
-                                d="
-                                    M150 128
-                                    C148 151
-                                    151 166
-                                    137 181
-                                    C126 193
-                                    132 210
-                                    148 211
-                                    C166 212
-                                    177 196
-                                    169 184
-                                    C163 175
-                                    154 168
-                                    158 151
-                                "
-                            />
-
-
-                            <!-- TRUNK TIP -->
-
-                            <path
-                                class="g-trunk-tip"
-                                d="
-                                    M137 201
-                                    C127 212
-                                    113 210
-                                    110 199
-                                    C121 204
-                                    130 199
-                                    137 191
-                                "
-                            />
-
-
-                            <!-- BODY -->
-
-                            <path
-                                class="g-body"
-                                d="
-                                    M91 190
-                                    C78 202
-                                    72 228
-                                    82 248
-                                    C99 273
-                                    201 273
-                                    218 248
-                                    C228 228
-                                    222 202
-                                    209 190
-                                    C192 174
-                                    171 178
-                                    150 187
-                                    C129 178
-                                    108 174
-                                    91 190
-                                    Z
-                                "
-                            />
-
-
-                            <!-- BELLY -->
-
-                            <ellipse
-                                class="g-belly"
-                                cx="150"
-                                cy="224"
-                                rx="45"
-                                ry="38"
-                            />
-
-
-                            <!-- LEFT ARM -->
-
-                            <path
-                                class="g-arm"
-                                d="
-                                    M100 194
-                                    C72 190
-                                    57 211
-                                    66 226
-                                    C74 237
-                                    89 229
-                                    99 217
-                                "
-                            />
-
-
-                            <!-- RIGHT ARM -->
-
-                            <path
-                                class="g-arm"
-                                d="
-                                    M200 194
-                                    C228 190
-                                    243 211
-                                    234 226
-                                    C226 237
-                                    211 229
-                                    201 217
-                                "
-                            />
-
-
-                            <!-- MODAK -->
-
-                            <path
-                                class="g-modak"
-                                d="
-                                    M125 236
-                                    Q150 214
-                                    175 236
-                                    L169 254
-                                    Q150 264
-                                    131 254
-                                    Z
-                                "
-                            />
-
-
-                            <!-- MODAK LINES -->
-
-                            <path
-                                class="g-modak-lines"
-                                d="
-                                    M137 233
-                                    L142 253
-
-                                    M150 228
-                                    L150 258
-
-                                    M163 233
-                                    L158 253
-                                "
-                            />
-
-
-                            <!-- LEFT FOOT -->
-
-                            <ellipse
-                                class="g-foot"
-                                cx="119"
-                                cy="264"
-                                rx="27"
-                                ry="10"
-                            />
-
-
-                            <!-- RIGHT FOOT -->
-
-                            <ellipse
-                                class="g-foot"
-                                cx="181"
-                                cy="264"
-                                rx="27"
-                                ry="10"
-                            />
-
-                        </svg>
-
-                    </div>
-
-
-                    <!-- SPARKLES -->
-
-                    <div
-                        class="ganesh-sparkle sparkle-1"
-                    >
-                        ✦
-                    </div>
-
-                    <div
-                        class="ganesh-sparkle sparkle-2"
-                    >
-                        ✦
-                    </div>
-
-                    <div
-                        class="ganesh-sparkle sparkle-3"
-                    >
-                        ✦
+                        ᬒᬁ
                     </div>
 
                 </div>
@@ -3657,16 +2787,8 @@ function renderDashboard() {
 
                     ${
                         daysRemaining > 0
-                        ?
-                        `${daysRemaining}
-                        day${
-                            daysRemaining === 1
-                            ? ""
-                            : "s"
-                        }
-                        remaining`
-                        :
-                        "Ganpati Bappa Morya ❤️"
+                        ? `${daysRemaining} day${daysRemaining === 1 ? "" : "s"} remaining`
+                        : "Ganpati Bappa Morya ❤️"
                     }
 
                 </div>
@@ -3674,17 +2796,13 @@ function renderDashboard() {
             </section>
 
 
-            <!-- CONTENT -->
-
             <div class="content-grid">
 
 
-                <!-- LEFT -->
+                <!-- LEFT COLUMN -->
 
                 <div>
 
-
-                    <!-- DIYA -->
 
                     <section class="card">
 
@@ -3697,10 +2815,8 @@ function renderDashboard() {
                                 ${
                                     myChecked &&
                                     otherChecked
-                                    ?
-                                    "Both glowing ❤️"
-                                    :
-                                    "Light yours today"
+                                    ? "Both glowing ❤️"
+                                    : "Light yours today"
                                 }
 
                             </small>
@@ -3718,15 +2834,11 @@ function renderDashboard() {
                                     style="${
                                         myChecked
                                         ? ""
-                                        :
-                                        "opacity:.28;filter:grayscale(1)"
+                                        : "opacity:.28;filter:grayscale(1)"
                                     }"
                                 >
-
                                     🪔
-
                                 </span>
-
 
                                 <div class="diya-name">
 
@@ -3757,15 +2869,11 @@ function renderDashboard() {
                                     style="${
                                         otherChecked
                                         ? ""
-                                        :
-                                        "opacity:.28;filter:grayscale(1)"
+                                        : "opacity:.28;filter:grayscale(1)"
                                     }"
                                 >
-
                                     🪔
-
                                 </span>
-
 
                                 <div class="diya-name">
 
@@ -3783,29 +2891,23 @@ function renderDashboard() {
                         <button
                             class="primary-btn"
                             onclick="checkIn()"
-
                             ${
                                 myChecked
-                                ?
-                                `
+                                ? `
                                     disabled
-
                                     style="
                                         opacity:.55;
                                         cursor:default;
                                     "
                                 `
-                                :
-                                ""
+                                : ""
                             }
                         >
 
                             ${
                                 myChecked
-                                ?
-                                "🪔 Your diya is lit"
-                                :
-                                "🪔 Light my diya"
+                                ? "🪔 Your diya is lit"
+                                : "🪔 Light my diya"
                             }
 
                         </button>
@@ -3815,8 +2917,6 @@ function renderDashboard() {
 
                     <br>
 
-
-                    <!-- LITTLE THINGS -->
 
                     <section class="card">
 
@@ -3833,23 +2933,15 @@ function renderDashboard() {
                                 onclick="offerModak()"
                             >
 
-                                <span
-                                    class="action-icon"
-                                >
+                                <span class="action-icon">
                                     🍥
                                 </span>
 
-
-                                <div
-                                    class="action-label"
-                                >
+                                <div class="action-label">
                                     Offer Modak
                                 </div>
 
-
-                                <div
-                                    class="action-value"
-                                >
+                                <div class="action-value">
                                     Send one to Bappa
                                 </div>
 
@@ -3861,33 +2953,25 @@ function renderDashboard() {
                                 onclick="ringBell()"
                             >
 
-                                <span
-                                    class="action-icon"
-                                >
+                                <span class="action-icon">
                                     🔔
                                 </span>
 
-
-                                <div
-                                    class="action-label"
-                                >
+                                <div class="action-label">
                                     Ring Bell
                                 </div>
 
-
-                                <div
-                                    class="action-value"
-                                >
+                                <div class="action-value">
 
                                     ${
                                         state.bellCount || 0
                                     }
-
                                     rings
 
                                 </div>
 
                             </button>
+
 
                         </div>
 
@@ -3896,8 +2980,6 @@ function renderDashboard() {
 
                     <br>
 
-
-                    <!-- MODAKS -->
 
                     <section class="card">
 
@@ -3912,13 +2994,9 @@ function renderDashboard() {
                         </div>
 
 
-                        <div
-                            class="modak-count"
-                        >
+                        <div class="modak-count">
 
-                            <div
-                                class="modak-number"
-                            >
+                            <div class="modak-number">
 
                                 ${
                                     state.modaks || 0
@@ -3926,10 +3004,7 @@ function renderDashboard() {
 
                             </div>
 
-
-                            <div
-                                class="modak-label"
-                            >
+                            <div class="modak-label">
                                 modaks offered
                             </div>
 
@@ -3951,8 +3026,6 @@ function renderDashboard() {
                     <br>
 
 
-                    <!-- NOTES -->
-
                     <section class="card">
 
                         <div class="card-title">
@@ -3965,13 +3038,8 @@ function renderDashboard() {
                             <input
                                 id="noteInput"
                                 maxlength="300"
-                                placeholder="
-                                    Write something for ${escapeHTML(
-                                        otherName
-                                    )}...
-                                "
+                                placeholder="Write something for ${escapeHTML(otherName)}..."
                             >
-
 
                             <button
                                 class="note-send"
@@ -3989,42 +3057,34 @@ function renderDashboard() {
                                 notes.length
                                 ?
                                 notes
-                                    .map(
-                                        note => `
+                                .map(
+                                    note => `
 
-                                            <div
-                                                class="note"
-                                            >
+                                        <div class="note">
 
-                                                <div
-                                                    class="note-author"
-                                                >
+                                            <div class="note-author">
 
-                                                    ${escapeHTML(
-                                                        note.author
-                                                    )}
-
-                                                </div>
-
-
-                                                <div
-                                                    class="note-text"
-                                                >
-
-                                                    ${escapeHTML(
-                                                        note.text
-                                                    )}
-
-                                                </div>
+                                                ${escapeHTML(
+                                                    note.author
+                                                )}
 
                                             </div>
 
-                                        `
-                                    )
-                                    .join("")
 
+                                            <div class="note-text">
+
+                                                ${escapeHTML(
+                                                    note.text
+                                                )}
+
+                                            </div>
+
+                                        </div>
+
+                                    `
+                                )
+                                .join("")
                                 :
-
                                 `
 
                                     <div
@@ -4036,9 +3096,7 @@ function renderDashboard() {
                                         "
                                     >
 
-                                        No notes yet.
-
-                                        <br>
+                                        No notes yet.<br>
 
                                         Leave the first
                                         little message ❤️
@@ -4055,12 +3113,10 @@ function renderDashboard() {
                 </div>
 
 
-                <!-- RIGHT -->
+                <!-- RIGHT COLUMN -->
 
                 <div>
 
-
-                    <!-- OUR DAY -->
 
                     <section class="card">
 
@@ -4074,15 +3130,11 @@ function renderDashboard() {
 
                             <div class="stat">
 
-                                <div
-                                    class="stat-number"
-                                >
+                                <div class="stat-number">
                                     ${daysPassed}
                                 </div>
 
-                                <div
-                                    class="stat-label"
-                                >
+                                <div class="stat-label">
                                     DAY
                                 </div>
 
@@ -4091,15 +3143,11 @@ function renderDashboard() {
 
                             <div class="stat">
 
-                                <div
-                                    class="stat-number"
-                                >
+                                <div class="stat-number">
                                     ${state.duration}
                                 </div>
 
-                                <div
-                                    class="stat-label"
-                                >
+                                <div class="stat-label">
                                     TOTAL
                                 </div>
 
@@ -4108,23 +3156,16 @@ function renderDashboard() {
 
                             <div class="stat">
 
-                                <div
-                                    class="stat-number"
-                                >
-
-                                    ${
-                                        state.bellCount || 0
-                                    }
-
+                                <div class="stat-number">
+                                    ${state.bellCount || 0}
                                 </div>
 
-                                <div
-                                    class="stat-label"
-                                >
+                                <div class="stat-label">
                                     BELLS
                                 </div>
 
                             </div>
+
 
                         </div>
 
@@ -4133,8 +3174,6 @@ function renderDashboard() {
 
                     <br>
 
-
-                    <!-- AARTI -->
 
                     <section class="card">
 
@@ -4168,13 +3207,9 @@ function renderDashboard() {
                                 "
                             >
 
-                                Take a moment.
+                                Take a moment.<br>
 
-                                <br>
-
-                                Close your eyes.
-
-                                <br>
+                                Close your eyes.<br>
 
                                 Think of Bappa
                                 & each other.
@@ -4188,9 +3223,7 @@ function renderDashboard() {
                             class="share-btn"
                             onclick="ringBell()"
                         >
-
                             🔔 Ring the Aarti Bell
-
                         </button>
 
                     </section>
@@ -4199,11 +3232,7 @@ function renderDashboard() {
                     <br>
 
 
-                    <!-- SHARE -->
-
-                    <section
-                        class="card share-box"
-                    >
+                    <section class="card share-box">
 
                         <div class="card-title">
 
@@ -4217,9 +3246,8 @@ function renderDashboard() {
                             Send this room link to
                             ${escapeHTML(otherName)}.
 
-                            When they open it on their
-                            phone, both phones share
-                            the same room.
+                            When they open it on their phone,
+                            both phones share the same room.
 
                         </p>
 
@@ -4237,7 +3265,6 @@ function renderDashboard() {
                         <div class="room-code">
 
                             Room:
-
                             ${escapeHTML(
                                 state.roomCode
                             )}
@@ -4249,8 +3276,6 @@ function renderDashboard() {
 
                     <br>
 
-
-                    <!-- CONNECTION -->
 
                     <section class="card">
 
@@ -4275,16 +3300,12 @@ function renderDashboard() {
                                     : "⚪"
                                 }
 
-                                ${escapeHTML(
-                                    myName
-                                )}
+                                ${escapeHTML(myName)}
 
                                 ${
                                     myChecked
-                                    ?
-                                    " has lit the diya"
-                                    :
-                                    " hasn't checked in"
+                                    ? " has lit the diya"
+                                    : " hasn't checked in"
                                 }
 
                             </div>
@@ -4298,16 +3319,12 @@ function renderDashboard() {
                                     : "⚪"
                                 }
 
-                                ${escapeHTML(
-                                    otherName
-                                )}
+                                ${escapeHTML(otherName)}
 
                                 ${
                                     otherChecked
-                                    ?
-                                    " has lit the diya"
-                                    :
-                                    " hasn't checked in yet"
+                                    ? " has lit the diya"
+                                    : " hasn't checked in yet"
                                 }
 
                             </div>
@@ -4316,12 +3333,11 @@ function renderDashboard() {
 
                     </section>
 
+
                 </div>
 
             </div>
 
-
-            <!-- FOOTER -->
 
             <footer class="footer">
 
@@ -4340,18 +3356,13 @@ function renderDashboard() {
 
 
     updateSyncStatus(
+        firebaseReady
+        ? "online"
+        : "error",
 
         firebaseReady
-        ?
-        "online"
-        :
-        "error",
-
-        firebaseReady
-        ?
-        "Synced"
-        :
-        "Offline"
+        ? "Synced"
+        : "Offline"
     );
 }
 
@@ -4375,7 +3386,6 @@ async function() {
     if (
         state.checkins?.[role]
     ) {
-
         return;
     }
 
@@ -4393,11 +3403,9 @@ async function() {
 
         const update = {};
 
-
         update[
             `checkins.${role}`
         ] = true;
-
 
         update.updatedAt =
             Date.now();
@@ -4413,8 +3421,8 @@ async function() {
 
             ...(state.checkins || {}),
 
-            [role]:
-                true
+            [role]: true
+
         };
 
 
@@ -4431,7 +3439,6 @@ async function() {
         console.error(
             error
         );
-
 
         toast(
             firebaseErrorMessage(
@@ -4487,7 +3494,6 @@ async function() {
         console.error(
             error
         );
-
 
         toast(
             firebaseErrorMessage(
@@ -4547,7 +3553,6 @@ async function() {
             error
         );
 
-
         toast(
             firebaseErrorMessage(
                 error
@@ -4558,7 +3563,7 @@ async function() {
 
 
 /* =========================================================
-   NOTES
+   SEND NOTE
 ========================================================= */
 
 window.sendNote =
@@ -4595,10 +3600,8 @@ async function() {
 
     const author =
         role === "A"
-        ?
-        state.nameA
-        :
-        state.nameB;
+            ? state.nameA
+            : state.nameB;
 
 
     const note = {
@@ -4662,7 +3665,6 @@ async function() {
         console.error(
             error
         );
-
 
         toast(
             firebaseErrorMessage(
@@ -4863,6 +3865,10 @@ async function initialize() {
     createParticles();
 
 
+    /*
+     * Authenticate first.
+     */
+
     try {
 
         await authenticate();
@@ -4873,16 +3879,18 @@ async function initialize() {
             "Firebase authentication failed:",
             error
         );
+
     }
 
+
+    /*
+     * Check whether another person
+     * opened a shared room.
+     */
 
     const roomCode =
         getRoomFromURL();
 
-
-    /* =====================================================
-       SHARED ROOM
-    ===================================================== */
 
     if (roomCode) {
 
@@ -4897,7 +3905,10 @@ async function initialize() {
             /*
              * IMPORTANT:
              *
-             * Each phone chooses its own role.
+             * Don't copy the first phone's
+             * role onto this phone.
+             *
+             * Each phone chooses independently.
              */
 
             renderCurrentScreen();
@@ -4905,6 +3916,10 @@ async function initialize() {
             return;
         }
 
+
+        /*
+         * Room couldn't be loaded.
+         */
 
         app.innerHTML = `
 
@@ -4969,9 +3984,11 @@ async function initialize() {
     }
 
 
-    /* =====================================================
-       LOCAL ROOM
-    ===================================================== */
+    /*
+     * No room URL.
+     *
+     * Try local room.
+     */
 
     const cached =
         loadLocal();
@@ -4985,6 +4002,10 @@ async function initialize() {
 
         renderCurrentScreen();
 
+
+        /*
+         * Reconnect to Firestore.
+         */
 
         try {
 
@@ -5002,9 +4023,9 @@ async function initialize() {
     }
 
 
-    /* =====================================================
-       NEW USER
-    ===================================================== */
+    /*
+     * Completely new user.
+     */
 
     renderSetup();
 }
@@ -5059,7 +4080,7 @@ window.shareRoom =
 
 
 /* =========================================================
-   START
+   START APP
 ========================================================= */
 
 initialize();
